@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Mobby Resto!</Text>
+      <Text>Mobby Resto! Best App</Text>
       <StatusBar style="auto" />
     </View>
   );
