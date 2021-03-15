@@ -18,5 +18,5 @@ const ContactScreen = (props) => {
         </SafeAreaView>
     )
 }
-
+//test
 export default ContactScreen;
