@@ -23,6 +23,9 @@ const HomeScreen = (props) => {
                 <Button onPress={() => props.navigation.navigate("Register")}>
                     Go to Register Screen
                 </Button>
+                <Button onPress={() => props.navigation.navigate("Contact")}>
+                    Go to Contact Screen
+                </Button>
             </View>
             <View style={{ flex: 1 }}>
                 {(isLoading != null) ? (<Text>{restaurants[0].name}</Text>) : (<ActivityIndicator />)}
