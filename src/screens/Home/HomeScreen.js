@@ -14,24 +14,39 @@ const HomeScreen = (props) => {
     const restaurants = useSelector(state => state.restaurant.restaurants.businesses)
     const isLoading = useSelector(state => state.restaurant.isFetchingRestaurants)
 
-    return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 30 }}>
-                    This is the Home Screen.
-                </Text>
-                <Button onPress={() => props.navigation.navigate("Register")}>
-                    Go to Register Screen
-                </Button>
-                <Button onPress={() => props.navigation.navigate("Contact")}>
-                    Go to Contact Screen
-                </Button>
-            </View>
-            <View style={{ flex: 1 }}>
-                {(isLoading != null) ? (<Text>{restaurants[0].name}</Text>) : (<ActivityIndicator />)}
-            </View>
-        </SafeAreaView>
-    )
+    if (isLoading)
+    {
+        return (
+            <SafeAreaView style={{ flex: 1 }}>
+                <View style={{ flex: 1, justifyContent: 'center' }}>
+                    <ActivityIndicator size="large" />
+                </View>
+            </SafeAreaView>
+        )
+    }
+    else
+    {
+        return (
+            <SafeAreaView style={{ flex: 1 }}>
+                <View style={{ flex: 1 }}>
+                    <Text style={{ fontSize: 30 }}>
+                        This is the Home Screen.
+                    </Text>
+                    <Button onPress={() => props.navigation.navigate("Register")}>
+                        Go to Register Screen
+                    </Button>
+                    <Button onPress={() => props.navigation.navigate("Contact")}>
+                        Go to Contact Screen
+                    </Button>
+                </View>
+                <View style={{ flex: 1 }}>
+                    <Text>
+                        {restaurants[0].name}
+                    </Text>
+                </View>
+            </SafeAreaView>
+        )
+    }
 }
 
 export default HomeScreen;
