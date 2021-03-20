@@ -1,22 +1,29 @@
 import React from 'react';
-import { SafeAreaView, Text, View, } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, View, Image} from 'react-native';
 import { Button } from 'react-native-paper';
 
 const ContactScreen = (props) => {
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={ styles.container }>
             <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 30 }}>
-                    This is the Contact Screen.
-                </Text>
+                <Image source={require("./assets/templogo.png")} />
                 <Button onPress={() => props.navigation.navigate("Submit")}>
                     Submit
                 </Button>
-                <Button onPress={() => props.navigation.navigate("Cancel")}>
+                <Button onPress={() => props.navigation.navigate("Home")}>
                     Cancel
                 </Button>
             </View>
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    }
+})
 export default ContactScreen;

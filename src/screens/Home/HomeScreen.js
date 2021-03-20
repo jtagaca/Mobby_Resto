@@ -36,8 +36,8 @@ const HomeScreen = (props) => {
                     <Button onPress={() => props.navigation.navigate("Register")}>
                         Go to Register Screen
                     </Button>
-                    <Button onPress={() => props.navigation.navigate("Contact")}>
-                        Go to Contact Screen
+                    <Button onPress={() => props.navigation.navigate("Contact Us")}>
+                        Contact Us
                     </Button>
                 </View>
                 <View style={{ flex: 1 }}>
