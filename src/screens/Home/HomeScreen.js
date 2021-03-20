@@ -10,11 +10,12 @@ const HomeScreen = (props) => {
     useEffect( () => {
         dispatch(fetchRestaurants("burger"))
     }, []);
-    
-    const restaurants = useSelector(state => state.restaurant.restaurants.businesses)
+
+    const restaurants = useSelector(state => (state.restaurant.restaurants) ? state.restaurant.restaurants.businesses : null)
+
     const isLoading = useSelector(state => state.restaurant.isFetchingRestaurants)
 
-    if (isLoading)
+    if (isLoading || !restaurants)
     {
         return (
             <SafeAreaView style={{ flex: 1 }}>
