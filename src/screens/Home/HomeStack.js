@@ -11,7 +11,7 @@ function HomeStack() {
         <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="Contact Us" component={ContactScreen} />
+            <Stack.Screen name="Contact Us" component={ContactScreen} options={{ headerShown: false}}/>
         </Stack.Navigator>
     );
 }

@@ -6,7 +6,10 @@ const ContactScreen = (props) => {
     return (
         <SafeAreaView style={ styles.container }>
             <View style={{ flex: 1 }}>
-                <Image source={require("./assets/templogo.png")} />
+                <Image 
+                    style={{width: 100, height: 100}}
+                    source={require("../../../assets/templogo.png")}
+                />
                 <Button onPress={() => props.navigation.navigate("Submit")}>
                     Submit
                 </Button>
