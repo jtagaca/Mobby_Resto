@@ -39,16 +39,14 @@ function newt(props) {
     );
   } else {
     return (
-     <SafeAreaView>
-        <FlatList data={restaurants}
-        renderItem={({restaurants})=>(
-        <Text>{restaurants.alias}</Text>
-        )}/>
-           
-    </SafeAreaView>
-    )
-  
-}
+      <SafeAreaView>
+        <FlatList
+          data={restaurants}
+          renderItem={({ restaurants }) => <Text>{restaurants.alias}</Text>}
+        />
+      </SafeAreaView>
+    );
+  }
 }
 
 export default newt;
