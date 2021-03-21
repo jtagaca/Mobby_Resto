@@ -1,9 +1,7 @@
-import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
-import { Provider as PaperProvider } from 'react-native-paper';
+
+import { PaperProvider, Avatar, Button, Card, Title, Paragraph,ActivityIndicator } from 'react-native-paper';
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
-import { ActivityIndicator, Button } from 'react-native-paper';
+import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
 import { fetchRestaurants } from '../../redux/actions/RestaurantActions';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -33,27 +31,19 @@ function newt(props) {
     else
     {
         return (
-            <SafeAreaView style={{ flex: 1 }}>
-                <View style={{ flex: 1 }}>
-                    <Text style={{ fontSize: 30 }}>
-                        This is the Home Screen.
-                    </Text>
-                    <Button onPress={() => props.navigation.navigate("Register")}>
-                        Go to Register Screen
-                    </Button>
-                    <Button onPress={() => props.navigation.navigate("Contact Us")}>
-                        Contact Us
-                    </Button>
-                    <Button onPress={() => props.navigation.navigate("newt")}>
-                        after sign in
-                    </Button>
-                </View>
-                <View style={{ flex: 1 }}>
-                    <Text>
-                        {restaurants[0].name}
-                    </Text>
-                </View>
-            </SafeAreaView>
+            
+            <Card>
+            <Card.Title title="Card Title" subtitle="Card Subtitle"  />
+            <Card.Content>
+              <Title>Card title</Title>
+              <Paragraph>Card content</Paragraph>
+            </Card.Content>
+            <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+            <Card.Actions>
+              <Button>Cancel</Button>
+              <Button>Ok</Button>
+            </Card.Actions>
+          </Card>
         )
     }
 }
@@ -63,12 +53,12 @@ export default newt;
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        backgroundColor:blue,
+        backgroundColor:"blue",
         textAlign: 'center'
 
     },
     text:{
-        color:blue,
+        color:"blue",
 
     }
 })
