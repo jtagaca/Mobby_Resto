@@ -41,8 +41,9 @@ function newt(props) {
     return (
       <SafeAreaView>
         <FlatList
+          keyExtractor={item => item.id}
           data={restaurants}
-          renderItem={({ restaurants }) => <Text>{restaurants.alias}</Text>}
+          renderItem={({ item }) => <Text>{item.alias}</Text>}
         />
         {/* const MyComponent = () => (
         <Card>
