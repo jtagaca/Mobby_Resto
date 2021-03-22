@@ -1,5 +1,5 @@
 import {
-  PaperProvider,
+  Provider as PaperProvider,
   Avatar,
   Button,
   Card,
@@ -11,6 +11,8 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, Text, View, StyleSheet, FlatList } from "react-native";
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
 import { useSelector, useDispatch } from "react-redux";
+import MyComp from "./botNav";
+import Search from "./search";
 
 //this is still in progress
 function newt(props) {
@@ -40,29 +42,31 @@ function newt(props) {
   } else {
     return (
       <SafeAreaView>
-        <FlatList
-          keyExtractor={item => item.id}
-          data={restaurants}
-          renderItem={({ item }) => <Text>{item.alias}</Text>}
-        />
-        {/* const MyComponent = () => (
-        <Card>
-          <Card.Title
-            title="Card Title"
-            subtitle="Card Subtitle"
-            left={LeftContent}
+        {/* <PaperProvider> */}
+          <Search style={styles.background} />
+          <FlatList
+            keyExtractor={(item) => item.id}
+            data={restaurants}
+            renderItem={({ item }) => (
+              <Card>
+                <Text>{item.categories.alias}</Text>
+                <Card.Content>
+                  <Title>{item.alias}</Title>
+                </Card.Content>
+
+                <Card.Cover source={{ uri: item.image_url }} />
+                <Card.Actions>
+                  <Button>More Info</Button>
+                  {/* <Button>Placeholder</Button> */}
+                  <Text style={styles.spacing}>Phone: {item.phone}</Text>
+                  {/* need to move  */}
+                  <Text>Ratings: {item.rating}</Text>
+                </Card.Actions>
+              </Card>
+            )}
           />
-          <Card.Content>
-            <Title>Card title</Title>
-            <Paragraph>Card content</Paragraph>
-          </Card.Content>
-          <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
-          <Card.Actions>
-            <Button>Cancel</Button>
-            <Button>Ok</Button>
-          </Card.Actions>
-        </Card>
-        ); */}
+          <MyComp />
+        {/* </PaperProvider> */}
       </SafeAreaView>
     );
   }
@@ -72,11 +76,12 @@ export default newt;
 
 const styles = StyleSheet.create({
   background: {
-    flex: 1,
     backgroundColor: "blue",
-    textAlign: "center",
   },
   text: {
     color: "blue",
+  },
+  spacing: {
+    marginRight: 5,
   },
 });
