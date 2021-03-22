@@ -4,6 +4,7 @@ import RegisterScreen from './RegisterScreen';
 import ContactScreen from './ContactScreen';
 import React from 'react';
 import newt from "./newt.js";
+import ProfileScreen from './ProfileScreen';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,7 @@ function HomeStack() {
             <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Contact Us" component={ContactScreen} options={{ headerShown: false}}/>
             <Stack.Screen name="newt" component={newt} options={{ headerShown: false}}/>
+            <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false}}/>
         </Stack.Navigator>
     );
 }

@@ -42,6 +42,9 @@ const HomeScreen = (props) => {
                     <Button onPress={() => props.navigation.navigate("newt")}>
                         after sign in
                     </Button>
+                    <Button onPress={() => props.navigation.navigate("ProfileScreen")}>
+                        My Profile
+                    </Button>
                 </View>
                 <View style={{ flex: 1 }}>
                     <Text>
