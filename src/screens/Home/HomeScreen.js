@@ -39,6 +39,9 @@ const HomeScreen = (props) => {
                     <Button onPress={() => props.navigation.navigate("Contact Us")}>
                         Contact Us
                     </Button>
+                    <Button onPress={() => props.navigation.navigate("newt")}>
+                        after sign in
+                    </Button>
                 </View>
                 <View style={{ flex: 1 }}>
                     <Text>
