@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, Text, View, Image} from 'react-native';
 import { Button } from 'react-native-paper';
-//test
+// more test
 const ContactScreen = (props) => {
     return (
         <SafeAreaView style={ styles.container }>
