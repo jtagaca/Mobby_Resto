@@ -1,7 +1,8 @@
 import React from 'react';
-import{StyleSheet, Text, View, Image, Button} from 'react-native';
+import{StyleSheet, Text, View, Image} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { Button } from 'react-native-paper';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import { Title, Card } from 'react-native-paper';
@@ -9,7 +10,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons'; 
 
 
-const ProfileScreen = ()=>{
+const ProfileScreen = (props)=>{
     return(
         <View style={styles.root}>
             <LinearGradient
@@ -42,31 +43,37 @@ const ProfileScreen = ()=>{
 
             <Card style={styles.myCard}>
                 <View style={styles.cardContents}>
-                    <MaterialIcons name="credit-card" size={32} color="black"/>
+                    <MaterialIcons name="credit-card" size={32} color="green"/>
                     <Text style={styles.myText}> Payment Information </Text>
                 </View>
             </Card>
 
             <Card style={styles.myCard}>
                 <View style={styles.cardContents}>
-                    <MaterialIcons name="restaurant" size={32} color="black"/>
+                    <MaterialIcons name="restaurant" size={32} color="orange"/>
                     <Text style={styles.myText}> Restruant Reviews </Text>
                 </View>
             </Card>
 
             <Card style={styles.myCard}>
                 <View style={styles.cardContents}>
-                    <MaterialIcons name="message" size={32} color="black"/>
+                    <MaterialIcons name="message" size={32} color="cyan"/>
                     <Text style={styles.myText}> Message Me! </Text>
                 </View>
             </Card>
 
             <Card style={styles.myCard}>
                 <View style={styles.cardContents}>
-                    <MaterialIcons name="edit" size={32} color="Green"/>
-                    <Text style={styles.myText}> Edit Info </Text>
+                    <MaterialIcons name="edit" size={32} color="blue"/>
+                    <Button onPress={() => props.navigation.navigate("SettingsScreen")}>
+                        Settings
+                    </Button>
                 </View>
             </Card>
+
+            <Button onPress={() => props.navigation.goBack()}>
+                    Go Back
+                </Button>
         
         
         
