@@ -63,7 +63,7 @@ const ProfileScreen = ()=>{
 
             <Card style={styles.myCard}>
                 <View style={styles.cardContents}>
-                    <MaterialIcons name="edit" size={32} color="black"/>
+                    <MaterialIcons name="edit" size={32} color="Green"/>
                     <Text style={styles.myText}> Edit Info </Text>
                 </View>
             </Card>
