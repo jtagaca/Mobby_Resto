@@ -60,7 +60,8 @@ function newt(props) {
           
           renderItem={({ item }) => (
             
-            <Card style={styles.card, styles.spacing}>
+            <View style={styles.container}>
+            <Card style={ styles.card, styles.spacing}>
               <Text>{item.categories.alias}</Text>
 
               {/* use the method replace to remove the dashes but we need to store the output first to a variable*/}
@@ -76,13 +77,20 @@ function newt(props) {
                 {/* <Button>Placeholder</Button> */}
                 <Text style={styles.text}>Phone: {item.phone}</Text>
                 {/* need to move  */}
+                <View style={styles.rating}>
                 <Rating 
-                type='star'
+                
+                type='custom'
                 ratingCount= {item.rating}
-                showRating />
+                imageSize={25}
+                ratingBackgroundColor= 'grey'
+                ratingColor= "lightblue"
+                ratingCount={5}
+                />
+                </View>
               </Card.Actions>
             </Card>
-        
+            </View>
           )}
           
         />
@@ -98,6 +106,9 @@ export default newt;
 
 const styles = StyleSheet.create({
   
+  container:{
+    backgroundColor: "lightblue",
+  },
   text: {
     
   },
@@ -117,6 +128,11 @@ const styles = StyleSheet.create({
     marginTop: 3,
     borderLeftWidth: 5,
     borderLeftColor: '#ea7e7a'
+    
+  },
+  rating: {
+    flex: 1
+   
   }
 });
 
