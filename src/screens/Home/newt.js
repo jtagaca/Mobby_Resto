@@ -33,7 +33,7 @@ function newt(props) {
   );
 
   
-  console.log(restaurants.display_phone);
+  console.log(restaurants.display_phone); // I need to store this obkect in a var use this for removing the - 
   // const categories= {restaurant.categories.alias};
   // console.log(categories);
   const isLoading = useSelector(

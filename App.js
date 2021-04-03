@@ -13,6 +13,16 @@ const { store, persistor } = configureStore()
 
 const AppStack = createStackNavigator();
 
+// const theme = {
+  
+ 
+//   colors: {
+//     colors:'white',
+//     primary: '#3498db',
+//     accent: '#f1c40f',
+//   },
+// };
+
 export default function App() {
   return (
     <Provider store={store}>
