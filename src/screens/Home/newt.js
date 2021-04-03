@@ -11,8 +11,9 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, Text, View, StyleSheet, FlatList } from "react-native";
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
 import { useSelector, useDispatch } from "react-redux";
-import MyComp from "./botNav";
+import Bot from "./botNav";
 import Search from "./search";
+
 
 //this is still in progress
 function newt(props) {
@@ -43,29 +44,29 @@ function newt(props) {
     return (
       <SafeAreaView>
         {/* <PaperProvider> */}
-          <Search style={styles.background} />
-          <FlatList
-            keyExtractor={(item) => item.id}
-            data={restaurants}
-            renderItem={({ item }) => (
-              <Card>
-                <Text>{item.categories.alias}</Text>
-                <Card.Content>
-                  <Title>{item.alias}</Title>
-                </Card.Content>
+        <Search style={styles.background} />
+        <FlatList
+          keyExtractor={(item) => item.id}
+          data={restaurants}
+          renderItem={({ item }) => (
+            <Card>
+              <Text>{item.categories.alias}</Text>
+              <Card.Content>
+                <Title>{item.alias}</Title>
+              </Card.Content>
 
-                <Card.Cover source={{ uri: item.image_url }} />
-                <Card.Actions>
-                  <Button>More Info</Button>
-                  {/* <Button>Placeholder</Button> */}
-                  <Text style={styles.spacing}>Phone: {item.phone}</Text>
-                  {/* need to move  */}
-                  <Text>Ratings: {item.rating}</Text>
-                </Card.Actions>
-              </Card>
-            )}
-          />
-          <MyComp />
+              <Card.Cover source={{ uri: item.image_url }} />
+              <Card.Actions>
+                <Button>More Info</Button>
+                {/* <Button>Placeholder</Button> */}
+                <Text style={styles.spacing}>Phone: {item.phone}</Text>
+                {/* need to move  */}
+                <Text>Ratings: {item.rating}</Text>
+              </Card.Actions>
+            </Card>
+          )}
+        />
+        
         {/* </PaperProvider> */}
       </SafeAreaView>
     );
