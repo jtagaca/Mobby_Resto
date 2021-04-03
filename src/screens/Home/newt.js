@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native-paper";
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, Text, View, StyleSheet, FlatList } from "react-native";
+import { SafeAreaView, Text, View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
 import { useSelector, useDispatch } from "react-redux";
 import Bot from "./botNav";
@@ -73,7 +73,9 @@ function newt(props) {
               
               source={{ uri: item.image_url }} />
               <Card.Actions>
-                <Button>More Info</Button>
+                <TouchableOpacity style={ styles.appButtonContainer}>
+                <Button style={ styles.appButtonText}>More Info</Button>
+                </TouchableOpacity>
                 {/* <Button>Placeholder</Button> */}
                 <Text style={styles.text}>Phone: {item.phone}</Text>
                 {/* need to move  */}
@@ -133,6 +135,20 @@ const styles = StyleSheet.create({
   rating: {
     flex: 1
    
+  }, 
+  appButtonContainer: {
+    elevation: 8,
+    backgroundColor: "white",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12
+  },
+  appButtonText: {
+    fontSize: 18,
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase"
   }
 });
 
