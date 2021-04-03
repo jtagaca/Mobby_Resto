@@ -14,6 +14,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Bot from "./botNav";
 import Search from "./search";
 import TestScreen from "./TestScreen"
+import ImageViewer from 'react-native-image-zoom-viewer';
+import { Rating, AirbnbRating } from 'react-native-ratings';
 
 
 //this is still in progress
@@ -29,7 +31,11 @@ function newt(props) {
       ? state.restaurant.restaurants.businesses
       : null
   );
-  console.log(restaurants);
+
+  
+  console.log(restaurants.display_phone);
+  // const categories= {restaurant.categories.alias};
+  // console.log(categories);
   const isLoading = useSelector(
     (state) => state.restaurant.isFetchingRestaurants
   );
@@ -41,36 +47,48 @@ function newt(props) {
         </View>
       </SafeAreaView>
     );
+    
+  
   } else {
     return (
       <SafeAreaView>
-        
+         
         <Search style={styles.background} />
         <FlatList
           keyExtractor={(item) => item.id}
           data={restaurants}
+          
           renderItem={({ item }) => (
+            
             <Card style={styles.card, styles.spacing}>
               <Text>{item.categories.alias}</Text>
+
+              {/* use the method replace to remove the dashes but we need to store the output first to a variable*/}
               <Card.Content>
                 <Title>{item.alias}</Title>
               </Card.Content>
-
-              <Card.Cover source={{ uri: item.image_url }} />
+       
+              <Card.Cover 
+              
+              source={{ uri: item.image_url }} />
               <Card.Actions>
                 <Button>More Info</Button>
                 {/* <Button>Placeholder</Button> */}
-                <Text style={styles.spacing}>Phone: {item.phone}</Text>
+                <Text style={styles.text}>Phone: {item.phone}</Text>
                 {/* need to move  */}
-                <Text>Ratings: {item.rating}</Text>
+                <Rating 
+                type='star'
+                ratingCount= {item.rating}
+                showRating />
               </Card.Actions>
             </Card>
+        
           )}
           
         />
         {/* <Bot/> */}
         {/* <Button onPress={() => navigation.navigate(TestScreen)}>Hit me</Button> //not working */}
-        
+       
       </SafeAreaView>
     );
   }
@@ -79,25 +97,21 @@ function newt(props) {
 export default newt;
 
 const styles = StyleSheet.create({
-  // background: {
-  //   backgroundColor: '#68a0cf',
-  //   borderBottomColor: "black",
-  //   borderRadius: 3,
-  //   color: "white",
-  // },
+  
   text: {
     
   },
   spacing: {
     marginTop:40,
     paddingLeft:0,
-    paddingRight:0
+    paddingRight:0,
+    paddingBottom:0
   },
   card: {
     flexDirection: 'row',
-    // height: cardHeight,
-    // width: cardWidth,
-    // borderRadius: cardRadius,
+    height: 20,
+    width: 10,
+    borderRadius: 1,
     alignSelf: 'center',
     marginBottom: 3,
     marginTop: 3,
