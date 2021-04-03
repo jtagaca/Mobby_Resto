@@ -1,33 +1,33 @@
 import * as React from 'react';
-import { BottomNavigation, Text } from 'react-native-paper';
+import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-const HomeRoute = () => <Text>Music</Text>;
-
-const PhotosRoute = () => <Text>Albums</Text>;
-
-
-
-const MyComponent = () => {
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'music', title: 'Music', icon: 'queue-music' },
-    { key: 'albums', title: 'Albums', icon: 'album' },
-    { key: 'recents', title: 'Recents', icon: 'history' },
-  ]);
-
-  const renderScene = BottomNavigation.SceneMap({
-    music: HomeRoute,
-    albums: PhotosRoute,
-
-  });
-
+function HomeScreen() {
   return (
-    <BottomNavigation
-      navigationState={{ index, routes }}
-      onIndexChange={setIndex}
-      renderScene={renderScene}
-    />
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Home!</Text>
+    </View>
   );
-};
+}
 
-export default MyComponent;
+function SettingsScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Settings!</Text>
+    </View>
+  );
+}
+
+const Tab = createMaterialBottomTabNavigator();
+
+export default function App() {
+  return (
+    
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+      </Tab.Navigator>
+   
+  );
+}

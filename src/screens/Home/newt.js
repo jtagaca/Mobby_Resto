@@ -13,6 +13,7 @@ import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
 import { useSelector, useDispatch } from "react-redux";
 import Bot from "./botNav";
 import Search from "./search";
+import TestScreen from "./TestScreen"
 
 
 //this is still in progress
@@ -43,13 +44,13 @@ function newt(props) {
   } else {
     return (
       <SafeAreaView>
-        {/* <PaperProvider> */}
+        
         <Search style={styles.background} />
         <FlatList
           keyExtractor={(item) => item.id}
           data={restaurants}
           renderItem={({ item }) => (
-            <Card>
+            <Card style={styles.card, styles.spacing}>
               <Text>{item.categories.alias}</Text>
               <Card.Content>
                 <Title>{item.alias}</Title>
@@ -65,9 +66,11 @@ function newt(props) {
               </Card.Actions>
             </Card>
           )}
+          
         />
+        {/* <Bot/> */}
+        {/* <Button onPress={() => navigation.navigate(TestScreen)}>Hit me</Button> //not working */}
         
-        {/* </PaperProvider> */}
       </SafeAreaView>
     );
   }
@@ -76,13 +79,30 @@ function newt(props) {
 export default newt;
 
 const styles = StyleSheet.create({
-  background: {
-    backgroundColor: "blue",
-  },
+  // background: {
+  //   backgroundColor: '#68a0cf',
+  //   borderBottomColor: "black",
+  //   borderRadius: 3,
+  //   color: "white",
+  // },
   text: {
-    color: "blue",
+    
   },
   spacing: {
-    marginRight: 5,
+    marginTop:40,
+    paddingLeft:0,
+    paddingRight:0
   },
+  card: {
+    flexDirection: 'row',
+    // height: cardHeight,
+    // width: cardWidth,
+    // borderRadius: cardRadius,
+    alignSelf: 'center',
+    marginBottom: 3,
+    marginTop: 3,
+    borderLeftWidth: 5,
+    borderLeftColor: '#ea7e7a'
+  }
 });
+
