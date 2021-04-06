@@ -20,12 +20,11 @@ import {
 } from "react-native";
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
 import { useSelector, useDispatch } from "react-redux";
-import Bot from "./botNav";
 import Search from "../../components/search";
 import TestScreen from "./TestScreen";
 import ImageViewer from "react-native-image-zoom-viewer";
 import { Rating, AirbnbRating } from "react-native-ratings";
-import { CallNum } from "./PhoneButton";
+// import { CallNum } from "./PhoneButton";
 
 function newt(props) {
   const dispatch = useDispatch();
@@ -47,9 +46,10 @@ function newt(props) {
       : null
   );
 
-  console.log(restaurants.display_phone); // I need to store this obkect in a var use this for removing the -
+  // console.log(restaurants.display_phone); // I need to store this obkect in a var use this for removing the -
   // const categories= {restaurant.categories.alias};
   // console.log(categories);
+  console.log(restaurants);
   const isLoading = useSelector(
     (state) => state.restaurant.isFetchingRestaurants
   );
@@ -85,7 +85,7 @@ function newt(props) {
                   </TouchableOpacity>
                   {/* <Button>Placeholder</Button> */}
                   <TouchableOpacity>
-                  {/* <Button onClick={CallNum (item.phone)}>Phone </Button> */}
+                  {/* <Button onClick={CallNum (item.display_phone)}>Phone </Button> */}
                   </TouchableOpacity>
                   {/* need to move  */}
                   <View style={styles.rating}>

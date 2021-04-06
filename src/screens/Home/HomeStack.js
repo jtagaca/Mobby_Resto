@@ -6,7 +6,6 @@ import React from 'react';
 import newt from "./newt.js";
 import ProfileScreen from './ProfileScreen';
 import SettingsScreen from './SettingsScreen';
-import botNav from './botNav';
 import TestScreen from './TestScreen';
 const Stack = createStackNavigator();
 
