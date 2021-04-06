@@ -85,7 +85,7 @@ function newt(props) {
                   </TouchableOpacity>
                   {/* <Button>Placeholder</Button> */}
                   <TouchableOpacity>
-                  {/* <Button onClick={CallNum (item.display_phone)}>Phone </Button> */}
+                    <Button onPress={() => CallNum (item.display_phone)}>Phone </Button>
                   </TouchableOpacity>
                   {/* need to move  */}
                   <View style={styles.rating}>
@@ -96,6 +96,7 @@ function newt(props) {
                       ratingBackgroundColor="grey"
                       ratingColor="lightblue"
                       ratingCount={5}
+                      readonly
                     />
                   </View>
                 </Card.Actions>
