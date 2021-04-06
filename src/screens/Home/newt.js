@@ -79,6 +79,11 @@ function newt(props) {
                 </Card.Content>
 
                 <Card.Cover source={{ uri: item.image_url }} />
+                 {/* <View style={styles.imgContainer}>
+                  <ImageBackground source={item.image_url}>
+                    <Text style={styles.text}>Inside</Text>
+                  </ImageBackground>
+                </View> */}
                 <Card.Actions>
                   <TouchableOpacity style={styles.appButtonContainer}>
                     <Button style={styles.appButtonText}>More Info</Button>
@@ -86,6 +91,10 @@ function newt(props) {
                   {/* <Button>Placeholder</Button> */}
                   <TouchableOpacity>
                     <Button onPress={() => CallNum (item.display_phone)}>Phone </Button>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={styles.appButtonContainer}>
+                    <Button style={styles.appButtonText}>Directions</Button>
                   </TouchableOpacity>
                   {/* need to move  */}
                   <View style={styles.rating}>
