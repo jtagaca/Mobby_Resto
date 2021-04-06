@@ -71,11 +71,11 @@ function newt(props) {
           renderItem={({ item }) => (
             <View style={styles.container}>
               <Card style={(styles.card, styles.spacing)}>
-                <Text>{item.categories.alias}</Text>
+                {/* <Text>{item.categories.alias}</Text> */}
 
                 {/* use the method replace to remove the dashes but we need to store the output first to a variable*/}
                 <Card.Content>
-                  <Title>{item.alias}</Title>
+                  <Title>{item.name}</Title>
                 </Card.Content>
 
                 <Card.Cover source={{ uri: item.image_url }} />
