@@ -32,7 +32,13 @@ function newt(props) {
 
   const [searchQuery, setSearchQuery] = React.useState("");
 
-  const onChangeSearch = (query) => setSearchQuery(query);
+  //small bug
+  const onChangeSearch = async (query) => {
+    setSearchQuery(query);
+    await delay(5000);
+    dispatch(fetchRestaurants(setSearchQuery));
+    
+  };
 
   useEffect(() => {
     dispatch(fetchRestaurants("burger"));
@@ -54,7 +60,6 @@ function newt(props) {
       : null
   );
 
-
   // console.log(restaurants);
   const isLoading = useSelector(
     (state) => state.restaurant.isFetchingRestaurants
@@ -70,23 +75,23 @@ function newt(props) {
   } else {
     return (
       <SafeAreaView>
-     
         <Searchbar
           placeholder="Search Restaurants"
-          onChangeText={onChangeSearch}
           value={searchQuery}
+          onChangeText={ () => {
+
+           
+            onChangeSearch(value);
+          }}
+         
         />
-        
-       
-        
+
         <FlatList
           keyExtractor={(item) => item.id}
           data={restaurants}
           renderItem={({ item }) => (
             <View style={styles.container}>
               <Card style={(styles.card, styles.spacing)}>
-           
-             
                 <Card.Content>
                   <Title>{item.name}</Title>
                 </Card.Content>
