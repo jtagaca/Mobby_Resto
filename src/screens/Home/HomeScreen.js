@@ -3,6 +3,8 @@ import { SafeAreaView, Text, View } from 'react-native';
 import { ActivityIndicator, Button } from 'react-native-paper';
 import { fetchRestaurants } from '../../redux/actions/RestaurantActions';
 import { useSelector, useDispatch } from 'react-redux';
+import { AUTH_LOGOUT } from '../../redux/actions/types';
+
 
 const HomeScreen = (props) => {
     const dispatch = useDispatch()
@@ -10,6 +12,10 @@ const HomeScreen = (props) => {
     useEffect( () => {
         dispatch(fetchRestaurants("burger"))
     }, []);
+
+    const logout = () => {
+        dispatch({ type: AUTH_LOGOUT })
+    }
 
     const restaurants = useSelector(state => (state.restaurant.restaurants) ? state.restaurant.restaurants.businesses : null)
 
@@ -50,6 +56,9 @@ const HomeScreen = (props) => {
                     </Button>
                     <Button onPress={() => props.navigation.navigate("TestScreen")}>
                         Test Screen
+                    </Button>
+                    <Button onPress={logout}>
+                        Log Out
                     </Button>
                     
                 </View>
