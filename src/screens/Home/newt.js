@@ -21,13 +21,12 @@ import {
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
 import { useSelector, useDispatch } from "react-redux";
 import Bot from "./botNav";
-import Search from "./search";
+import Search from "../../components/search";
 import TestScreen from "./TestScreen";
 import ImageViewer from "react-native-image-zoom-viewer";
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { CallNum } from "./PhoneButton";
 
-//this is still in progress
 function newt(props) {
   const dispatch = useDispatch();
 
