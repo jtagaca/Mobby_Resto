@@ -7,7 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import configureStore from './src/redux/store';
 import { Provider } from 'react-redux';
 import { Provider as PaperProvider } from 'react-native-paper';
-import styled from 'styled-components/native'
+
 
 
 const { store, persistor } = configureStore()
