@@ -39,9 +39,6 @@ const HomeScreen = (props) => {
                     <Text style={{ fontSize: 30 }}>
                         This is the Home Screen.
                     </Text>
-                    <Button onPress={() => props.navigation.navigate("Register")}>
-                        Go to Register Screen
-                    </Button>
                     <Button onPress={() => props.navigation.navigate("Contact Us")}>
                         Contact Us
                     </Button>
