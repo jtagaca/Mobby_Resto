@@ -6,6 +6,7 @@ import {
   Title,
   Paragraph,
   ActivityIndicator,
+  Searchbar,
 } from "react-native-paper";
 import React, { useEffect, useState } from "react";
 import {
@@ -16,11 +17,11 @@ import {
   FlatList,
   TouchableOpacity,
   Linking,
-  Platform
+  Platform,
 } from "react-native";
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
 import { useSelector, useDispatch } from "react-redux";
-import Search from "../../components/search";
+// import Search from "../../components/search";
 import TestScreen from "./TestScreen";
 import ImageViewer from "react-native-image-zoom-viewer";
 import { Rating, AirbnbRating } from "react-native-ratings";
@@ -29,16 +30,23 @@ import { Rating, AirbnbRating } from "react-native-ratings";
 function newt(props) {
   const dispatch = useDispatch();
 
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  const onChangeSearch = (query) => setSearchQuery(query);
+
   useEffect(() => {
     dispatch(fetchRestaurants("burger"));
   }, []);
 
   const CallNum = (number) => {
-    let phoneNumber = '';
-    if (Platform.OS === 'android') { phoneNumber = `tel:${number}`; }
-    else {phoneNumber = `telprompt:${number}`; }
+    let phoneNumber = "";
+    if (Platform.OS === "android") {
+      phoneNumber = `tel:${number}`;
+    } else {
+      phoneNumber = `telprompt:${number}`;
+    }
     Linking.openURL(phoneNumber);
- };
+  };
 
   const restaurants = useSelector((state) =>
     state.restaurant.restaurants
@@ -46,10 +54,8 @@ function newt(props) {
       : null
   );
 
-  // console.log(restaurants.display_phone); // I need to store this obkect in a var use this for removing the -
-  // const categories= {restaurant.categories.alias};
-  // console.log(categories);
-  console.log(restaurants);
+
+  // console.log(restaurants);
   const isLoading = useSelector(
     (state) => state.restaurant.isFetchingRestaurants
   );
@@ -64,22 +70,29 @@ function newt(props) {
   } else {
     return (
       <SafeAreaView>
-        <Search style={styles.background} />
+     
+        <Searchbar
+          placeholder="Search Restaurants"
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+        />
+        
+       
+        
         <FlatList
           keyExtractor={(item) => item.id}
           data={restaurants}
           renderItem={({ item }) => (
             <View style={styles.container}>
               <Card style={(styles.card, styles.spacing)}>
-                {/* <Text>{item.categories.alias}</Text> */}
-
-                {/* use the method replace to remove the dashes but we need to store the output first to a variable*/}
+           
+             
                 <Card.Content>
                   <Title>{item.name}</Title>
                 </Card.Content>
 
                 <Card.Cover source={{ uri: item.image_url }} />
-                 {/* <View style={styles.imgContainer}>
+                {/* <View style={styles.imgContainer}>
                   <ImageBackground source={item.image_url}>
                     <Text style={styles.text}>Inside</Text>
                   </ImageBackground>
@@ -90,7 +103,9 @@ function newt(props) {
                   </TouchableOpacity>
                   {/* <Button>Placeholder</Button> */}
                   <TouchableOpacity>
-                    <Button onPress={() => CallNum (item.display_phone)}>Phone </Button>
+                    <Button onPress={() => CallNum(item.display_phone)}>
+                      Phone{" "}
+                    </Button>
                   </TouchableOpacity>
 
                   <TouchableOpacity style={styles.appButtonContainer}>
@@ -118,6 +133,7 @@ function newt(props) {
       </SafeAreaView>
     );
   }
+  console.log(setSearchQuery);
 }
 
 export default newt;
