@@ -2,6 +2,7 @@
 import {
   Provider as PaperProvider,
   Avatar,
+  Text,
   Button,
   Card,
   Title,
@@ -12,7 +13,6 @@ import {
 import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
-  Text,
   View,
   StyleSheet,
   FlatList,
@@ -33,6 +33,7 @@ function newt(props) {
   const dispatch = useDispatch();
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [refreshStart, setRefreshStart] = useState(false);
 
   //small bug
   const onChangeSearch = (query) => {
@@ -41,11 +42,13 @@ function newt(props) {
     
   };
   const onSearch= ()=>{
+    setRefreshStart(true);
     dispatch(fetchRestaurants(searchQuery));
+    setRefreshStart(false);
   }
 
   useEffect(() => {
-    dispatch(fetchRestaurants(""));
+    dispatch(fetchRestaurants(searchQuery));
   }, []);
 
   const CallNum = (number) => {
@@ -71,72 +74,87 @@ function newt(props) {
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <Searchbar
-          placeholder="Search Restaurants"
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-          onIconPress={onSearch}
-          onSubmitEditing={onSearch}
-          
-        />
-        {(isLoading || !restaurants) ? 
-        (
-          <View style={{ flex: 1, position: 'absolute', justifyContent: 'center', alignItems: 'center', opacity: 0.5, left: 0, right: 0, top: 0, bottom: 0}}>
-            <ActivityIndicator size="large" />
-          </View>
-        )
-        :
-        (
-          <FlatList
-            keyExtractor={(item) => item.id}
-            data={restaurants}
-            renderItem={({ item }) => (
-              <View style={styles.container}>
-                <Card style={(styles.card, styles.spacing)}>
-                  <Card.Content>
-                    <Title>{item.name}</Title>
-                  </Card.Content>
+        <View style={{ flex: 1 }}>
 
-                  <Card.Cover source={{ uri: item.image_url }} />
-                  {/* <View style={styles.imgContainer}>
-                    <ImageBackground source={item.image_url}>
-                      <Text style={styles.text}>Inside</Text>
-                    </ImageBackground>
-                  </View> */}
-                  <Card.Actions>
-                    <TouchableOpacity style={styles.appButtonContainer}>
-                      <Button style={styles.appButtonText}>More Info</Button>
-                    </TouchableOpacity>
-                    {/* <Button>Placeholder</Button> */}
-                    <TouchableOpacity>
-                      <Button onPress={() => CallNum(item.display_phone)}>
-                        Phone{" "}
-                      </Button>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.appButtonContainer}>
-                      <Button style={styles.appButtonText}>Directions</Button>
-                    </TouchableOpacity>
-                    {/* need to move  */}
-                    <View style={styles.rating}>
-                      <Rating
-                        type="custom"
-                        ratingCount={item.rating}
-                        imageSize={25}
-                        ratingBackgroundColor="grey"
-                        ratingColor="lightblue"
-                        ratingCount={5}
-                        readonly
-                      />
-                    </View>
-                  </Card.Actions>
-                </Card>
-              </View>
-            )}
+          <Searchbar
+            placeholder="Search Restaurants"
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+            onIconPress={onSearch}
+            onSubmitEditing={onSearch}
+            
           />
-        )
-      }
-       
+
+        {(isLoading || !restaurants) ? 
+          (
+            <View style={{ flex: 1, position: 'absolute', justifyContent: 'center', alignItems: 'center', opacity: 0.5, left: 0, right: 0, top: 0, bottom: 0}}>
+              <ActivityIndicator size="large" />
+            </View>
+          )
+          :
+          (
+            (restaurants.length === 0) ?
+            (
+              <View style={{ flex: 1 }}>
+                <Text style={{ fontSize: 20 }} >
+                  No restaurants found near you. Try another search.
+                </Text>
+              </View>
+            ) :
+            (
+              <FlatList
+                keyExtractor={(item) => item.id}
+                data={restaurants}
+                onRefresh={onSearch}
+                refreshing={refreshStart}
+                renderItem={({ item }) => (
+                  <View style={styles.container}>
+                    <Card style={(styles.card, styles.spacing)}>
+                      <Card.Content>
+                        <Title>{item.name}</Title>
+                      </Card.Content>
+
+                      <Card.Cover source={{ uri: item.image_url }} />
+                      {/* <View style={styles.imgContainer}>
+                        <ImageBackground source={item.image_url}>
+                          <Text style={styles.text}>Inside</Text>
+                        </ImageBackground>
+                      </View> */}
+                      <Card.Actions>
+                        <TouchableOpacity style={styles.appButtonContainer}>
+                          <Button style={styles.appButtonText}>More Info</Button>
+                        </TouchableOpacity>
+                        {/* <Button>Placeholder</Button> */}
+                        <TouchableOpacity>
+                          <Button onPress={() => CallNum(item.display_phone)}>
+                            Phone{" "}
+                          </Button>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.appButtonContainer}>
+                          <Button style={styles.appButtonText}>Directions</Button>
+                        </TouchableOpacity>
+                        {/* need to move  */}
+                        <View style={styles.rating}>
+                          <Rating
+                            type="custom"
+                            ratingCount={item.rating}
+                            imageSize={25}
+                            ratingBackgroundColor="grey"
+                            ratingColor="lightblue"
+                            ratingCount={5}
+                            readonly
+                          />
+                        </View>
+                      </Card.Actions>
+                    </Card>
+                  </View>
+                )}
+              />
+            )
+          )
+        }
+        </View>
       </SafeAreaView>
     );
   }
