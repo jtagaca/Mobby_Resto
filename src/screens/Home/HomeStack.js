@@ -6,6 +6,8 @@ import newt from "./newt.js";
 import ProfileScreen from './ProfileScreen';
 import SettingsScreen from './SettingsScreen';
 import TestScreen from './TestScreen';
+import MapScreen from './MapScreen';
+
 const Stack = createStackNavigator();
 
 function HomeStack() {
@@ -18,7 +20,7 @@ function HomeStack() {
             <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false}}/>
             <Stack.Screen name="SettingsScreen" component={SettingsScreen} options={{ headerShown: false}}/>
             <Stack.Screen name="TestScreen" component={TestScreen} options={{ headerShown: false}}/>
-            
+            <Stack.Screen name="MapScreen" component={MapScreen} options={{ headerShown: false}}/>
             
         </Stack.Navigator>
     );

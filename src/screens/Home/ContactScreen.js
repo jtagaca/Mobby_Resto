@@ -1,5 +1,4 @@
 import React from 'react';
-import emailjs from "emailjs-com";
 import { StyleSheet, SafeAreaView, Text, View, Image, Alert, TextInput} from 'react-native';
 import { Button } from 'react-native-paper';
 import { useForm, Controller } from "react-hook-form";

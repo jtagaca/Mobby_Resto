@@ -132,7 +132,7 @@ function newt(props) {
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.appButtonContainer}>
-                          <Button style={styles.appButtonText}>Directions</Button>
+                          <Button style={styles.appButtonText} onPress={() => props.navigation.navigate("Home")}>Directions</Button>
                         </TouchableOpacity>
                         {/* need to move  */}
                         <View style={styles.rating}>
