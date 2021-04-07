@@ -134,7 +134,7 @@ function newt(props) {
 
                         <TouchableOpacity style={styles.appButtonContainer}>
                           {/*may need to move directions button (blocking ratings)*/}
-                          <Button style={styles.appButtonText} onPress={() => openMap({ latitude: 37.865101, longitude: -119.538330 })}>Directions</Button>
+                          <Button style={styles.appButtonText} onPress={() => openMap({ end: 'Los Angeles, California' /*latitude: 37.865101, longitude: -119.538330*/ })}>Directions</Button>
                         </TouchableOpacity>
                         {/* need to move  */}
                         <View style={styles.rating}>
