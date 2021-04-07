@@ -1,44 +1,65 @@
+//TO DO clean the code to be more presentable use correct exports
 import {
   Provider as PaperProvider,
   Avatar,
+  Text,
   Button,
   Card,
   Title,
   Paragraph,
   ActivityIndicator,
+  Searchbar,
 } from "react-native-paper";
 import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
-  Text,
   View,
   StyleSheet,
   FlatList,
   TouchableOpacity,
   Linking,
-  Platform
+  Platform,
 } from "react-native";
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
 import { useSelector, useDispatch } from "react-redux";
-import Search from "../../components/search";
+// import Search from "../../components/search";
 import TestScreen from "./TestScreen";
 import ImageViewer from "react-native-image-zoom-viewer";
 import { Rating, AirbnbRating } from "react-native-ratings";
-// import { CallNum } from "./PhoneButton";
+import { set } from "react-hook-form";
+
 
 function newt(props) {
   const dispatch = useDispatch();
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [refreshStart, setRefreshStart] = useState(false);
+
+  //small bug
+  const onChangeSearch = (query) => {
+    setSearchQuery(query);
+   
+    
+  };
+  const onSearch= ()=>{
+    setRefreshStart(true);
+    dispatch(fetchRestaurants(searchQuery));
+    setRefreshStart(false);
+  }
+
   useEffect(() => {
-    dispatch(fetchRestaurants("burger"));
+    dispatch(fetchRestaurants(searchQuery));
   }, []);
 
   const CallNum = (number) => {
-    let phoneNumber = '';
-    if (Platform.OS === 'android') { phoneNumber = `tel:${number}`; }
-    else {phoneNumber = `telprompt:${number}`; }
+    let phoneNumber = "";
+    if (Platform.OS === "android") {
+      phoneNumber = `tel:${number}`;
+    } else {
+      phoneNumber = `telprompt:${number}`;
+    }
     Linking.openURL(phoneNumber);
- };
+  };
 
   const restaurants = useSelector((state) =>
     state.restaurant.restaurants
@@ -46,69 +67,98 @@ function newt(props) {
       : null
   );
 
-  // console.log(restaurants.display_phone); // I need to store this obkect in a var use this for removing the -
-  // const categories= {restaurant.categories.alias};
-  // console.log(categories);
-  console.log(restaurants);
+  // console.log(restaurants);
   const isLoading = useSelector(
     (state) => state.restaurant.isFetchingRestaurants
   );
-  if (isLoading || !restaurants) {
+
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ flex: 1, justifyContent: "center" }}>
-          <ActivityIndicator size="large" />
+        <View style={{ flex: 1 }}>
+
+          <Searchbar
+            placeholder="Search Restaurants"
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+            onIconPress={onSearch}
+            onSubmitEditing={onSearch}
+            
+          />
+
+        {(isLoading || !restaurants) ? 
+          (
+            <View style={{ flex: 1, position: 'absolute', justifyContent: 'center', alignItems: 'center', opacity: 0.5, left: 0, right: 0, top: 0, bottom: 0}}>
+              <ActivityIndicator size="large" />
+            </View>
+          )
+          :
+          (
+            (restaurants.length === 0) ?
+            (
+              <View style={{ flex: 1 }}>
+                <Text style={{ fontSize: 20 }} >
+                  No restaurants found near you. Try another search.
+                </Text>
+              </View>
+            ) :
+            (
+              <FlatList
+                keyExtractor={(item) => item.id}
+                data={restaurants}
+                onRefresh={onSearch}
+                refreshing={refreshStart}
+                renderItem={({ item }) => (
+                  <View style={styles.container}>
+                    <Card style={(styles.card, styles.spacing)}>
+                      <Card.Content>
+                        <Title>{item.name}</Title>
+                      </Card.Content>
+
+                      <Card.Cover source={{ uri: item.image_url }} />
+                      {/* <View style={styles.imgContainer}>
+                        <ImageBackground source={item.image_url}>
+                          <Text style={styles.text}>Inside</Text>
+                        </ImageBackground>
+                      </View> */}
+                      <Card.Actions>
+                        <TouchableOpacity style={styles.appButtonContainer}>
+                          <Button style={styles.appButtonText}>More Info</Button>
+                        </TouchableOpacity>
+                        {/* <Button>Placeholder</Button> */}
+                        <TouchableOpacity>
+                          <Button onPress={() => CallNum(item.display_phone)}>
+                            Phone{" "}
+                          </Button>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.appButtonContainer}>
+                          <Button style={styles.appButtonText}>Directions</Button>
+                        </TouchableOpacity>
+                        {/* need to move  */}
+                        <View style={styles.rating}>
+                          <Rating
+                            type="custom"
+                            ratingCount={item.rating}
+                            imageSize={25}
+                            ratingBackgroundColor="grey"
+                            ratingColor="lightblue"
+                            ratingCount={5}
+                            readonly
+                          />
+                        </View>
+                      </Card.Actions>
+                    </Card>
+                  </View>
+                )}
+              />
+            )
+          )
+        }
         </View>
       </SafeAreaView>
     );
-  } else {
-    return (
-      <SafeAreaView>
-        <Search style={styles.background} />
-        <FlatList
-          keyExtractor={(item) => item.id}
-          data={restaurants}
-          renderItem={({ item }) => (
-            <View style={styles.container}>
-              <Card style={(styles.card, styles.spacing)}>
-                {/* <Text>{item.categories.alias}</Text> */}
-
-                {/* use the method replace to remove the dashes but we need to store the output first to a variable*/}
-                <Card.Content>
-                  <Title>{item.name}</Title>
-                </Card.Content>
-
-                <Card.Cover source={{ uri: item.image_url }} />
-                <Card.Actions>
-                  <TouchableOpacity style={styles.appButtonContainer}>
-                    <Button style={styles.appButtonText}>More Info</Button>
-                  </TouchableOpacity>
-                  {/* <Button>Placeholder</Button> */}
-                  <TouchableOpacity>
-                  {/* <Button onClick={CallNum (item.display_phone)}>Phone </Button> */}
-                  </TouchableOpacity>
-                  {/* need to move  */}
-                  <View style={styles.rating}>
-                    <Rating
-                      type="custom"
-                      ratingCount={item.rating}
-                      imageSize={25}
-                      ratingBackgroundColor="grey"
-                      ratingColor="lightblue"
-                      ratingCount={5}
-                    />
-                  </View>
-                </Card.Actions>
-              </Card>
-            </View>
-          )}
-        />
-        {/* <Bot/> */}
-        {/* <Button onPress={() => navigation.navigate(TestScreen)}>Hit me</Button> //not working */}
-      </SafeAreaView>
-    );
   }
-}
+
 
 export default newt;
 

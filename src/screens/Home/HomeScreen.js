@@ -59,11 +59,7 @@ const HomeScreen = (props) => {
                     </Button>
                     
                 </View>
-                <View style={{ flex: 1 }}>
-                    <Text>
-                        {restaurants[0].name}
-                    </Text>
-                </View>
+               
             </SafeAreaView>
         )
     }

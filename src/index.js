@@ -8,6 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
+
 const AppStack = createStackNavigator();
 
 // const theme = {
