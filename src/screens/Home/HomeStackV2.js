@@ -2,36 +2,19 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeScreen from './HomeScreen';
+import ContactScreen from './ContactScreen';
+import newt from "./newt.js";
+import ProfileScreen from './ProfileScreen';
+import SettingsScreen from './SettingsScreen';
+import TestScreen from './TestScreen';
+import Restaurants from './newt.js'
 
-export default class App extends React.Component {
-  render() {
-    return (
-        <AppContainer />
-    );
-  }
-}
+import React from 'react';
 
-class HomeScreen extends React.Component {
-  render() {
-    return(
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text> This is my Home screen </Text>
-      </View>
-    );
-  }
-}
+function HomeStackV2(props) {
 
-class ExploreScreen extends React.Component {
-  render() {
-    return(
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text> This is my Explore screen </Text>
-      </View>
-    );
-  }
-}
-
-const bottomTabNavigator = createBottomTabNavigator(
+  const bottomTabNavigator = createBottomTabNavigator(
     {
       Home: {
         screen: HomeScreen,
@@ -57,5 +40,19 @@ const bottomTabNavigator = createBottomTabNavigator(
       }
     }
   );
+  const AppContainer = createAppContainer(bottomTabNavigator);
+  return (
+        <SafeAreaView >
 
-const AppContainer = createAppContainer(bottomTabNavigator);
+          <Restaurants/>
+
+          <AppContainer></AppContainer>
+        </SafeAreaView>
+        
+    );
+
+  };
+  
+
+
+export default HomeStackV2;
