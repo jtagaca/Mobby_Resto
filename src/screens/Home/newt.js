@@ -28,6 +28,7 @@ import ImageViewer from "react-native-image-zoom-viewer";
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { set } from "react-hook-form";
 import MapScreen from "./MapScreen";
+import openMap from 'react-native-open-maps';
 
 function newt(props) {
   const dispatch = useDispatch();
@@ -132,7 +133,8 @@ function newt(props) {
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.appButtonContainer}>
-                          <Button style={styles.appButtonText} onPress={() => props.navigation.navigate("MapScreen")}>Directions</Button>
+                          {/*may need to move directions button (blocking ratings)*/}
+                          <Button style={styles.appButtonText} onPress={() => openMap({ latitude: 37.865101, longitude: -119.538330 })}>Directions</Button>
                         </TouchableOpacity>
                         {/* need to move  */}
                         <View style={styles.rating}>
