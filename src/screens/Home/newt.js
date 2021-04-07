@@ -32,7 +32,7 @@ import { set } from "react-hook-form";
 function newt(props) {
   const dispatch = useDispatch();
 
-  const [searchQuery, setSearchQuery] = React.useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   //small bug
   const onChangeSearch = (query) => {
@@ -41,11 +41,11 @@ function newt(props) {
     
   };
   const onSearch= ()=>{
-    dispatch(fetchRestaurants(setSearchQuery));
+    dispatch(fetchRestaurants(searchQuery));
   }
 
   useEffect(() => {
-    dispatch(fetchRestaurants("burger"));
+    dispatch(fetchRestaurants(""));
   }, []);
 
   const CallNum = (number) => {
@@ -68,78 +68,79 @@ function newt(props) {
   const isLoading = useSelector(
     (state) => state.restaurant.isFetchingRestaurants
   );
-  if (isLoading || !restaurants) {
+
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ flex: 1, justifyContent: "center" }}>
-          <ActivityIndicator size="large" />
-        </View>
-      </SafeAreaView>
-    );
-  } else {
-    return (
-      <SafeAreaView>
         <Searchbar
           placeholder="Search Restaurants"
           onChangeText={onChangeSearch}
           value={searchQuery}
-          onIconPress={()=>onSearch()}
+          onIconPress={onSearch}
+          onSubmitEditing={onSearch}
           
         />
+        {(isLoading || !restaurants) ? 
+        (
+          <View style={{ flex: 1, position: 'absolute', justifyContent: 'center', alignItems: 'center', opacity: 0.5, left: 0, right: 0, top: 0, bottom: 0}}>
+            <ActivityIndicator size="large" />
+          </View>
+        )
+        :
+        (
+          <FlatList
+            keyExtractor={(item) => item.id}
+            data={restaurants}
+            renderItem={({ item }) => (
+              <View style={styles.container}>
+                <Card style={(styles.card, styles.spacing)}>
+                  <Card.Content>
+                    <Title>{item.name}</Title>
+                  </Card.Content>
 
-        <FlatList
-          keyExtractor={(item) => item.id}
-          data={restaurants}
-          renderItem={({ item }) => (
-            <View style={styles.container}>
-              <Card style={(styles.card, styles.spacing)}>
-                <Card.Content>
-                  <Title>{item.name}</Title>
-                </Card.Content>
+                  <Card.Cover source={{ uri: item.image_url }} />
+                  {/* <View style={styles.imgContainer}>
+                    <ImageBackground source={item.image_url}>
+                      <Text style={styles.text}>Inside</Text>
+                    </ImageBackground>
+                  </View> */}
+                  <Card.Actions>
+                    <TouchableOpacity style={styles.appButtonContainer}>
+                      <Button style={styles.appButtonText}>More Info</Button>
+                    </TouchableOpacity>
+                    {/* <Button>Placeholder</Button> */}
+                    <TouchableOpacity>
+                      <Button onPress={() => CallNum(item.display_phone)}>
+                        Phone{" "}
+                      </Button>
+                    </TouchableOpacity>
 
-                <Card.Cover source={{ uri: item.image_url }} />
-                {/* <View style={styles.imgContainer}>
-                  <ImageBackground source={item.image_url}>
-                    <Text style={styles.text}>Inside</Text>
-                  </ImageBackground>
-                </View> */}
-                <Card.Actions>
-                  <TouchableOpacity style={styles.appButtonContainer}>
-                    <Button style={styles.appButtonText}>More Info</Button>
-                  </TouchableOpacity>
-                  {/* <Button>Placeholder</Button> */}
-                  <TouchableOpacity>
-                    <Button onPress={() => CallNum(item.display_phone)}>
-                      Phone{" "}
-                    </Button>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity style={styles.appButtonContainer}>
-                    <Button style={styles.appButtonText}>Directions</Button>
-                  </TouchableOpacity>
-                  {/* need to move  */}
-                  <View style={styles.rating}>
-                    <Rating
-                      type="custom"
-                      ratingCount={item.rating}
-                      imageSize={25}
-                      ratingBackgroundColor="grey"
-                      ratingColor="lightblue"
-                      ratingCount={5}
-                      readonly
-                    />
-                  </View>
-                </Card.Actions>
-              </Card>
-            </View>
-          )}
-        />
+                    <TouchableOpacity style={styles.appButtonContainer}>
+                      <Button style={styles.appButtonText}>Directions</Button>
+                    </TouchableOpacity>
+                    {/* need to move  */}
+                    <View style={styles.rating}>
+                      <Rating
+                        type="custom"
+                        ratingCount={item.rating}
+                        imageSize={25}
+                        ratingBackgroundColor="grey"
+                        ratingColor="lightblue"
+                        ratingCount={5}
+                        readonly
+                      />
+                    </View>
+                  </Card.Actions>
+                </Card>
+              </View>
+            )}
+          />
+        )
+      }
        
       </SafeAreaView>
     );
   }
-  console.log(setSearchQuery);
-}
+
 
 export default newt;
 
