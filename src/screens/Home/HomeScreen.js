@@ -39,9 +39,6 @@ const HomeScreen = (props) => {
                     <Text style={{ fontSize: 30 }}>
                         This is the Home Screen.
                     </Text>
-                    <Button onPress={() => props.navigation.navigate("Contact Us")}>
-                        Contact Us
-                    </Button>
                     <Button onPress={() => props.navigation.navigate("newt")}>
                         after sign in
                     </Button>
@@ -54,11 +51,14 @@ const HomeScreen = (props) => {
                     <Button onPress={() => props.navigation.navigate("TestScreen")}>
                         Test Screen
                     </Button>
-                    <Button onPress={() => props.navigation.navigate("MapScreen")}>
-                        map screen test
+                    <Button onPress={() => props.navigation.navigate("Contact Us")}>
+                        Contact Us
                     </Button>
                     <Button onPress={logout}>
                         Log Out
+                    </Button>
+                    <Button onPress={() => props.navigation.navigate("MapScreen")}>
+                        map screen test
                     </Button>
                     
                 </View>

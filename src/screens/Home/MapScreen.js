@@ -3,8 +3,8 @@ import openMap from 'react-native-open-maps';
 import React, { Component } from 'react';
 import { Button } from 'react-native';
 //to do:
-//1. set start and end points
-//2. try to make this a function with string parameter so directions button can directly open it
+//1. set start(default current location) and end(restaurant) points
+//2. try to make this a function with string argument so directions button can directly open it
 export default class App extends Component {
   _goToYosemite() {
     openMap({ latitude: 37.865101, longitude: -119.538330 });
