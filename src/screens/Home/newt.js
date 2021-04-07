@@ -1,3 +1,4 @@
+//TO DO clean the code to be more presentable use correct exports
 import {
   Provider as PaperProvider,
   Avatar,
@@ -25,7 +26,8 @@ import { useSelector, useDispatch } from "react-redux";
 import TestScreen from "./TestScreen";
 import ImageViewer from "react-native-image-zoom-viewer";
 import { Rating, AirbnbRating } from "react-native-ratings";
-// import { CallNum } from "./PhoneButton";
+import { set } from "react-hook-form";
+
 
 function newt(props) {
   const dispatch = useDispatch();
@@ -33,12 +35,14 @@ function newt(props) {
   const [searchQuery, setSearchQuery] = React.useState("");
 
   //small bug
-  const onChangeSearch = async (query) => {
+  const onChangeSearch = (query) => {
     setSearchQuery(query);
-    await delay(5000);
-    dispatch(fetchRestaurants(setSearchQuery));
+   
     
   };
+  const onSearch= ()=>{
+    dispatch(fetchRestaurants(setSearchQuery));
+  }
 
   useEffect(() => {
     dispatch(fetchRestaurants("burger"));
@@ -77,13 +81,10 @@ function newt(props) {
       <SafeAreaView>
         <Searchbar
           placeholder="Search Restaurants"
+          onChangeText={onChangeSearch}
           value={searchQuery}
-          onChangeText={ () => {
-
-           
-            onChangeSearch(value);
-          }}
-         
+          onIconPress={()=>onSearch()}
+          
         />
 
         <FlatList
@@ -133,8 +134,7 @@ function newt(props) {
             </View>
           )}
         />
-        {/* <Bot/> */}
-        {/* <Button onPress={() => navigation.navigate(TestScreen)}>Hit me</Button> //not working */}
+       
       </SafeAreaView>
     );
   }
