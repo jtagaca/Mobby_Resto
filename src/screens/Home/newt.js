@@ -27,7 +27,7 @@ import TestScreen from "./TestScreen";
 import ImageViewer from "react-native-image-zoom-viewer";
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { set } from "react-hook-form";
-
+import MapScreen from "./MapScreen";
 
 function newt(props) {
   const dispatch = useDispatch();
@@ -132,7 +132,7 @@ function newt(props) {
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.appButtonContainer}>
-                          <Button style={styles.appButtonText} onPress={() => props.navigation.navigate("Home")}>Directions</Button>
+                          <Button style={styles.appButtonText} onPress={() => props.navigation.navigate("MapScreen")}>Directions</Button>
                         </TouchableOpacity>
                         {/* need to move  */}
                         <View style={styles.rating}>

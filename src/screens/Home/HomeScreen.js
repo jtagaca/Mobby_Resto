@@ -54,6 +54,9 @@ const HomeScreen = (props) => {
                     <Button onPress={() => props.navigation.navigate("TestScreen")}>
                         Test Screen
                     </Button>
+                    <Button onPress={() => props.navigation.navigate("MapScreen")}>
+                        map screen test
+                    </Button>
                     <Button onPress={logout}>
                         Log Out
                     </Button>
