@@ -8,7 +8,6 @@ import HomePage from "./newt.js";
 import ProfileScreen from './ProfileScreen';
 import SettingsScreen from './SettingsScreen';
 import TestScreen from './TestScreen';
-import MapScreen from './MapScreen';
 
 
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';

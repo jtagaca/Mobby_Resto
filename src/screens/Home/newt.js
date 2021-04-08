@@ -27,7 +27,6 @@ import TestScreen from "./TestScreen";
 import ImageViewer from "react-native-image-zoom-viewer";
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { set } from "react-hook-form";
-import MapScreen from "./MapScreen";
 import openMap from "react-native-open-maps";
 
 function newt(props) {
@@ -141,7 +140,7 @@ function newt(props) {
                         onPress={() =>
                           openMap({
                             end:
-                              "Los Angeles, California" /*latitude: 37.865101, longitude: -119.538330*/,
+                              item.location.display_address
                           })
                         }
                       >
