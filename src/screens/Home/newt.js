@@ -74,7 +74,7 @@ function newt(props) {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
         <Searchbar
-          placeholder="Search Restaurants"
+          placeholder="What food would you like to eat..."
           onChangeText={onChangeSearch}
           value={searchQuery}
           onIconPress={onSearch}

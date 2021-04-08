@@ -25,7 +25,19 @@ const MainTabScreen = () => (
       initialRouteName="Home"
       activeColor="#fff"
     >
+      
       <Tab.Screen
+        name="Notifications"
+        component={ContactScreen}
+        options={{
+          tabBarLabel: 'Contact',
+          tabBarColor: '#1f65ff',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-notifications" color={color} size={26} />
+          ),
+        }}
+      />
+        <Tab.Screen
         name="Home"
         component={HomeStackScreen}
         options={{
@@ -37,21 +49,22 @@ const MainTabScreen = () => (
         }}
       />
       <Tab.Screen
-        name="Notifications"
-        component={DetailsStackScreen}
-        options={{
-          tabBarLabel: 'Updates',
-          tabBarColor: '#1f65ff',
-          tabBarIcon: ({ color }) => (
-            <Icon name="ios-notifications" color={color} size={26} />
-          ),
-        }}
-      />
-      <Tab.Screen
         name="Profile"
         component={ProfileScreen}
         options={{
           tabBarLabel: 'Profile',
+          tabBarColor: '#694fad',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-person" color={color} size={26} />
+          ),
+        }}
+      />
+    
+       <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          tabBarLabel: 'Settings',
           tabBarColor: '#694fad',
           tabBarIcon: ({ color }) => (
             <Icon name="ios-person" color={color} size={26} />
@@ -75,10 +88,8 @@ const HomeStackScreen = ({navigation}) => (
         }
     }}>
         <HomeStack.Screen name="Home" component={HomePage} options={{
-        title:'Overview',
-        headerLeft: () => (
-            <Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}></Icon.Button>
-        )
+        title:'Mobby Resto',
+        
         }} />
 </HomeStack.Navigator>
 );
@@ -94,9 +105,9 @@ const DetailsStackScreen = ({navigation}) => (
         }
     }}>
         <DetailsStack.Screen name="Details" component={DetailsScreen} options={{
-        headerLeft: () => (
-            <Icon.Button name="ios-menu" size={25} backgroundColor="#1f65ff" onPress={() => navigation.openDrawer()}></Icon.Button>
-        )
+        // headerLeft: () => (
+        //     <Icon.Button name="ios-menu" size={25} backgroundColor="#1f65ff" onPress={() => navigation.openDrawer()}></Icon.Button>
+        // )
         }} />
 </DetailsStack.Navigator>
 );
