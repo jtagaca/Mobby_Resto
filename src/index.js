@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeStack from './screens/Home/HomeStack';
+import HomeStack from './screens/Home/HomeStackV2';
 import AuthStack from './screens/Auth/AuthStack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SafeAreaView } from 'react-native-safe-area-context';

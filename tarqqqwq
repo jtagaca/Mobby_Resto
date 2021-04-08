@@ -1,0 +1,562 @@
+[33mcommit 6113d8563ec5ecb3a786c4e919efd5c61a0eb687[m[33m ([m[1;36mHEAD -> [m[1;32mtest[m[33m, [m[1;31morigin/test[m[33m)[m
+Author: ppark <patparkk@gmail.com>
+Date:   Wed Apr 7 15:28:04 2021 -0700
+
+    set directions endpoint to a string placeholder (los angeles)
+
+[33mcommit b4ea92b23f1362463f063f0302ed5026203a8bc5[m
+Author: ppark <patparkk@gmail.com>
+Date:   Wed Apr 7 14:50:21 2021 -0700
+
+    directions button now directly opens maps
+
+[33mcommit 4dee9d66614188a50f1c0aea8f41e0a23598876b[m
+Author: ppark <patparkk@gmail.com>
+Date:   Wed Apr 7 01:45:48 2021 -0700
+
+    moved contact us button further down in homescreen, some to-do notes added for mapscreen
+
+[33mcommit 0dfa9ddb3bce5e917f0a978cd1047877ddd9ef99[m
+Author: ppark <patparkk@gmail.com>
+Date:   Wed Apr 7 01:34:26 2021 -0700
+
+    directions button now opens maps app
+
+[33mcommit b256ae8a1f5f335ce2fc42c53c82b1d960473b2e[m
+Author: ppark <patparkk@gmail.com>
+Date:   Wed Apr 7 01:06:14 2021 -0700
+
+    connected directions to map screen
+
+[33mcommit eda5e8bc5f133d5f5cc6f62e1f02a969b6cbdbd1[m
+Author: ppark <patparkk@gmail.com>
+Date:   Wed Apr 7 00:37:45 2021 -0700
+
+    removed the junk npm packages i installed
+
+[33mcommit bacf722f33fa6e46047a69ecfab9ff35cb28132b[m
+Author: ppark <patparkk@gmail.com>
+Date:   Wed Apr 7 00:16:16 2021 -0700
+
+    test
+
+[33mcommit 21af5704a4443599fa78555915df10f59ac12515[m
+Merge: cf5f0aa 802372a
+Author: glitchgg <patparkk@gmail.com>
+Date:   Wed Apr 7 00:11:29 2021 -0700
+
+    Merge branch 'test' of https://github.com/jtagaca/Mobby_Resto into test
+
+[33mcommit cf5f0aa7018c14552471e5dfbe72220088f91f15[m
+Author: glitchgg <patparkk@gmail.com>
+Date:   Wed Apr 7 00:11:12 2021 -0700
+
+    added mapscreen
+
+[33mcommit 802372a821baacb8eceb14129c0e8e72cdb8142d[m
+Merge: 56b3c16 bcd6994
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Tue Apr 6 17:44:38 2021 -0700
+
+    Merge branch 'test' of https://github.com/jtagaca/Mobby_Resto into test
+
+[33mcommit 56b3c16ad264eba1e436af070628b198b0f8d5fc[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Tue Apr 6 17:44:33 2021 -0700
+
+    check for empty array, pull to refresh
+
+[33mcommit bcd6994bf548e58b311e836582cd3fa68a90cf68[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Tue Apr 6 17:32:31 2021 -0700
+
+    remodeled Homestack2
+
+[33mcommit eaab70ed0a75793176c6c63bc7d5fc99f55987ae[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Tue Apr 6 17:17:14 2021 -0700
+
+    Fixed search functionality
+
+[33mcommit 67a32952e7eacefd5eb4e91ca8fd1b55fcb20c87[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Tue Apr 6 17:06:37 2021 -0700
+
+    new changes
+
+[33mcommit d184e3be2836f9b092218e6ca2ca549ce424f0d8[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Tue Apr 6 16:14:36 2021 -0700
+
+    value not found when typed into search
+
+[33mcommit 56194eaa7738faf793907973620fda8336673395[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Tue Apr 6 15:57:02 2021 -0700
+
+    started searchbar v2
+
+[33mcommit 8ed6178e02c63d62707b406d391df8e857802c51[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Tue Apr 6 12:51:26 2021 -0700
+
+    added direction button
+
+[33mcommit 586dcf824d315a94027d321843b7f4cf51389251[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Tue Apr 6 11:47:50 2021 -0700
+
+    fixed phone button
+
+[33mcommit e621b7cf20af7d9b5f5c3360132f32829a950ac0[m
+Merge: ba99f1d 4c9c5c1
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Tue Apr 6 10:23:24 2021 -0700
+
+    Merge branch 'test' of https://github.com/jtagaca/Mobby_Resto into test
+
+[33mcommit ba99f1d9a361248f5fa86b6cd6bbfdcab590ba08[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Tue Apr 6 10:23:16 2021 -0700
+
+    removed register screen button
+
+[33mcommit 4c9c5c17aea10da2677ff72a7895d7d777e60161[m
+Author: glitchgg <patparkk@gmail.com>
+Date:   Tue Apr 6 02:00:01 2021 -0700
+
+    textbox modifications, initial form-hook attempt
+
+[33mcommit a4efaa0c229ad80638e34b0cc34b0f4361e9c70d[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Mon Apr 5 21:35:03 2021 -0700
+
+    Added log in and sign up feature
+
+[33mcommit 7395853334c6eb78a8ab977ca6fdc926bc0f652c[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Mon Apr 5 20:15:51 2021 -0700
+
+    fixed restaurant name format
+
+[33mcommit 25d39d8a308727881d44c70e01547ee4babf803c[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Mon Apr 5 19:50:04 2021 -0700
+
+    fixed uncaught bug on registerscreen
+
+[33mcommit ae3b5d7914a654d606240fa4e517c175d93d135c[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Mon Apr 5 19:47:37 2021 -0700
+
+    started login screen
+
+[33mcommit cd28cf1155bcbc15126355f9ba8e8a16dd16832a[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Mon Apr 5 19:29:27 2021 -0700
+
+    started themes
+
+[33mcommit 8a4d06fd9a525ff945e16b7763af63f2e0bce3b4[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Mon Apr 5 19:15:11 2021 -0700
+
+    arranged source folders
+
+[33mcommit 9e2a7214bfd3db0ef475b6a394dfc7067d1e7439[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Mon Apr 5 19:12:08 2021 -0700
+
+    phone button bug found
+
+[33mcommit 8f86902ac09c2815ececd50d340401cd7b9f9504[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Mon Apr 5 18:22:14 2021 -0700
+
+    adding phone icone
+
+[33mcommit 82f8a14196316a254c57487181d076a99d288b09[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Fri Apr 2 22:11:09 2021 -0700
+
+    fixed button
+
+[33mcommit ae742bcf25051ffa6ec7678ec2ef40ad1b2bc521[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Fri Apr 2 22:01:54 2021 -0700
+
+    added comments for next dev
+
+[33mcommit dc267f2f26d991fdbe6a5ed4f81f31046fbf9556[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Fri Apr 2 21:49:28 2021 -0700
+
+    changed color of newt
+
+[33mcommit 12952cb45e94b8f49fb6f872a24d1f4e73ce0d22[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Fri Apr 2 21:29:41 2021 -0700
+
+    added rating
+
+[33mcommit 009f0c123c915ee8e6bfb4d42a98b4406950f30d[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Fri Apr 2 20:49:21 2021 -0700
+
+    redesigned the newt page
+
+[33mcommit fe62e5ecd161062c243bda9626d41c9d7dc3e01f[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Fri Apr 2 20:08:28 2021 -0700
+
+    added bottom navigation
+
+[33mcommit 46cf837167eca5d8486106e03a361540c367ec05[m
+Author: LuisAguilarSE <luissaguilar32@gmail.com>
+Date:   Tue Mar 30 23:16:21 2021 -0700
+
+    Added a setting screen file. Has nothing. Want to consult with group.
+
+[33mcommit 115df50f443cbc79a76bbb3bf11661a6fbff99d3[m
+Author: LuisAguilarSE <luissaguilar32@gmail.com>
+Date:   Tue Mar 30 21:29:37 2021 -0700
+
+    Profile screen added
+
+[33mcommit f8ce7903e8f10754268a19b25b4cf63b9a4189ce[m
+Merge: 822503a 0bb4d7f
+Author: LuisAguilarSE <luissaguilar32@gmail.com>
+Date:   Tue Mar 30 21:27:16 2021 -0700
+
+    Merge branch 'test' of https://github.com/jtagaca/Mobby_Resto into test
+
+[33mcommit 0bb4d7fcca2f6d692d91477ac5873822b1d6e905[m
+Author: glitchgg <patparkk@gmail.com>
+Date:   Sun Mar 28 20:13:47 2021 -0700
+
+    added textboxes
+
+[33mcommit d06cb11d6932b8ddf5500dbbd5502906aa06893e[m
+Author: glitchgg <patparkk@gmail.com>
+Date:   Sun Mar 28 13:16:35 2021 -0700
+
+    added some navigation behavior to submit and cancel buttons in contact form
+
+[33mcommit 85f3134caf6e16415120741000faa58640883527[m
+Author: glitchgg <patparkk@gmail.com>
+Date:   Sun Mar 28 11:56:01 2021 -0700
+
+    end test
+
+[33mcommit 08cfa28a86f743b48ff58cf25ede2f5563e6c3cf[m
+Author: glitchgg <patparkk@gmail.com>
+Date:   Sun Mar 28 11:55:17 2021 -0700
+
+    more testing
+
+[33mcommit 8dfd60716dc4358a91f9244de49900ffc2d17fdd[m
+Merge: 64cff5a 0f4a568
+Author: glitchgg <patparkk@gmail.com>
+Date:   Sun Mar 28 11:54:21 2021 -0700
+
+    Merge branch 'test' of https://github.com/jtagaca/Mobby_Resto into test
+
+[33mcommit 64cff5a275025bcc102a38e18dfe1864061691d9[m
+Author: glitchgg <patparkk@gmail.com>
+Date:   Sun Mar 28 11:53:12 2021 -0700
+
+    test
+
+[33mcommit 822503ab032276efefc65c539c383540c51d8241[m
+Author: LuisAguilarSE <luissaguilar32@gmail.com>
+Date:   Mon Mar 22 10:22:37 2021 -0700
+
+    Commiting the Profile Screen.
+
+[33mcommit 0f4a568fe17075ecf20d3c7e149b7bd7069cf28a[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Sun Mar 21 18:15:23 2021 -0700
+
+    paperprovider wrapping app
+
+[33mcommit 5b654a5d63810d33ce2919931976731f318b9b2f[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Sun Mar 21 17:30:30 2021 -0700
+
+    added search bar and content in newt
+
+[33mcommit f4030f8168c2a652b4865d94f19492d6b8ead481[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Sat Mar 20 20:05:51 2021 -0700
+
+    Fixed FlatList Access
+
+[33mcommit c731c03ae2aeef2765c7b9edd7077ca5716789cf[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Sat Mar 20 19:41:57 2021 -0700
+
+    added card view to newt
+
+[33mcommit 873eac76f9d485638d977a3759e153f1d06f2f10[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Sat Mar 20 19:41:02 2021 -0700
+
+    newt.js added for homescreen; not yet working
+
+[33mcommit 058d059c9dfeac910fe8465f92f604cb65b05432[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Sat Mar 20 19:40:07 2021 -0700
+
+    error at newt.js
+
+[33mcommit cbd2a3153097d54ff5ef39a69512fe2c68c17b18[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Sat Mar 20 18:41:29 2021 -0700
+
+    adding new save point
+
+[33mcommit 7773aa8aaec282aef391bed395ee559eb909d926[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Sat Mar 20 18:21:58 2021 -0700
+
+    making changes
+
+[33mcommit 47880f977a60aae8fca9c0693967213fd6e61a85[m
+Author: glitchgg <patparkk@gmail.com>
+Date:   Sat Mar 20 17:33:00 2021 -0700
+
+    contactus update batch1 fix
+
+[33mcommit 1e5a8c9eb6c34fa11b6d23e75145980ce3351548[m
+Author: glitchgg <patparkk@gmail.com>
+Date:   Sat Mar 20 16:45:27 2021 -0700
+
+    contactus update batch1
+
+[33mcommit 9bc2fcfe868a7e7e45495c4f5437cf051103ceaf[m
+Author: glitchgg <patparkk@gmail.com>
+Date:   Sat Mar 20 15:18:47 2021 -0700
+
+    contactscreen debugging 2
+
+[33mcommit ea683eeb54c8c39e8c083cdecfe66d49a2409b75[m
+Author: glitchgg <patparkk@gmail.com>
+Date:   Sat Mar 20 15:15:29 2021 -0700
+
+    contactscreen debugging 1
+
+[33mcommit d701e61cf59697040b178ab61735f3be5b9a9e1f[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Sat Mar 20 15:10:44 2021 -0700
+
+    actually fixed it
+
+[33mcommit 5ee4db7fc2688320b32e799e92e7211a54c2fa19[m
+Merge: cca437c ea2ec4e
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Sat Mar 20 15:03:19 2021 -0700
+
+    Merge branch 'test' of https://github.com/jtagaca/Mobby_Resto into test
+
+[33mcommit cca437c096e75da241e9c4a1db675fb21286cb1b[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Sat Mar 20 15:03:10 2021 -0700
+
+    Fixed bug with state access
+
+[33mcommit ea2ec4e6741b6fbce73cd0c38ebae506728faacd[m
+Author: glitchgg <patparkk@gmail.com>
+Date:   Sat Mar 20 14:24:48 2021 -0700
+
+    removed test comment
+
+[33mcommit a665cff36d1ab655fd7f6e3f4b59332b60c83e0e[m[33m ([m[1;32mtest2-jt[m[33m)[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Fri Mar 19 10:52:10 2021 -0700
+
+    created button to contact
+
+[33mcommit 01f546025a8a4b7ac5b448c3498fd0e09dedc460[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Thu Mar 18 21:06:00 2021 -0700
+
+    new file added
+
+[33mcommit 009607575893ceae5b4b791e214ff88c384d21bb[m
+Merge: f39055a e493b76
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Mon Mar 15 23:47:22 2021 -0700
+
+    Merge branch 'test' of https://github.com/jtagaca/Mobby_Resto into test
+
+[33mcommit f39055ac8df8103e6b720911f41d6bc68ccda2ef[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Mon Mar 15 23:47:15 2021 -0700
+
+    removed
+
+[33mcommit bbaee6263404f7b8d25975fd2c496a859c857274[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Mon Mar 15 23:46:22 2021 -0700
+
+    gitignore updated
+
+[33mcommit e493b76d7b352b102cea55335411f46218ea7e81[m
+Author: DylanGIV <67450053+DylanGIV@users.noreply.github.com>
+Date:   Mon Mar 15 23:39:58 2021 -0700
+
+    Update README.md
+
+[33mcommit 804241c5c45cc749efadb9c1651a43185b729c26[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Mon Mar 15 23:38:24 2021 -0700
+
+    configured redux and yelp api, can make calls now
+
+[33mcommit cccf42bda8939c8e0b33107380ed3cc7cbe33aef[m
+Author: glitchgg <patparkk@gmail.com>
+Date:   Mon Mar 15 10:25:30 2021 -0700
+
+    test
+
+[33mcommit 2ec23628db0a6fb0d5179a1783fa60c64e1754a5[m
+Author: glitchgg <glitchsupp@gmail.com>
+Date:   Mon Mar 15 10:09:02 2021 -0700
+
+    added ContactScreen.js and modified HomeStack.js
+
+[33mcommit ce3b4dfe27f21246d1e5f9773b6307396090edc0[m
+Author: ppark4 <78590316+ppark4@users.noreply.github.com>
+Date:   Wed Mar 10 11:06:04 2021 -0800
+
+    Delete HomeStack.js
+
+[33mcommit 32028a27c930743a1933558950c931e863bccf1f[m
+Merge: 1568f96 6a181a9
+Author: glitchgg <glitchsupp@gmail.com>
+Date:   Wed Mar 10 10:41:02 2021 -0800
+
+    Merge branch 'test' of https://github.com/jtagaca/Mobby_Resto into test
+
+[33mcommit 1568f968eb850b3946a08a5c686914875cac8289[m
+Author: glitchgg <glitchsupp@gmail.com>
+Date:   Wed Mar 10 10:36:24 2021 -0800
+
+    testing_contactUs
+
+[33mcommit 6a181a9375f4b50892dda422e76010e96d0c3fd9[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Tue Mar 2 17:55:37 2021 -0800
+
+    added register screen
+
+[33mcommit c9d2080306359b2cd9544466b49d99e1e3e832d7[m
+Author: Dylan Gonzalez <dylangiv123@gmail.com>
+Date:   Sun Feb 28 17:26:31 2021 -0800
+
+    Added auth stack
+
+[33mcommit 0efe3457eef1e298f1dc56a6cdb8b3daad53dbfb[m
+Author: jtagaca <63562250+jtagaca@users.noreply.github.com>
+Date:   Wed Feb 24 19:07:09 2021 -0800
+
+    updated
+
+[33mcommit 62db086a3c4dda1364064a02800f2fdd3fae9f86[m
+Author: jtagaca <63562250+jtagaca@users.noreply.github.com>
+Date:   Tue Feb 23 12:00:04 2021 -0800
+
+    updated from the main
+
+[33mcommit de7c458ad2cfde6983eb9160a96a6842043d0103[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Tue Feb 23 11:57:30 2021 -0800
+
+    set up home stack
+
+[33mcommit dc35870fa33a57e69e1691c16ad7081cfc696a10[m
+Author: glitchgg <glitchsupp@gmail.com>
+Date:   Tue Feb 23 11:08:04 2021 -0800
+
+    pat_test
+
+[33mcommit 28e3991b8d2fcb48204f7cd1444571493e8e7343[m
+Author: LuisAguilarSE <luissaguilar32@gmail.com>
+Date:   Tue Feb 23 11:06:24 2021 -0800
+
+    test123
+
+[33mcommit 51c03140f0a41b646cecada040c2d3f17072ba91[m
+Merge: 0914e7b 6595d8b
+Author: jtagaca <63562250+jtagaca@users.noreply.github.com>
+Date:   Tue Feb 23 10:57:03 2021 -0800
+
+    Merge branch 'main' into test
+
+[33mcommit 0914e7ba7b67b350d07fd07502b8ac31db74cff8[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Tue Feb 23 10:55:33 2021 -0800
+
+    added packages
+
+[33mcommit 6595d8bd1b13a0165972362b1f3e17c949929d2a[m[33m ([m[1;32mmain[m[33m)[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Tue Feb 23 10:53:28 2021 -0800
+
+    added npm packages
+
+[33mcommit 46a08024c202efb64ce5e947cd7e123677e0a149[m
+Author: James Tagaca <jtagaca@csub.edu>
+Date:   Wed Feb 17 19:39:33 2021 -0800
+
+    new test commit by JT
+
+[33mcommit 496fc71449cb6f9071888ac0e12612a4a8a9ebd5[m
+Author: LuisAguilarSE <luissaguilar32@gmail.com>
+Date:   Tue Feb 16 11:59:39 2021 -0800
+
+    Test
+
+[33mcommit fd649c57154a71b59c6aed4cb552642013fa9a1a[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Tue Feb 16 11:55:40 2021 -0800
+
+    Removing the Test message on the readme
+
+[33mcommit 599af47fe6f57145d1b120476ef41554af19c161[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Tue Feb 16 11:53:09 2021 -0800
+
+    this is a test
+
+[33mcommit 6145e10ddeac32683e4d32afb8cb417d16e9c047[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Tue Feb 16 11:52:47 2021 -0800
+
+    This is a new test
+
+[33mcommit 0331f7ec5d409a7fa59ffeb7cae788786fca2a41[m
+Author: jtagaca <63562250+jtagaca@users.noreply.github.com>
+Date:   Tue Feb 16 11:42:28 2021 -0800
+
+    Update README.md
+
+[33mcommit e2072f004803f8ab1a1cd82e384f263b34a1a588[m
+Author: Dylan <dylangiv123@gmail.com>
+Date:   Tue Feb 16 11:40:37 2021 -0800
+
+    project setup
+
+[33mcommit e0f10504a2097c5c7b483128dd869f5f3de242c1[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Tue Feb 16 11:15:13 2021 -0800
+
+    Create intro.txt
+    
+    2/16/21- Publishing to github
+
+[33mcommit aa5bef1f1b9d21fa56da90cd0244733e39b025a7[m
+Author: jtagaca <jtagaca@csub.edu>
+Date:   Tue Feb 16 11:14:23 2021 -0800
+
+    Initial commit

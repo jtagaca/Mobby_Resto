@@ -1,58 +1,33 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { createAppContainer, createStackNavigator } from 'react-navigation';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from './HomeScreen';
-import ContactScreen from './ContactScreen';
-import newt from "./newt.js";
-import ProfileScreen from './ProfileScreen';
-import SettingsScreen from './SettingsScreen';
-import TestScreen from './TestScreen';
-import Restaurants from './newt.js'
+import * as React from 'react';
+import { BottomNavigation, Text } from 'react-native-paper';
 
-import React from 'react';
+const MusicRoute = () => <Text>Music</Text>;
 
-function HomeStackV2(props) {
+const AlbumsRoute = () => <Text>Albums</Text>;
 
-  const bottomTabNavigator = createBottomTabNavigator(
-    {
-      Home: {
-        screen: HomeScreen,
-        navigationOptions: {
-          tabBarIcon: ({ tintColor }) => (
-            <Icon name="home" size={25} color={tintColor} />
-          )
-        }
-      },
-      Explore: {
-        screen: ExploreScreen,
-        navigationOptions: {
-          tabBarIcon: ({ tintColor }) => (
-            <Icon name="search" size={25} color={tintColor} />
-          )
-        }
-      },
-    },
-    {
-      initialRouteName: 'Home',
-      tabBarOptions: {
-        activeTintColor: '#eb6e3d'
-      }
-    }
-  );
-  const AppContainer = createAppContainer(bottomTabNavigator);
+const RecentsRoute = () => <Text>Recents</Text>;
+
+const MyComponent = () => {
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'music', title: 'Music', icon: 'queue-music' },
+    { key: 'albums', title: 'Albums', icon: 'album' },
+    { key: 'recents', title: 'Recents', icon: 'history' },
+  ]);
+
+  const renderScene = BottomNavigation.SceneMap({
+    music: MusicRoute,
+    albums: AlbumsRoute,
+    recents: RecentsRoute,
+  });
+
   return (
-        <SafeAreaView >
+    <BottomNavigation
+      navigationState={{ index, routes }}
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+    />
+  );
+};
 
-          <Restaurants/>
-
-          <AppContainer></AppContainer>
-        </SafeAreaView>
-        
-    );
-
-  };
-  
-
-
-export default HomeStackV2;
+export default MyComponent;

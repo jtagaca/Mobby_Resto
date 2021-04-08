@@ -28,7 +28,7 @@ import ImageViewer from "react-native-image-zoom-viewer";
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { set } from "react-hook-form";
 import MapScreen from "./MapScreen";
-import openMap from 'react-native-open-maps';
+import openMap from "react-native-open-maps";
 
 function newt(props) {
   const dispatch = useDispatch();
@@ -39,14 +39,12 @@ function newt(props) {
   //small bug
   const onChangeSearch = (query) => {
     setSearchQuery(query);
-   
-    
   };
-  const onSearch= ()=>{
+  const onSearch = () => {
     setRefreshStart(true);
     dispatch(fetchRestaurants(searchQuery));
     setRefreshStart(false);
-  }
+  };
 
   useEffect(() => {
     dispatch(fetchRestaurants(searchQuery));
@@ -68,99 +66,110 @@ function newt(props) {
       : null
   );
 
-  // console.log(restaurants);
+  console.log(restaurants);
   const isLoading = useSelector(
     (state) => state.restaurant.isFetchingRestaurants
   );
 
-    return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ flex: 1 }}>
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
+        <Searchbar
+          placeholder="Search Restaurants"
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+          onIconPress={onSearch}
+          onSubmitEditing={onSearch}
+        />
 
-          <Searchbar
-            placeholder="Search Restaurants"
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-            onIconPress={onSearch}
-            onSubmitEditing={onSearch}
-            
-          />
+        {isLoading || !restaurants ? (
+          <View
+            style={{
+              flex: 1,
+              position: "absolute",
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: 0.5,
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+            }}
+          >
+            <ActivityIndicator size="large" />
+          </View>
+        ) : restaurants.length === 0 ? (
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontSize: 20 }}>
+              No restaurants found near you. Try another search.
+            </Text>
+          </View>
+        ) : (
+          <FlatList
+            keyExtractor={(item) => item.id}
+            data={restaurants}
+            onRefresh={onSearch}
+            refreshing={refreshStart}
+            renderItem={({ item }) => (
+              <View style={styles.container}>
+                <Card style={(styles.card, styles.spacing)}>
+                  <Card.Content>
+                    <Title>{item.name}</Title>
+                  </Card.Content>
 
-        {(isLoading || !restaurants) ? 
-          (
-            <View style={{ flex: 1, position: 'absolute', justifyContent: 'center', alignItems: 'center', opacity: 0.5, left: 0, right: 0, top: 0, bottom: 0}}>
-              <ActivityIndicator size="large" />
-            </View>
-          )
-          :
-          (
-            (restaurants.length === 0) ?
-            (
-              <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 20 }} >
-                  No restaurants found near you. Try another search.
-                </Text>
-              </View>
-            ) :
-            (
-              <FlatList
-                keyExtractor={(item) => item.id}
-                data={restaurants}
-                onRefresh={onSearch}
-                refreshing={refreshStart}
-                renderItem={({ item }) => (
-                  <View style={styles.container}>
-                    <Card style={(styles.card, styles.spacing)}>
-                      <Card.Content>
-                        <Title>{item.name}</Title>
-                      </Card.Content>
-
-                      <Card.Cover source={{ uri: item.image_url }} />
-                      {/* <View style={styles.imgContainer}>
+                  <Card.Cover source={{ uri: item.image_url }} />
+                  {/* <View style={styles.imgContainer}>
                         <ImageBackground source={item.image_url}>
                           <Text style={styles.text}>Inside</Text>
                         </ImageBackground>
                       </View> */}
-                      <Card.Actions>
-                        <TouchableOpacity style={styles.appButtonContainer}>
-                          <Button style={styles.appButtonText}>More Info</Button>
-                        </TouchableOpacity>
-                        {/* <Button>Placeholder</Button> */}
-                        <TouchableOpacity>
-                          <Button onPress={() => CallNum(item.display_phone)}>
-                            Phone{" "}
-                          </Button>
-                        </TouchableOpacity>
+                  <Card.Actions>
+                    <TouchableOpacity style={styles.appButtonContainer}>
+                      <Button style={styles.appButtonText}>More Info</Button>
+                    </TouchableOpacity>
+                    {/* <Button>Placeholder</Button> */}
+                    <TouchableOpacity>
+                      <Button onPress={() => CallNum(item.display_phone)}>
+                        Phone{" "}
+                      </Button>
+                    </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.appButtonContainer}>
-                          {/*may need to move directions button (blocking ratings)*/}
-                          <Button style={styles.appButtonText} onPress={() => openMap({ end: 'Los Angeles, California' /*latitude: 37.865101, longitude: -119.538330*/ })}>Directions</Button>
-                        </TouchableOpacity>
-                        {/* need to move  */}
-                        <View style={styles.rating}>
-                          <Rating
-                            type="custom"
-                            ratingCount={item.rating}
-                            imageSize={25}
-                            ratingBackgroundColor="grey"
-                            ratingColor="lightblue"
-                            ratingCount={5}
-                            readonly
-                          />
-                        </View>
-                      </Card.Actions>
-                    </Card>
-                  </View>
-                )}
-              />
-            )
-          )
-        }
-        </View>
-      </SafeAreaView>
-    );
-  }
-
+                    <TouchableOpacity style={styles.appButtonContainer}>
+                      {/*may need to move directions button (blocking ratings)*/}
+                      <Button
+                        style={styles.appButtonText}
+                        onPress={() =>
+                          openMap({
+                            end:
+                              "Los Angeles, California" /*latitude: 37.865101, longitude: -119.538330*/,
+                          })
+                        }
+                      >
+                        Directions
+                      </Button>
+                    </TouchableOpacity>
+                    {/* need to move  */}
+                    <View style={styles.rating}>
+                      <Rating
+                        type="custom"
+                        ratingCount={item.rating}
+                        imageSize={25}
+                        ratingBackgroundColor="grey"
+                        ratingColor="lightblue"
+                        ratingCount={5}
+                        readonly
+                      />
+                    </View>
+                  </Card.Actions>
+                </Card>
+              </View>
+            )}
+          />
+        )}
+      </View>
+    </SafeAreaView>
+  );
+}
 
 export default newt;
 
