@@ -48,6 +48,9 @@ const HomeScreen = (props) => {
                     <Button onPress={() => props.navigation.navigate("SettingsScreen")}>
                         Setting Screen
                     </Button>
+                    <Button onPress={() => props.navigation.navigate("EditProfileScreen")}>
+                        Edit Profile Screen Screen
+                    </Button>
                     <Button onPress={() => props.navigation.navigate("TestScreen")}>
                         Test Screen
                     </Button>

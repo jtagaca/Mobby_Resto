@@ -1,105 +1,173 @@
 import React from 'react';
-import{StyleSheet, Text, View, Image} from 'react-native';
+import{StyleSheet, View, Image, SafeAreaView} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
 
 import { LinearGradient } from 'expo-linear-gradient';
-import { Title, Card } from 'react-native-paper';
+import { Title, Card, Avatar, Caption, Text, TouchableRipple } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons'; 
 
 
 const ProfileScreen = (props)=>{
     return(
-        <View style={styles.root}>
-            <LinearGradient
-                colors={["#0033ff","#6bc1ff"]}
-                style={{height: "20%"}}
-            />
-            <View style={{alignItems:"center"}}>
-                <Image
-                    style={{
-                        width: 100,
-                        height: 100,
-                        borderRadius: 70,
-                        marginTop: -125,
-                    }}
-                    source={require("../../../assets/templogo.png")}
-                />
+        <SafeAreaView style={styles.container}>
+            <View style={styles.userInfo}>
+                <View style={{flexDirection: 'row', marginTop: 15}}>
+                    <Avatar.Image 
+                    source={require("../../../assets/templogo.png")}>
+                    </Avatar.Image>
+                    <View style={{marginLeft: 20}}>
+                        <Title style={[styles.title, {marginTop: 15, marginBottom: 5,}]}>
+                            User Name Here
+                        </Title>
+                        <Caption style={styles.Caption}>
+                            Bio
+                        </Caption>
+                    </View>
+                </View>
+            </View>
+            <View style={styles.userInfo}>
+                <View style={styles.row}>
+                <MaterialIcons name="location-pin" size={20} color="grey"/>
+                    <Text style={{marginLeft: 20}}>
+                        Location
+                    </Text>
+                </View>
+                <View style={styles.row}>
+                <MaterialIcons name="phone" size={20} color="grey"/>
+                    <Text style={{marginLeft: 20}}>
+                        Phone
+                    </Text>
+                </View>
+                <View style={styles.row}>
+                <MaterialIcons name="email" size={20} color="grey"/>
+                    <Text style={{marginLeft: 20}}>
+                        email
+                    </Text>
+                </View>
             </View>
 
-            <View style={{alignItems: "center"}}>
-                <Title style={{fontSize: 25, fontWeight: "900"}}> Luis Aguilar </Title>
-                <Text style={{fontSize: 20, fontStyle:"italic"}}> Looking for new Restruants </Text>
+            <View style={styles.infoWrap}>
+                <View style={styles.infoBox}>
+                    <Title> 
+                        Money In Account
+                    </Title>
+                    <Caption>
+                        Wallet
+                    </Caption>
+                </View>
+                <View style={styles.infoBox}>
+                    <Title> 
+                        # of Saved Restruants
+                    </Title>
+                    <Caption>
+                        Saved Restraunts
+                    </Caption>
+                </View>
+                <View></View>
             </View>
 
-            <Card style={styles.myCard}>
-                <View style={styles.cardContents}>
-                    <MaterialIcons name="star" size={32} color="gold"/>
-                    <Text style={styles.myText}> Favorite Restruants </Text>
-                </View>
-            </Card>
+            <View style={styles.menuWrapper}>
+                <TouchableRipple onPress={() =>{}}>
+                    <View style={styles.menuItem}>
+                    <MaterialIcons name="star" size={20} color="gold" size={25}/>
+                        <Text style={styles.menuItemText}>
+                            Favorite Restraunts
+                        </Text>
+                    </View>
+                </TouchableRipple>
+                
+                <TouchableRipple onPress={() =>{}}>
+                    <View style={styles.menuItem}>
+                    <MaterialIcons name="credit-card" size={20} color="yellowgreen" size={25}/>
+                        <Text style={styles.menuItemText}>
+                            Payment Info
+                        </Text>
+                    </View>
+                </TouchableRipple>
 
-            <Card style={styles.myCard}>
-                <View style={styles.cardContents}>
-                    <MaterialIcons name="credit-card" size={32} color="green"/>
-                    <Text style={styles.myText}> Payment Information </Text>
-                </View>
-            </Card>
+                <TouchableRipple onPress={() =>{}}>
+                    <View style={styles.menuItem}>
+                    <MaterialIcons name="person-outline" size={20} color="red" size={25}/>
+                        <Text style={styles.menuItemText}>
+                            Customer Support
+                        </Text>
+                    </View>
+                </TouchableRipple>
 
-            <Card style={styles.myCard}>
-                <View style={styles.cardContents}>
-                    <MaterialIcons name="restaurant" size={32} color="orange"/>
-                    <Text style={styles.myText}> Restruant Reviews </Text>
-                </View>
-            </Card>
+                <TouchableRipple onPress={() => props.navigation.navigate("SettingsScreen")}>
+                    <View style={styles.menuItem}>
+                    <MaterialIcons name="edit" size={20} color="grey" size={25}/>
+                        <Text style={styles.menuItemText}>
+                            Edit Profile
+                        </Text>
+                    </View>
+                </TouchableRipple>
 
-            <Card style={styles.myCard}>
-                <View style={styles.cardContents}>
-                    <MaterialIcons name="message" size={32} color="cyan"/>
-                    <Text style={styles.myText}> Message Me! </Text>
-                </View>
-            </Card>
+            </View>
 
-            <Card style={styles.myCard}>
-                <View style={styles.cardContents}>
-                    <MaterialIcons name="edit" size={32} color="blue"/>
-                    <Button onPress={() => props.navigation.navigate("SettingsScreen")}>
-                        Settings
-                    </Button>
-                </View>
-            </Card>
-
-            <Button onPress={() => props.navigation.goBack()}>
-                    Go Back
-                </Button>
-        
-        
-        
-        {/* END OF MAIN VIEW */}
-        </View>
-
-
+        </SafeAreaView>
     )
 }
 
 
 const styles = StyleSheet.create({
-    root:{
+    container: {
         flex: 1,
     },
-    myCard: {
-        margin: 3,
+
+    userInfo:{
+        paddingHorizontal: 30,
+        marginBottom: 25,
     },
-    cardContents: {
-        flexDirection: "row",
-        padding: 8,
+
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
     },
-    myText: {
-        fontSize: 30,
-        alignItems: "center",
-        fontWeight: "100",
+
+    caption: {
+        fontSize: 14,
+        lineHeight: 14,
+        fontWeight: '500',
     },
+
+    row: {
+        flexDirection: 'row',
+        marginBottom: 10,
+    },
+
+    infoWrap: {
+        borderBottomColor: 'black',
+        borderBottomWidth: 1,
+
+        borderTopColor: 'black',
+        borderTopWidth: 1,
+        flexDirection: 'row',
+        height: 100,
+    },
+
+    infoBox: {
+        width: '50%',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      menuWrapper: {
+        marginTop: 10,
+      },
+      menuItem: {
+        flexDirection: 'row',
+        paddingVertical: 15,
+        paddingHorizontal: 30,
+      },
+      menuItemText: {
+        color: 'black',
+        marginLeft: 20,
+        fontWeight: '600',
+        fontSize: 16,
+        lineHeight: 26,
+      },
 })
 export default ProfileScreen;
