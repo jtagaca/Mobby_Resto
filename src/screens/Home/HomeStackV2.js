@@ -1,33 +1,104 @@
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
+import { DrawerActions } from 'react-navigation';
 
-const MusicRoute = () => <Text>Music</Text>;
+import HomeScreen from './HomeScreen';
+import ContactScreen from './ContactScreen';
+import HomePage from "./newt.js";
+import ProfileScreen from './ProfileScreen';
+import SettingsScreen from './SettingsScreen';
+import TestScreen from './TestScreen';
+import MapScreen from './MapScreen';
 
-const AlbumsRoute = () => <Text>Albums</Text>;
 
-const RecentsRoute = () => <Text>Recents</Text>;
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const MyComponent = () => {
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'music', title: 'Music', icon: 'queue-music' },
-    { key: 'albums', title: 'Albums', icon: 'album' },
-    { key: 'recents', title: 'Recents', icon: 'history' },
-  ]);
+import Icon from 'react-native-vector-icons/Ionicons';
 
-  const renderScene = BottomNavigation.SceneMap({
-    music: MusicRoute,
-    albums: AlbumsRoute,
-    recents: RecentsRoute,
-  });
+const HomeStack = createStackNavigator();
+const DetailsStack = createStackNavigator();
 
-  return (
-    <BottomNavigation
-      navigationState={{ index, routes }}
-      onIndexChange={setIndex}
-      renderScene={renderScene}
-    />
-  );
-};
+const Tab = createMaterialBottomTabNavigator();
 
-export default MyComponent;
+const MainTabScreen = () => (
+    <Tab.Navigator
+      initialRouteName="Home"
+      activeColor="#fff"
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeStackScreen}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarColor: '#009387',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-home" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Notifications"
+        component={DetailsStackScreen}
+        options={{
+          tabBarLabel: 'Updates',
+          tabBarColor: '#1f65ff',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-notifications" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarColor: '#694fad',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-person" color={color} size={26} />
+          ),
+        }}
+      />
+     
+    </Tab.Navigator>
+);
+
+export default MainTabScreen;
+
+const HomeStackScreen = ({navigation}) => (
+<HomeStack.Navigator screenOptions={{
+        headerStyle: {
+        backgroundColor: '#009387',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+        fontWeight: 'bold'
+        }
+    }}>
+        <HomeStack.Screen name="Home" component={HomePage} options={{
+        title:'Overview',
+        headerLeft: () => (
+            <Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}></Icon.Button>
+        )
+        }} />
+</HomeStack.Navigator>
+);
+
+const DetailsStackScreen = ({navigation}) => (
+<DetailsStack.Navigator screenOptions={{
+        headerStyle: {
+        backgroundColor: '#1f65ff',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+        fontWeight: 'bold'
+        }
+    }}>
+        <DetailsStack.Screen name="Details" component={DetailsScreen} options={{
+        headerLeft: () => (
+            <Icon.Button name="ios-menu" size={25} backgroundColor="#1f65ff" onPress={() => navigation.openDrawer()}></Icon.Button>
+        )
+        }} />
+</DetailsStack.Navigator>
+);
+  
