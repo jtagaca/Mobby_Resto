@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, SafeAreaView, Text, View, Image, Alert, TextInput} from 'react-native';
 import { Button } from 'react-native-paper';
 import { useForm, Controller } from "react-hook-form";
-//npm install emailjs-com --save
+import { useDispatch, useSelector } from 'react-redux';
 
 const ContactScreen = (props) => {
     function sendEmail(e) {
@@ -15,8 +15,9 @@ const ContactScreen = (props) => {
               console.log(error.text);
           });
         }
+    const theme = useSelector((state) => state.theme.theme)
     return (
-        <SafeAreaView style={ styles.container }>
+        <SafeAreaView style={ styles.container, {backgroundColor: theme.colors.background} }>
             <View style={{ flex: 1 }}>
             <Image style={{width: 100, height: 100}} source={require("../../../assets/templogo.png")}/>
             <TextInput type="text" className="form-control" placeholder="Name" name="name" style={styles.input}/>
@@ -32,28 +33,11 @@ const ContactScreen = (props) => {
         </SafeAreaView>
     )
 }
-/*
-                <Text> Email: </Text>
-                <TextInput style={styles.input}/>
-                <Text> Name: </Text>
-                <TextInput style={styles.input}/>
-                <Text> Subject </Text>
-                <TextInput style={styles.input}/>
-                <Text> Message: </Text>
-                <TextInput style={styles.input}/> 
-                <Button onPress={() => Alert.alert('Message sent!', 'Our team will reach out to you within 1-2 business days', [{text: "OK", onPress: () => props.navigation.navigate("Home")}])}>
-                    Submit
-                </Button>
-                <Button onPress={() => Alert.alert('Discard message?','', [{text: "Yes", onPress: () => props.navigation.navigate("Home")}, {text: "No"}])}>
-                    Cancel
-                </Button>
-*/
-//const messageStyle = {height: 100};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: '#009387',
         alignItems: "center",
         justifyContent: "center",
     },
