@@ -15,6 +15,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import EditProfileScreen from './EditProfileScreen';
 
 const HomeStack = createStackNavigator();
 const DetailsStack = createStackNavigator();
@@ -97,6 +98,10 @@ const HomeStackScreen = ({navigation}) => (
           component={RestaurantDetailsScreen} 
           options={{ headerShown: true, headerStyle: { alignItems: 'center' } }} 
           options={ ({ route }) => ({ title: route.params.name }) }
+        />
+          <HomeStack.Screen 
+          name="EditProfileScreen" 
+          component={EditProfileScreen}
         />
 
 </HomeStack.Navigator>

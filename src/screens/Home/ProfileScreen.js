@@ -97,7 +97,7 @@ const ProfileScreen = (props)=>{
                     </View>
                 </TouchableRipple>
 
-                <TouchableRipple onPress={() => props.navigation.navigate("SettingsScreen")}>
+                <TouchableRipple onPress={() => props.navigation.navigate("EditProfileScreen")}>
                     <View style={styles.menuItem}>
                     <MaterialIcons name="edit" size={20} color="grey" size={25}/>
                         <Text style={styles.menuItemText}>
@@ -105,6 +105,10 @@ const ProfileScreen = (props)=>{
                         </Text>
                     </View>
                 </TouchableRipple>
+
+                <Button >
+                    Light And Dark Theme.
+                </Button>
 
             </View>
 
