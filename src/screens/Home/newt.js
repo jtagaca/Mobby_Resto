@@ -67,7 +67,6 @@ function newt(props) {
       : null
   );
 
-  console.log(restaurants);
   const isLoading = useSelector(
     (state) => state.restaurant.isFetchingRestaurants
   );
@@ -126,7 +125,15 @@ function newt(props) {
                       </View> */}
                   <Card.Actions style={styles.actionContainer}>
                     <TouchableOpacity style={styles.buttonContainer}>
-                      <Button style={styles.appButtonText}>More Info</Button>
+                      <Button 
+
+                        style={styles.appButtonText}  
+                        onPress={() => props.navigation.navigate("RestaurantDetails", { name: item.name, restaurant: item })}
+                      >
+
+                        More Info
+
+                      </Button>
                     </TouchableOpacity>
                     {/* <Button>Placeholder</Button> */}
                     <TouchableOpacity style={styles.buttonContainer}>

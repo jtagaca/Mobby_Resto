@@ -16,6 +16,15 @@ export const searchRestaurants = async (searchTerm) => {
     })
 };
 
+export const searchRestaurantDetails = async (id) => {
+    return new Promise((resolve, reject) => {
+        yelp.get(`/${id}`, {
+        })
+        .then((res) => resolve(res.data))
+        .catch((err) => console.log(err))
+    })
+};
+
 export const postLogin = async (username, password) => {
     return new Promise((resolve, reject) => {
         axios.post('api/Authenticate/login', {

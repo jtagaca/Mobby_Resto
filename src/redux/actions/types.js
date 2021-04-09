@@ -6,3 +6,7 @@ export const AUTH_LOGIN_SUCCESS = "auth/login_success"
 export const AUTH_LOGIN_STARTED = "auth/login_started"
 export const AUTH_LOGIN_FAIL = "auth/login_fail"
 export const AUTH_LOGOUT = "auth/logout"
+
+export const RESTAURANT_DETAILS_FETCH_SUCCESS = "restaurant_details/fetch_success"
+export const RESTAURANT_DETAILS_FETCH_STARTED = "restaurant_deatils/fetch_started"
+export const RESTAURANT_DETAILS_FETCH_FAIL = "restaurant_details/fetch_fail"

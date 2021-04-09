@@ -8,6 +8,7 @@ import HomePage from "./newt.js";
 import ProfileScreen from './ProfileScreen';
 import SettingsScreen from './SettingsScreen';
 import TestScreen from './TestScreen';
+import RestaurantDetailsScreen from './RestaurantDetailsScreen';
 
 
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -91,6 +92,13 @@ const HomeStackScreen = ({navigation}) => (
         title:'Mobby Resto',
         
         }} />
+        <HomeStack.Screen 
+          name="RestaurantDetails" 
+          component={RestaurantDetailsScreen} 
+          options={{ headerShown: true, headerStyle: { alignItems: 'center' } }} 
+          options={ ({ route }) => ({ title: route.params.name }) }
+        />
+
 </HomeStack.Navigator>
 );
 
