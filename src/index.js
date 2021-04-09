@@ -7,6 +7,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { useSelector } from 'react-redux';
+import { StatusBar } from 'react-native';
+
 
 
 const AppStack = createStackNavigator();
@@ -28,6 +30,7 @@ export default function AppContent() {
   return (
     <PaperProvider theme={theme} >
         <SafeAreaProvider>
+            <StatusBar barStyle={(Platform.OS === 'ios') ? 'dark-content' : 'light-content'}/>
             <SafeAreaView style={{ flex: 1 }}>
                 <NavigationContainer>
                     <AppStack.Navigator headerMode="none" >
