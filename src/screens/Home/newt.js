@@ -138,7 +138,7 @@ function newt(props) {
                     {/* <Button>Placeholder</Button> */}
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button onPress={() => CallNum(item.display_phone)}>
-                        Phone{" "}
+                        Call{" "}
                       </Button>
                     </TouchableOpacity>
 
