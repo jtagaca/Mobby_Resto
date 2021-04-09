@@ -9,10 +9,23 @@ import { Title, Card, Avatar, Caption, Text, TouchableRipple } from 'react-nativ
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons'; 
 
+import { useSelector, useDispatch } from 'react-redux';
+import { lightTheme, darkTheme } from '../../global/';
+import { themeSwitch } from '../../redux/actions/ThemeActions';
+
 
 const ProfileScreen = (props)=>{
+    const dispatch = useDispatch()
+
+    const switchTheme = (payload) => {
+        dispatch(themeSwitch(payload))
+    }
+
+    let nextTheme
+    const theme = useSelector(state => state.theme.theme)
+
     return(
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container, { backgroundColor: theme.colors.background }}>
             <View style={styles.userInfo}>
                 <View style={{flexDirection: 'row', marginTop: 15}}>
                     <Avatar.Image 
@@ -106,8 +119,8 @@ const ProfileScreen = (props)=>{
                     </View>
                 </TouchableRipple>
 
-                <Button >
-                    Light And Dark Theme.
+                <Button onPress={() => {(!theme.dark) ? nextTheme = darkTheme : nextTheme = lightTheme; switchTheme(nextTheme) }} >
+                    {(theme.dark) ? 'Light mode' : 'Dark mode'}
                 </Button>
 
             </View>

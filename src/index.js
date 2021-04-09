@@ -23,9 +23,10 @@ const AppStack = createStackNavigator();
 
 export default function AppContent() {
   const jwt = useSelector(state => state.auth.jwt)
+  const theme = useSelector(state => state.theme.theme)
 
   return (
-    <PaperProvider >
+    <PaperProvider theme={theme} >
         <SafeAreaProvider>
             <SafeAreaView style={{ flex: 1 }}>
                 <NavigationContainer>
