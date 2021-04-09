@@ -10,3 +10,5 @@ export const AUTH_LOGOUT = "auth/logout"
 export const RESTAURANT_DETAILS_FETCH_SUCCESS = "restaurant_details/fetch_success"
 export const RESTAURANT_DETAILS_FETCH_STARTED = "restaurant_deatils/fetch_started"
 export const RESTAURANT_DETAILS_FETCH_FAIL = "restaurant_details/fetch_fail"
+
+export const THEME_SWITCH = "theme/switch"

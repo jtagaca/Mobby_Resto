@@ -20,6 +20,7 @@ const RestaurantDetailsScreen = (props) => {
     );
 
     const isLoading = useSelector((state) => state.restaurantDetails.isFetchingRestaurantDetails)
+    const theme = useSelector((state) => state.theme.theme)
 
     if (!restaurant || isLoading)
     {
@@ -35,7 +36,11 @@ const RestaurantDetailsScreen = (props) => {
 
             <View style={styles.container}>
                 <View style={styles.container}>
-                    <FlatList 
+
+                    <Text style={{ color: theme.colors.surface}}>
+                        Hello
+                    </Text>
+                    {/* <FlatList 
 
                     keyExtractor={(item) => item}
                     data={restaurant.photos}
@@ -47,7 +52,7 @@ const RestaurantDetailsScreen = (props) => {
                             pageMargin={0}
                         />
                     )}
-                    />
+                    /> */}
                 </View>
             </View>
 
