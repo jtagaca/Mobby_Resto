@@ -27,7 +27,9 @@ import TestScreen from "./TestScreen";
 import ImageViewer from "react-native-image-zoom-viewer";
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { set } from "react-hook-form";
+// import { mdiPhone, mdiGoogleMaps  } from '@mdi/js';
 import openMap from "react-native-open-maps";
+
 
 function newt(props) {
   const dispatch = useDispatch();
@@ -122,21 +124,21 @@ function newt(props) {
                           <Text style={styles.text}>Inside</Text>
                         </ImageBackground>
                       </View> */}
-                  <Card.Actions>
-                    <TouchableOpacity style={styles.appButtonContainer}>
+                  <Card.Actions style={styles.actionContainer}>
+                    <TouchableOpacity style={styles.buttonContainer}>
                       <Button style={styles.appButtonText}>More Info</Button>
                     </TouchableOpacity>
                     {/* <Button>Placeholder</Button> */}
-                    <TouchableOpacity>
+                    <TouchableOpacity style={styles.buttonContainer}>
                       <Button onPress={() => CallNum(item.display_phone)}>
                         Phone{" "}
                       </Button>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.appButtonContainer}>
-                      {/*may need to move directions button (blocking ratings)*/}
+                    <TouchableOpacity style={styles.buttonContainer}>
+                    
                       <Button
-                        style={styles.appButtonText}
+                        
                         onPress={() =>
                           openMap({
                             end:
@@ -144,15 +146,15 @@ function newt(props) {
                           })
                         }
                       >
-                        Directions
+                        Map
                       </Button>
                     </TouchableOpacity>
                     {/* need to move  */}
-                    <View style={styles.rating}>
+                    <View style={styles.rating, styles.buttonContainer}>
                       <Rating
                         type="custom"
                         ratingCount={item.rating}
-                        imageSize={25}
+                        imageSize={20}
                         ratingBackgroundColor="grey"
                         ratingColor="lightblue"
                         ratingCount={5}
@@ -183,9 +185,16 @@ const styles = StyleSheet.create({
     paddingRight: 0,
     paddingBottom: 0,
   },
+  actionContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height:100
+  },
   card: {
     flexDirection: "row",
-    height: 20,
+    height: 40,
     width: 10,
     borderRadius: 1,
     alignSelf: "center",
@@ -204,6 +213,23 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 12,
   },
+  buttonContainer:{
+    // backgroundColor: "lightblue",
+    // borderRadius:25,
+    // paddingVertical:12,
+    // paddingHorizontal:25,
+    paddingTop:0,
+    paddingBottom: 0,
+    marginRight:3,
+    marginLeft:3,
+    flex: 1,
+    // height:100,
+    // width:20
+    borderRadius:20,
+    backgroundColor: "lightblue"
+
+  },
+
   appButtonText: {
     fontSize: 18,
     color: "#fff",
