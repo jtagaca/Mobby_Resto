@@ -17,10 +17,13 @@ const light = {
     // fonts: configureFonts(fonts),
     colors: {
         ...DefaultTheme.colors,
-        primary: Colors.lightBlue300,
-        accent: Colors.lightGreen800,
-        surface: Colors.lightBlue100,
-    }
+        primary: Colors.black,
+        accent: Colors.red100,
+        surface: Colors.lightGreenA700,
+    },
+    
+
+
 }
 
 const darkTheme = {

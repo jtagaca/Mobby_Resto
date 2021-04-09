@@ -33,6 +33,7 @@ import openMap from "react-native-open-maps";
 
 function newt(props) {
   const dispatch = useDispatch();
+  const theme = useSelector((state) => state.theme.theme);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [refreshStart, setRefreshStart] = useState(false);
@@ -111,7 +112,7 @@ function newt(props) {
             onRefresh={onSearch}
             refreshing={refreshStart}
             renderItem={({ item }) => (
-              <View style={styles.container}>
+              <View style={ {backgroundColor: theme.colors.background}}>
                 <Card style={(styles.card, styles.spacing)}>
                   <Card.Content>
                     <Title>{item.name}</Title>
@@ -183,7 +184,7 @@ export default newt;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "lightblue",
+    backgroundColor: "black",
   },
   text: {},
   spacing: {
@@ -233,7 +234,7 @@ const styles = StyleSheet.create({
     // height:100,
     // width:20
     borderRadius:20,
-    backgroundColor: "lightblue"
+    backgroundColor: "white"
 
   },
 

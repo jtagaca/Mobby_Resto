@@ -16,13 +16,23 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import EditProfileScreen from './EditProfileScreen';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { StyleSheet, View } from 'react-native'
+
+
+
+
+
 
 const HomeStack = createStackNavigator();
 const DetailsStack = createStackNavigator();
 
 const Tab = createMaterialBottomTabNavigator();
 
+
 const MainTabScreen = () => (
+  
     <Tab.Navigator
       initialRouteName="Home"
       activeColor="#fff"
@@ -80,6 +90,7 @@ const MainTabScreen = () => (
 export default MainTabScreen;
 
 const HomeStackScreen = ({navigation}) => (
+ 
 <HomeStack.Navigator screenOptions={{
         headerStyle: {
         backgroundColor: '#009387',
@@ -89,10 +100,15 @@ const HomeStackScreen = ({navigation}) => (
         fontWeight: 'bold'
         }
     }}>
+        
         <HomeStack.Screen name="Home" component={HomePage} options={{
+       
         title:'Mobby Resto',
+        headerLeftContainerStyle:true,
+       
         
         }} />
+      
         <HomeStack.Screen 
           name="RestaurantDetails" 
           component={RestaurantDetailsScreen} 
@@ -124,4 +140,16 @@ const DetailsStackScreen = ({navigation}) => (
         }} />
 </DetailsStack.Navigator>
 );
-  
+
+
+
+
+const styles = StyleSheet.create({
+  container:{
+    textAlign:"center",
+  },
+}) 
+
+
+
+
