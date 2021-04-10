@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Button } from 'react-native-paper';
 
+
 import { LinearGradient } from 'expo-linear-gradient';
 import { Title, Card, Avatar, Caption, Text, TouchableRipple } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -12,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { lightTheme, darkTheme } from '../../global/';
 import { themeSwitch } from '../../redux/actions/ThemeActions';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 const ProfileScreen = (props)=>{
@@ -20,12 +22,12 @@ const ProfileScreen = (props)=>{
     const switchTheme = (payload) => {
         dispatch(themeSwitch(payload))
     }
-
+  
     let nextTheme
     const theme = useSelector(state => state.theme.theme)
 
     return(
-        <SafeAreaView style={styles.container, { backgroundColor: theme.colors.background }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
             <View style={styles.userInfo}>
                 <View style={{flexDirection: 'row', marginTop: 15}}>
                     <Avatar.Image 
@@ -133,6 +135,8 @@ const ProfileScreen = (props)=>{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'space-between', 
+        alignItems: 'center',
     },
 
     userInfo:{
@@ -180,7 +184,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
       },
       menuItemText: {
-        color: 'black',
         marginLeft: 20,
         fontWeight: '600',
         fontSize: 16,
