@@ -74,14 +74,14 @@ export default function EditProfileScreen(props) {
             </Text>
           </TouchableOpacity>
 
-          <Text style={{height: 20}}> Biogrpahy: {bio} </Text>
-            <Text style={styles.innerText}>Edit Biogrpahy</Text>
+          <Text style={{height: 20}}> Biography: {bio} </Text>
+            <Text style={styles.innerText}>Edit Biography</Text>
           
           <TextInput style={styles.inputText} onChangeText={(text) => setBio(text)}></TextInput>
           
           <TouchableOpacity style={styles.button} onPress= { () => save()}>
             <Text style={{color: "white"}}>
-              Save Biogrpahy
+              Save Biography
             </Text>
           </TouchableOpacity>
         </View>

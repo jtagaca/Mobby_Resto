@@ -105,7 +105,7 @@ const ContactScreen = (props) => {
 const styles = StyleSheet.create({
     lgcontainer: {
         flex: 1,
-        backgroundColor:"black"
+        // backgroundColor:"black"
     },
   container: {
     flex: 1,

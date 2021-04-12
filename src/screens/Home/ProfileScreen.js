@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { lightTheme, darkTheme } from '../../global/';
 import { themeSwitch } from '../../redux/actions/ThemeActions';
 import AsyncStorage from '@react-native-community/async-storage';
+import { AUTH_LOGOUT } from '../../redux/actions/types';
 
 
 const ProfileScreen = (props)=>{
@@ -21,6 +22,9 @@ const ProfileScreen = (props)=>{
 
     const switchTheme = (payload) => {
         dispatch(themeSwitch(payload))
+    }
+    const logout = () => {
+        dispatch({ type: AUTH_LOGOUT })
     }
   
     let nextTheme
@@ -123,6 +127,9 @@ const ProfileScreen = (props)=>{
 
                 <Button onPress={() => {(!theme.dark) ? nextTheme = darkTheme : nextTheme = lightTheme; switchTheme(nextTheme) }} >
                     {(theme.dark) ? 'Light mode' : 'Dark mode'}
+                </Button>
+                <Button onPress={logout} >
+                    Log out
                 </Button>
 
             </View>
