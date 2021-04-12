@@ -34,7 +34,7 @@ const ContactScreen = (props) => {
       );
   }
   const theme = useSelector((state) => state.theme.theme);
-  //error/bug is on theme-JT
+  //error/bug is on theme-JT?
   return (
     //  <SafeAreaView style={ styles.container, {backgroundColor: theme.colors.background} }>
     <SafeAreaView style={ styles.lgcontainer}>
