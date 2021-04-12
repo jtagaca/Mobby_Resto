@@ -29,7 +29,7 @@ import { Rating, AirbnbRating } from "react-native-ratings";
 import { set } from "react-hook-form";
 // import { mdiPhone, mdiGoogleMaps  } from '@mdi/js';
 import openMap from "react-native-open-maps";
-
+import ModalDropdown from "react-native-modal-dropdown";
 
 function newt(props) {
   const dispatch = useDispatch();
@@ -38,7 +38,6 @@ function newt(props) {
   const [searchQuery, setSearchQuery] = useState("");
   const [refreshStart, setRefreshStart] = useState(false);
 
-  //small bug
   const onChangeSearch = (query) => {
     setSearchQuery(query);
   };
@@ -79,10 +78,19 @@ function newt(props) {
           placeholder="What food would you like to eat..."
           onChangeText={onChangeSearch}
           value={searchQuery}
-          onIconPress={onSearch}
           onSubmitEditing={onSearch}
         />
-
+        <Searchbar
+          placeholder="location"
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+          onSubmitEditing={onSearch}
+        />
+        <View style={{ alignItems: "flex-end" }}>
+          <TouchableOpacity>
+            <ModalDropdown options={["option 1", "option 2"]} />
+          </TouchableOpacity>
+        </View>
         {isLoading || !restaurants ? (
           <View
             style={{
@@ -112,7 +120,7 @@ function newt(props) {
             onRefresh={onSearch}
             refreshing={refreshStart}
             renderItem={({ item }) => (
-              <View style={ {backgroundColor: theme.colors.background}}>
+              <View style={{ backgroundColor: theme.colors.background }}>
                 <Card style={(styles.card, styles.spacing)}>
                   <Card.Content>
                     <Title>{item.name}</Title>
@@ -126,14 +134,16 @@ function newt(props) {
                       </View> */}
                   <Card.Actions style={styles.actionContainer}>
                     <TouchableOpacity style={styles.buttonContainer}>
-                      <Button 
-
-                        style={styles.appButtonText}  
-                        onPress={() => props.navigation.navigate("RestaurantDetails", { name: item.name, restaurant: item })}
+                      <Button
+                        style={styles.appButtonText}
+                        onPress={() =>
+                          props.navigation.navigate("RestaurantDetails", {
+                            name: item.name,
+                            restaurant: item,
+                          })
+                        }
                       >
-
                         More Info
-
                       </Button>
                     </TouchableOpacity>
                     {/* <Button>Placeholder</Button> */}
@@ -144,13 +154,10 @@ function newt(props) {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.buttonContainer}>
-                    
                       <Button
-                        
                         onPress={() =>
                           openMap({
-                            end:
-                              item.location.display_address
+                            end: item.location.display_address,
                           })
                         }
                       >
@@ -158,7 +165,7 @@ function newt(props) {
                       </Button>
                     </TouchableOpacity>
                     {/* need to move  */}
-                    <View style={styles.rating, styles.buttonContainer}>
+                    <View style={(styles.rating, styles.buttonContainer)}>
                       <Rating
                         type="custom"
                         ratingCount={item.rating}
@@ -195,10 +202,10 @@ const styles = StyleSheet.create({
   },
   actionContainer: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height:100
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    height: 100,
   },
   card: {
     flexDirection: "row",
@@ -221,21 +228,20 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 12,
   },
-  buttonContainer:{
+  buttonContainer: {
     // backgroundColor: "lightblue",
     // borderRadius:25,
     // paddingVertical:12,
     // paddingHorizontal:25,
-    paddingTop:0,
+    paddingTop: 0,
     paddingBottom: 0,
-    marginRight:3,
-    marginLeft:3,
+    marginRight: 3,
+    marginLeft: 3,
     flex: 1,
     // height:100,
     // width:20
-    borderRadius:20,
-    backgroundColor: "white"
-
+    borderRadius: 20,
+    backgroundColor: "white",
   },
 
   appButtonText: {
