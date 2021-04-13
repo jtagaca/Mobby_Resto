@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { StyleSheet, SafeAreaView, View, TouchableWithoutFeedback, Keyboard, Image } from 'react-native';
-import { Props } from 'react-native-image-zoom-viewer/built/image-viewer.type';
 import { Button, Text, TextInput, ActivityIndicator } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginWithUsernameAndPassword } from '../../redux/actions/AuthActions';

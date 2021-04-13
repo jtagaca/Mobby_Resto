@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { View, StyleSheet, TextInput, ImageBackground, TouchableOpacity, LogBox, FlatList, Image, Dimensions, SafeAreaView, PushNotificationIOS } from 'react-native';
 import GallerySwiper from 'react-native-gallery-swiper';
 import { ActivityIndicator, Text, Button } from 'react-native-paper';
+import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRestaurantDetails } from '../../redux/actions/RestaurantDetailsActions';
 
@@ -24,6 +25,8 @@ const RestaurantDetailsScreen = (props) => {
     const isLoading = useSelector((state) => state.restaurantDetails.isFetchingRestaurantDetails)
     const theme = useSelector((state) => state.theme.theme)
 
+    console.log(restaurant)
+
     // if we are awaiting the api still, then we will display a loading icon instead of content
     if (!restaurant || isLoading)
     {
@@ -44,47 +47,36 @@ const RestaurantDetailsScreen = (props) => {
         )
     } else
     {
-        return (
-            <SafeAreaView style={styles.container}>
-                <View style={{ flex: 0.1 }}/>
-                <View style={styles.container}>
-                    <View style={{ flex: 0.1 }}/>
-                    <View style={{ flex: 1 }}>
-                        {/* <FlatList 
+        // I am creating an array of objects containing the urls of each photo
+        // to pass into our gallery swiper
+        let photos = new Array(restaurant.photos.length);
+        for (var i = 0; i < photos.length; i++)
+        {
+            photos[i] = new Object();
+            photos[i].uri = restaurant.photos[i];
+        }
 
-                        keyExtractor={(item) => item}
-                        data={restaurant.photos}
-                        horizontal
-                        renderItem={({item}) => (
-                            <View style={{ flex: 1 }}>
-                                {console.log(item)}
-                                <Image 
-                                    style={styles.image}
-                                    source={{ uri: item }}
-                                    />
-                            </View>
-                        )}
-                        /> */}
+        return (
+            <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
+                <View style={{ flex: 1 }}>
+                    <View style={{ flex: 1 }}>
+                        
                         <GallerySwiper 
-                            images={[{uri: restaurant.photos[0]},
-                                    {uri: restaurant.photos[1]}]}
-                            // images={[
-                            //     // Version *1.1.0 update (or greater versions): 
-                            //     // Can be used with different image object fieldnames.
-                            //     // Ex. source, source.uri, uri, URI, url, URL
-                            //     { uri: "https://luehangs.site/pic-chat-app-images/beautiful-blond-blonde-hair-478544.jpg" },
-                            //         // IMPORTANT: It is REQUIRED for LOCAL IMAGES
-                            //         // to include a dimensions field with the
-                            //         // actual width and height of the image or
-                            //         // it will throw an error.
-                            //     { uri: "https://luehangs.site/pic-chat-app-images/animals-avian-beach-760984.jpg" },
-                            //     { URI: "https://luehangs.site/pic-chat-app-images/beautiful-blond-fishnet-stockings-48134.jpg" },
-                            //     { url: "https://luehangs.site/pic-chat-app-images/beautiful-beautiful-woman-beauty-9763.jpg" },
-                            //     { URL: "https://luehangs.site/pic-chat-app-images/attractive-balance-beautiful-186263.jpg" },
-                            // ]}
+                            // images={[{uri: restaurant.photos[0]},
+                            //         {uri: restaurant.photos[1]}]}
+                            images={photos}
+                            
                         />
+
                     </View>
-                    <View style={{ flex: 0.1 }}/>
+                    <View style={{ flex: 1 }}>
+                        <View style={{ flex: 1, flexDirection: 'row' }}>
+                            <MaterialIcons name="star" size={20} color="gold" size={20}/>
+                            <Text >
+                                {restaurant.rating} ({restaurant.review_count} ratings)
+                            </Text>
+                        </View>
+                    </View>
 
                 </View> 
             </SafeAreaView>
