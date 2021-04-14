@@ -31,6 +31,16 @@ import { set } from "react-hook-form";
 import openMap from "react-native-open-maps";
 import ModalDropdown from "react-native-modal-dropdown";
 
+export const CallNum = (number) => {
+  let phoneNumber = "";
+  if (Platform.OS === "android") {
+    phoneNumber = `tel:${number}`;
+  } else {
+    phoneNumber = `telprompt:${number}`;
+  }
+  Linking.openURL(phoneNumber);
+};
+
 function newt(props) {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
@@ -51,15 +61,6 @@ function newt(props) {
     dispatch(fetchRestaurants(searchQuery));
   }, []);
 
-  const CallNum = (number) => {
-    let phoneNumber = "";
-    if (Platform.OS === "android") {
-      phoneNumber = `tel:${number}`;
-    } else {
-      phoneNumber = `telprompt:${number}`;
-    }
-    Linking.openURL(phoneNumber);
-  };
 
   const restaurants = useSelector((state) =>
     state.restaurant.restaurants
@@ -143,13 +144,17 @@ function newt(props) {
                           })
                         }
                       >
-                        More Info
+                        <Text>
+                          More
+                        </Text>
                       </Button>
                     </TouchableOpacity>
                     {/* <Button>Placeholder</Button> */}
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button onPress={() => CallNum(item.display_phone)}>
+                      <Text>
                         Phone{" "}
+                      </Text>
                       </Button>
                     </TouchableOpacity>
 
@@ -161,7 +166,9 @@ function newt(props) {
                           })
                         }
                       >
+                      <Text>
                         Map
+                      </Text> 
                       </Button>
                     </TouchableOpacity>
                     {/* need to move  */}

@@ -1,5 +1,5 @@
 import { RESTAURANT_DETAILS_FETCH_SUCCESS, RESTAURANT_DETAILS_FETCH_STARTED, RESTAURANT_DETAILS_FETCH_FAIL } from './types';
-import { searchRestaurantDetails } from '../../api/';
+import { searchRestaurantDetails, fetchReviews } from '../../api/';
 
 
 export const restaurantDetailsFetchSuccess = (restaurantDetails) => {
@@ -14,8 +14,15 @@ export const fetchRestaurantDetails = (id) => {
         dispatch({ type: RESTAURANT_DETAILS_FETCH_STARTED })
 
         searchRestaurantDetails(id)
-        .then(res => {
-            dispatch(restaurantDetailsFetchSuccess(res))
+        .then(details => {
+            fetchReviews(id)
+            .then(reviews => { 
+                details.reviews = reviews; 
+                dispatch(restaurantDetailsFetchSuccess(details)); 
+            })
+            .catch(err => {
+                dispatch({ type: RESTAURANT_DETAILS_FETCH_FAIL, payload: err })
+            })
         })
         .catch(err => {
             dispatch({ type: RESTAURANT_DETAILS_FETCH_FAIL, payload: err })
