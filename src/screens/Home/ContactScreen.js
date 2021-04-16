@@ -10,38 +10,31 @@ import {
 import { Button } from "react-native-paper";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import email from 'react-native-email';
 
-const ContactScreen = (props) => {
-  function sendEmail(e) {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "gmail",
-        "template_n7xrgju",
-        e.target,
-        "user_oSCxckXQXJ0r5g1cCnlau"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  }
+export const ContactScreen = (props) => {
+  subjectText = '';
+  bodyText = '';
+  handleEmail = () => {
+    const to = ['ppark3@csub.edu'] // string or array of email addresses
+    email(to, {
+        // Optional additional arguments
+        subject: subjectText,
+        body: bodyText
+    }).catch(console.error)
+}
   const theme = useSelector((state) => state.theme.theme);
   //error/bug is on theme-JT?
   return (
     //  <SafeAreaView style={ styles.container, {backgroundColor: theme.colors.background} }>
-    <SafeAreaView style={styles.lgcontainer}>
+    <SafeAreaView style={{backgroundColor: theme.colors.background},styles.lgcontainer}>
       {/*  <View style={{ flex: 1 }}> */}
-     
+        <View>
         <Image
-          style={{ width: 100, height: 100 }}
+          style={{ width: 100, height: 100, }}
           source={require("../../../assets/templogo.png")}
         />
+        </View>
         <TextInput
           type="text"
           className="form-control"
@@ -137,4 +130,3 @@ const styles = StyleSheet.create({
     borderColor: '#fff'
   }
 });
-export default ContactScreen;
