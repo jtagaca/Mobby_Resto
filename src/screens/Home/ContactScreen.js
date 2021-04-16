@@ -35,7 +35,7 @@ const ContactScreen = (props) => {
   //error/bug is on theme-JT?
   return (
     //  <SafeAreaView style={ styles.container, {backgroundColor: theme.colors.background} }>
-    <View style={styles.lgcontainer}>
+    <SafeAreaView style={styles.lgcontainer}>
       {/*  <View style={{ flex: 1 }}> */}
      
         <Image
@@ -64,7 +64,10 @@ const ContactScreen = (props) => {
           multiline
           style={styles.input}
         />
+        <View style ={{flexDirection:"row"}}>
         <Button
+          style={styles.buttonStyle}
+          color="blue"
           type="submit"
           value="Send Message"
           onPress={() =>
@@ -83,6 +86,8 @@ const ContactScreen = (props) => {
           Submit
         </Button>
         <Button
+          style={styles.buttonStyle}
+          color="blue"
           onPress={() =>
             Alert.alert("Discard message?", "", [
               {
@@ -95,14 +100,17 @@ const ContactScreen = (props) => {
         >
           Cancel
         </Button>
+        </View>
    
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
     lgcontainer: {
         flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
         // backgroundColor:"black"
     },
   container: {
@@ -117,38 +125,16 @@ const styles = StyleSheet.create({
     margin: 10,
     width: 200,
   },
+  buttonStyle: {
+    marginRight:10,
+    marginLeft:10,
+    marginTop:10,
+    paddingTop:1,
+    paddingBottom:1,
+    backgroundColor:'lightblue',
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#fff'
+  }
 });
 export default ContactScreen;
-
-/*
-import './ContactUs.css';
-
-export default function ContactUs() {
-
-  function sendEmail(e) {
-    e.preventDefault();
-
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
-  }
-
-  return (
-    <div>
-    <form className="contact-form" onSubmit={sendEmail}>
-      <input type="hidden" name="contact_number" />
-      <label>Name</label>
-      <input type="text" name="user_name" />
-      <label>Email</label>
-      <input type="email" name="user_email" />
-      <label>Message</label>
-      <textarea name="message" />
-      <input type="submit" value="Send" />
-    </form>
-    </div>
-  );
-}
-*/
