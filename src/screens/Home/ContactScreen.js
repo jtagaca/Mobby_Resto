@@ -12,9 +12,10 @@ import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import email from 'react-native-email';
 
-export const ContactScreen = (props) => {
+const ContactScreen = (props) => {
   subjectText = '';
   bodyText = '';
+ /*
   handleEmail = () => {
     const to = ['ppark3@csub.edu'] // string or array of email addresses
     email(to, {
@@ -22,7 +23,8 @@ export const ContactScreen = (props) => {
         subject: subjectText,
         body: bodyText
     }).catch(console.error)
-}
+  }
+  */
   const theme = useSelector((state) => state.theme.theme);
   //error/bug is on theme-JT?
   return (
@@ -36,22 +38,16 @@ export const ContactScreen = (props) => {
         />
         </View>
         <TextInput
-          type="text"
-          className="form-control"
           placeholder="Name"
           name="name"
           style={styles.input}
         />
         <TextInput
-          type="text"
-          className="form-control"
           placeholder="Email"
           name="email"
           style={styles.input}
         />
         <TextInput
-          type="text"
-          className="form-control"
           placeholder="Message"
           name="message"
           multiline
@@ -61,7 +57,6 @@ export const ContactScreen = (props) => {
         <Button
           style={styles.buttonStyle}
           color="blue"
-          type="submit"
           value="Send Message"
           onPress={() =>
             Alert.alert(
@@ -130,3 +125,5 @@ const styles = StyleSheet.create({
     borderColor: '#fff'
   }
 });
+
+export default ContactScreen;
