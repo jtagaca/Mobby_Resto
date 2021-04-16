@@ -38,17 +38,6 @@ const MainTabScreen = () => (
       activeColor="#fff"
     >
       
-      <Tab.Screen
-        name="Notifications"
-        component={ContactScreen}
-        options={{
-          tabBarLabel: 'Contact',
-          tabBarColor: '#1f65ff',
-          tabBarIcon: ({ color }) => (
-            <Icon name="ios-notifications" color={color} size={26} />
-          ),
-        }}
-      />
         <Tab.Screen
         name="Home"
         component={HomeStackScreen}
@@ -80,6 +69,18 @@ const MainTabScreen = () => (
           tabBarColor: '#694fad',
           tabBarIcon: ({ color }) => (
             <Icon name="ios-person" color={color} size={26} />
+          ),
+        }}
+      />
+
+        <Tab.Screen
+        name="Notifications"
+        component={ContactScreen}
+        options={{
+          tabBarLabel: 'Contact',
+          tabBarColor: '#1f65ff',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-notifications" color={color} size={26} />
           ),
         }}
       />
