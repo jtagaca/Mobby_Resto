@@ -2,7 +2,6 @@ import React from "react";
 import {
   StyleSheet,
   SafeAreaView,
-  Text,
   View,
   Image,
   Alert,
@@ -11,7 +10,6 @@ import {
 import { Button } from "react-native-paper";
 import { useForm, Controller } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import ProfileScreen from "./ProfileScreen";
 
 const ContactScreen = (props) => {
   function sendEmail(e) {
@@ -37,7 +35,7 @@ const ContactScreen = (props) => {
   //error/bug is on theme-JT?
   return (
     //  <SafeAreaView style={ styles.container, {backgroundColor: theme.colors.background} }>
-    <SafeAreaView style={ styles.lgcontainer}>
+    <View style={styles.lgcontainer}>
       {/*  <View style={{ flex: 1 }}> */}
      
         <Image
@@ -98,7 +96,7 @@ const ContactScreen = (props) => {
           Cancel
         </Button>
    
-    </SafeAreaView>
+    </View>
   );
 };
 
