@@ -74,7 +74,7 @@ const MainTabScreen = () => (
       />
 
         <Tab.Screen
-        name="Notifications"
+        name="Contact"
         component={ContactScreen}
         options={{
           tabBarLabel: 'Contact',

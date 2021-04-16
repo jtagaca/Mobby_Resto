@@ -29,14 +29,13 @@ const ContactScreen = (props) => {
   //error/bug is on theme-JT?
   return (
     //  <SafeAreaView style={ styles.container, {backgroundColor: theme.colors.background} }>
-    <SafeAreaView style={{backgroundColor: theme.colors.background},styles.lgcontainer}>
+    <SafeAreaView style={{flex: 1, alignItems: 'center', backgroundColor: theme.colors.background}}>
       {/*  <View style={{ flex: 1 }}> */}
-        <View>
         <Image
           style={{ width: 100, height: 100, }}
           source={require("../../../assets/templogo.png")}
         />
-        </View>
+
         <TextInput
           placeholder="Name"
           name="name"
@@ -107,6 +106,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   input: {
+    backgroundColor: 'white',
     borderWidth: 1,
     borderColor: "#777",
     padding: 8,
