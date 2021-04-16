@@ -141,7 +141,7 @@ export default function ProfileScreen(props){
                     </View>
                 </TouchableRipple>
 
-                <TouchableRipple onPress={() =>{}}>
+                <TouchableRipple onPress={() => props.navigation.navigate("Contact Us")}>
                     <View style={styles.menuItem}>
                     <MaterialIcons name="person-outline" size={20} color="red" size={25}/>
                         <Text style={styles.menuItemText}>
