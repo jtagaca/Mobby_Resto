@@ -64,7 +64,7 @@ const ContactScreen = (props) => {
               [
                 {
                   text: "OK",
-                  onPress: () => props.navigation.navigate("Profile"),
+                  onPress: () => props.navigation.goBack(),
                 },
               ]
             )
@@ -79,7 +79,7 @@ const ContactScreen = (props) => {
             Alert.alert("Discard message?", "", [
               {
                 text: "Yes",
-                onPress: () => props.navigation.navigate("Profile"),
+                onPress: () => props.navigation.goBack(),
               },
               { text: "No" },
             ])
