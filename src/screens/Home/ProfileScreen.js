@@ -157,14 +157,17 @@ export default function ProfileScreen(props){
                             Edit Profile
                         </Text>
                     </View>
-                </TouchableRipple>
+                </TouchableRipple >
+                <View style={styles.text}>
+                <Button  onPress={() => {(!theme.dark) ? nextTheme = darkTheme : nextTheme = lightTheme; switchTheme(nextTheme) }} > 
 
-                <Button onPress={() => {(!theme.dark) ? nextTheme = darkTheme : nextTheme = lightTheme; switchTheme(nextTheme) }} >
+                {/* if not dark then do this? if theme is dark then do light theme */}
                     {(theme.dark) ? 'Light mode' : 'Dark mode'}
                 </Button>
                 <Button onPress={logout} >
                     Log out
                 </Button>
+                </View>
 
             </View>
 
@@ -230,5 +233,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         lineHeight: 26,
       },
+      text:{
+        color: 'black'
+      }
 })
 //export default ProfileScreen;
