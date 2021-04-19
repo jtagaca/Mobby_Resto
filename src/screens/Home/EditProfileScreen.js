@@ -11,7 +11,7 @@ import {
   StyleSheet,
   TextInput, 
   TouchableOpacity,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 
 export default function EditProfileScreen(props) {
@@ -82,14 +82,14 @@ export default function EditProfileScreen(props) {
   let nextTheme
   const theme = useSelector(state => state.theme.theme)
     return(
-        <View style={[styles.container, { alignItems: "center", backgroundColor: theme.colors.background }]}>
+        <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
             <ScrollView style={styles.scroll}>
             <Text style={styles.innerText}>Edit Name</Text>
             <Text style={{height: 20}}> New Name: {name} </Text>
           
           <TextInput style={styles.inputText} onChangeText={(text) => setName(text)}></TextInput>
           
-          <TouchableOpacity style={styles.button} onPress= { () => save()}>
+          <TouchableOpacity style={styles.button} onPress= { () => save(alert('Name Saved!'))}>
             <Text style={{color: "white"}}>
               Save Name
             </Text>
@@ -101,7 +101,7 @@ export default function EditProfileScreen(props) {
           
           <TextInput style={styles.inputText} onChangeText={(text) => setBio(text)}></TextInput>
           
-          <TouchableOpacity style={styles.button} onPress= { () => save()}>
+          <TouchableOpacity style={styles.button} onPress= { () => save(alert('Biography Saved!'))}>
             <Text style={{color: "white"}}>
               Save Biography
             </Text>
@@ -111,7 +111,7 @@ export default function EditProfileScreen(props) {
             <Text style={{height: 20}}> New Location: {loc} </Text>          
           <TextInput style={styles.inputText} onChangeText={(text) => setLoc(text)}></TextInput>
           
-          <TouchableOpacity style={styles.button} onPress= { () => save()}>
+          <TouchableOpacity style={styles.button} onPress= { () => save(alert('Location Saved'))}>
             <Text style={{color: "white"}}>
               Save Location
             </Text>
@@ -129,7 +129,7 @@ export default function EditProfileScreen(props) {
           </TextInput>
           
           <TouchableOpacity 
-            style={styles.button} onPress= { () => save()}
+            style={styles.button} onPress= { () => save(alert('Phone Saved!'))}
           >
             <Text style={{color: "white"}}>
               Save Phone
@@ -144,7 +144,7 @@ export default function EditProfileScreen(props) {
           onChangeText={(text) => setEmail(text)}
           />
           
-          <TouchableOpacity style={styles.button} onPress= { () => save()}>
+          <TouchableOpacity style={styles.button} onPress= { () => save(alert('Email Saved!'))}>
             <Text style={{color: "white"}}>
               Save email
             </Text>
@@ -159,7 +159,7 @@ export default function EditProfileScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "stretch"
+    alignItems: "stretch",
   },
 
   innerText: {
