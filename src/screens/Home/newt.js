@@ -157,7 +157,7 @@ function newt(props) {
                        style={styles.appButtonText, { backgroundColor: theme.colors.background }}
                       onPress={() => CallNum(item.display_phone)}>
                       <Text>
-                        Phone{" "}
+                        Call{" "}
                       </Text>
                       </Button>
                     </TouchableOpacity>
@@ -183,9 +183,10 @@ function newt(props) {
                         ratingCount={item.rating}
                         imageSize={20}
                         ratingBackgroundColor= "{theme.colors.background}"
-                       
-                        ratingColor="{theme.colors.surface}"
+                        tintColor="#009387"
+                        ratingColor="lightgreen"
                         ratingCount={5}
+                        unSelectedColor="black"
                         readonly
                       />
 
@@ -239,32 +240,38 @@ const styles = StyleSheet.create({
   appButtonContainer: {
     elevation: 8,
     backgroundColor: "white",
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    borderRadius: 30,
+    paddingVertical: 0,
+    paddingHorizontal: 0,
+
   },
   buttonContainer: {
     // backgroundColor: "lightblue",
-    // borderRadius:25,
+    borderRadius:25,
     // paddingVertical:12,
     // paddingHorizontal:25,
     paddingTop: 0,
     paddingBottom: 0,
-    marginRight: 3,
-    marginLeft: 3,
+    marginRight: 1.8,
+    marginLeft: 1.8,
     flex: 1,
     // height:100,
     // width:20
-    borderRadius: 20,
+    borderRadius:100,
+ 
+   
  
   },
 
   appButtonText: {
-    fontSize: 18,
+    fontSize: 14,
     color: "#fff",
     fontWeight: "bold",
     alignSelf: "center",
     textTransform: "uppercase",
+    padding: 0,
+    margin: 0,
+    
   },
   phone: {
     height: 30,
