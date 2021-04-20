@@ -85,9 +85,14 @@ function newt(props) {
           onSubmitEditing={onSearch}
           inputStyle={{ backgroundColor: theme.colors.background }}
           // platform={Platform.OS}
-          platform="ios"
+          // backgroundColor="blue"
           // containerStyle=
           // cancelIcon
+          iconColor="blue"
+          selectionColor="blue"
+          animate={true}
+          animationDuration= {200}
+          focusOnLayout={true}
          
         />
         <Searchbar
