@@ -18,7 +18,7 @@ const ContactScreen = (props) => {
     const to = ['ppark3@csub.edu'] // string or array of email addresses
     email(to, {
         // Optional additional arguments
-        subject: 'subjecttest',
+        subject: 'test',
         body: 'bodytest'
     }).catch(console.error)
   }
@@ -49,24 +49,13 @@ const ContactScreen = (props) => {
           multiline
           style={styles.input}
         />
+
         <View style ={{flexDirection:"row"}}>
-       
-        <Button style={styles.buttonStyle} title="Test button" onPress={this.handleEmail} />
         <Button
           style={styles.buttonStyle}
           color="blue"
           value="Send Message"
-          onPress={() =>
-            Alert.alert(
-              "Message sent!",
-              "Our team will reach out to you within 1-2 business days",
-              [
-                {
-                  text: "OK",
-                  onPress: () => props.navigation.goBack(),
-                },
-              ]
-            )
+          onPress={handleEmail
           }
         >
           Submit
@@ -124,3 +113,16 @@ const styles = StyleSheet.create({
 });
 
 export default ContactScreen;
+/*
+          onPress={() =>
+            Alert.alert(
+              "Message sent!",
+              "Our team will reach out to you within 1-2 business days",
+              [
+                {
+                  text: "OK",
+                  onPress: () => props.navigation.goBack(),
+                },
+              ]
+            )
+            */
