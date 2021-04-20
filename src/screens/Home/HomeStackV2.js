@@ -20,11 +20,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { StyleSheet, View } from "react-native";
 
 const HomeStack = createStackNavigator();
+
 const DetailsStack = createStackNavigator();
 
 const Tab = createMaterialBottomTabNavigator();
 
+
+
 const MainTabScreen = () => (
+
+  
+
+  
   <Tab.Navigator initialRouteName="Home" activeColor="#fff">
     <Tab.Screen
       name="Home"

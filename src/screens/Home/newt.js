@@ -76,24 +76,31 @@ function newt(props) {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 }, { backgroundColor: theme.colors.background } }>
         <Searchbar
+          
           placeholder="What food would you like to eat..."
           onChangeText={onChangeSearch}
           value={searchQuery}
           onSubmitEditing={onSearch}
+          inputStyle={{ backgroundColor: theme.colors.background }}
+          // platform={Platform.OS}
+          platform="ios"
+          // containerStyle=
+          // cancelIcon
+         
         />
         <Searchbar
           placeholder="location"
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-          onSubmitEditing={onSearch}
+          // onChangeText={onChangeSearch}
+          // value={searchQuery}
+          // onSubmitEditing={onSearch}
         />
-        <View style={{ alignItems: "flex-end" }}>
+        {/* <View style={{ alignItems: "flex-end" }, { backgroundColor: theme.colors.background }}>
           <TouchableOpacity>
             <ModalDropdown options={["option 1", "option 2"]} />
           </TouchableOpacity>
-        </View>
+        </View> */}
         {isLoading || !restaurants ? (
           <View
             style={{
@@ -123,8 +130,8 @@ function newt(props) {
             onRefresh={onSearch}
             refreshing={refreshStart}
             renderItem={({ item }) => (
-              <View style={{ backgroundColor: theme.colors.background }}>
-                <Card style={(styles.card, styles.spacing)}>
+              <View >
+                <Card style={(styles.card, styles.spacing),{ backgroundColor: theme.colors.background }}>
                   <Card.Content>
                     <Title>{item.name}</Title>
                   </Card.Content>
