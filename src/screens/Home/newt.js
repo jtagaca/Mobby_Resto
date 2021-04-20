@@ -72,6 +72,8 @@ function newt(props) {
     (state) => state.restaurant.isFetchingRestaurants
   );
 
+ console.log(theme);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
@@ -136,7 +138,7 @@ function newt(props) {
                   <Card.Actions style={styles.actionContainer}>
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
-                        style={styles.appButtonText}
+                        style={styles.appButtonText, { backgroundColor: theme.colors.background }} back
                         onPress={() =>
                           props.navigation.navigate("RestaurantDetails", {
                             name: item.name,
@@ -151,7 +153,9 @@ function newt(props) {
                     </TouchableOpacity>
                     {/* <Button>Placeholder</Button> */}
                     <TouchableOpacity style={styles.buttonContainer}>
-                      <Button onPress={() => CallNum(item.display_phone)}>
+                      <Button 
+                       style={styles.appButtonText, { backgroundColor: theme.colors.background }}
+                      onPress={() => CallNum(item.display_phone)}>
                       <Text>
                         Phone{" "}
                       </Text>
@@ -160,6 +164,7 @@ function newt(props) {
 
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
+                       style={styles.appButtonText, { backgroundColor: theme.colors.background }}
                         onPress={() =>
                           openMap({
                             end: item.location.display_address,
@@ -172,16 +177,19 @@ function newt(props) {
                       </Button>
                     </TouchableOpacity>
                     {/* need to move  */}
-                    <View style={(styles.rating, styles.buttonContainer)}>
+                    <View style={( styles.buttonContainer, { backgroundColor: theme.colors.background })}>
                       <Rating
                         type="custom"
                         ratingCount={item.rating}
                         imageSize={20}
-                        ratingBackgroundColor="grey"
-                        ratingColor="lightblue"
+                        ratingBackgroundColor= "{theme.colors.background}"
+                       
+                        ratingColor="{theme.colors.surface}"
                         ratingCount={5}
                         readonly
                       />
+
+
                     </View>
                   </Card.Actions>
                 </Card>
@@ -248,7 +256,7 @@ const styles = StyleSheet.create({
     // height:100,
     // width:20
     borderRadius: 20,
-    backgroundColor: "white",
+ 
   },
 
   appButtonText: {
