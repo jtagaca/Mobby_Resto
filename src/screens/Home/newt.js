@@ -61,7 +61,6 @@ function newt(props) {
     dispatch(fetchRestaurants(searchQuery));
   }, []);
 
-
   const restaurants = useSelector((state) =>
     state.restaurant.restaurants
       ? state.restaurant.restaurants.businesses
@@ -72,28 +71,26 @@ function newt(props) {
     (state) => state.restaurant.isFetchingRestaurants
   );
 
- console.log(theme);
+  //  console.log(theme);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1 }, { backgroundColor: theme.colors.background } }>
+      <View style={({ flex: 1 })}>
         <Searchbar
-          
           placeholder="What food would you like to eat..."
           onChangeText={onChangeSearch}
           value={searchQuery}
           onSubmitEditing={onSearch}
-          inputStyle={{ backgroundColor: theme.colors.background }}
+          // inputStyle={{ backgroundColor: theme.colors.background }}
           // platform={Platform.OS}
           // backgroundColor="blue"
           // containerStyle=
           // cancelIcon
-          iconColor="blue"
-          selectionColor="blue"
+          iconColor=  {theme.colors.primary }
+          selectionColor={theme.colors.primary }
           animate={true}
-          animationDuration= {200}
+          animationDuration={200}
           focusOnLayout={true}
-         
         />
         <Searchbar
           placeholder="location"
@@ -135,8 +132,13 @@ function newt(props) {
             onRefresh={onSearch}
             refreshing={refreshStart}
             renderItem={({ item }) => (
-              <View >
-                <Card style={(styles.card, styles.spacing),{ backgroundColor: theme.colors.background }}>
+              <View>
+                <Card
+                  style={
+                    ((styles.card, styles.spacing),
+                    { backgroundColor: theme.colors.background })
+                  }
+                >
                   <Card.Content>
                     <Title>{item.name}</Title>
                   </Card.Content>
@@ -150,7 +152,11 @@ function newt(props) {
                   <Card.Actions style={styles.actionContainer}>
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
-                        style={styles.appButtonText, { backgroundColor: theme.colors.primary }} back
+                        style={
+                          (styles.appButtonText,
+                          { backgroundColor: theme.colors.primary })
+                        }
+                        back
                         onPress={() =>
                           props.navigation.navigate("RestaurantDetails", {
                             name: item.name,
@@ -158,51 +164,55 @@ function newt(props) {
                           })
                         }
                       >
-                        <Text>
-                          More
-                        </Text>
+                        <Text>More</Text>
                       </Button>
                     </TouchableOpacity>
                     {/* <Button>Placeholder</Button> */}
                     <TouchableOpacity style={styles.buttonContainer}>
-                      <Button 
-                       style={styles.appButtonText, { backgroundColor: theme.colors.primary }}
-                      onPress={() => CallNum(item.display_phone)}>
-                      <Text>
-                        Call{" "}
-                      </Text>
+                      <Button
+                        style={
+                          (styles.appButtonText,
+                          { backgroundColor: theme.colors.primary })
+                        }
+                        onPress={() => CallNum(item.display_phone)}
+                      >
+                        <Text>Call </Text>
                       </Button>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
-                       style={styles.appButtonText, { backgroundColor: theme.colors.primary }}
+                        style={
+                          (styles.appButtonText,
+                          { backgroundColor: theme.colors.primary })
+                        }
                         onPress={() =>
                           openMap({
                             end: item.location.display_address,
                           })
                         }
                       >
-                      <Text>
-                        Map
-                      </Text> 
+                        <Text>Map</Text>
                       </Button>
                     </TouchableOpacity>
                     {/* need to move  */}
-                    <View style={( styles.buttonContainer, { backgroundColor: theme.colors.primary})}>
+                    <View
+                      style={
+                        (styles.buttonContainer,
+                        { backgroundColor: theme.colors.primary })
+                      }
+                    >
                       <Rating
                         type="custom"
                         ratingCount={item.rating}
                         imageSize={20}
-                        ratingBackgroundColor= {theme.colors.primary}
+                        ratingBackgroundColor={theme.colors.surface}
                         tintColor={theme.colors.background}
-                        ratingColor="lightgreen"
+                        ratingColor={theme.colors.primary}
                         ratingCount={5}
                         unSelectedColor="black"
                         readonly
                       />
-
-
                     </View>
                   </Card.Actions>
                 </Card>
@@ -237,14 +247,22 @@ const styles = StyleSheet.create({
   },
   card: {
     flexDirection: "row",
-    height: 40,
+    height: 30,
     width: 10,
     borderRadius: 1,
     alignSelf: "center",
     marginBottom: 3,
     marginTop: 3,
     borderLeftWidth: 5,
-    borderLeftColor: "#ea7e7a",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 1,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   rating: {
     flex: 1,
@@ -255,11 +273,10 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     paddingVertical: 0,
     paddingHorizontal: 0,
-
   },
   buttonContainer: {
     // backgroundColor: "lightblue",
-    borderRadius:25,
+    borderRadius: 25,
     // paddingVertical:12,
     // paddingHorizontal:25,
     paddingTop: 0,
@@ -269,10 +286,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // height:100,
     // width:20
-    borderRadius:100,
- 
-   
- 
+    borderRadius: 100,
   },
 
   appButtonText: {
@@ -283,7 +297,6 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     padding: 0,
     margin: 0,
-    
   },
   phone: {
     height: 30,

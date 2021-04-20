@@ -33,7 +33,8 @@ const Tab = createMaterialBottomTabNavigator();
 const MainTabScreen = () => {
   
   const theme = useSelector((state) => state.theme.theme);
- 
+  
+
 
   return (
   <Tab.Navigator initialRouteName="Home" activeColor="#fff">
@@ -42,7 +43,7 @@ const MainTabScreen = () => {
       component={HomeStackScreen}
       options={{
         tabBarLabel: "Home",
-        tabBarColor: "#009387",
+        tabBarColor: "#000000",
         tabBarIcon: ({ color }) => (
           <Icon name="ios-home" color={color} size={26} />
         ),
