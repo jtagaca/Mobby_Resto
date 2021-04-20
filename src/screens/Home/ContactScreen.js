@@ -1,4 +1,6 @@
-import React from "react";
+// to do: UI improvements
+
+import React, { useState } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -8,18 +10,24 @@ import {
   TextInput,
 } from "react-native";
 import { Button } from "react-native-paper";
-import { useForm, Controller } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import email from 'react-native-email';
 
 const ContactScreen = (props) => {
+  const testing = 'ppark3@csub.edu';
+  const fullContacts = ['ppark3@csub.edu', 'dgonzalez94@csub.edu', 'laguilar21@csub.edu', 'jtagaca@csub.edu'];
+  
+  const [emailText, setEmail] = useState('');
+  const [subjectline, setSubjectline] = useState('');
+  const [bodyText, setBody] = useState('');
+
 
   handleEmail = () => {
-    const to = ['ppark3@csub.edu'] // string or array of email addresses
+    const to = fullContacts // set this to whomever should receive the support email
     email(to, {
-        // Optional additional arguments
-        subject: 'test',
-        body: 'bodytest'
+        cc: emailText,
+        subject: subjectline,
+        body: bodyText,
     }).catch(console.error)
   }
 
@@ -27,23 +35,25 @@ const ContactScreen = (props) => {
   //error/bug is on theme-JT?
   return (
     <SafeAreaView style={{flex: 1, alignItems: 'center', backgroundColor: theme.colors.background}}>
-      {/*  <View style={{ flex: 1 }}> */}
         <Image
           style={{ width: 100, height: 100, }}
           source={require("../../../assets/templogo.png")}
         />
 
         <TextInput
-          placeholder="Name"
-          name="name"
-          style={styles.input}
-        />
-        <TextInput
+          onChangeText={(text) => setEmail(text)}
           placeholder="Email"
           name="email"
           style={styles.input}
         />
         <TextInput
+          onChangeText={(text) => setSubjectline(text)}
+          placeholder="Subject"
+          name="subject"
+          style={styles.input}
+        />
+        <TextInput
+          onChangeText={(text) => setBody(text)}
           placeholder="Message"
           name="message"
           multiline
@@ -55,8 +65,7 @@ const ContactScreen = (props) => {
           style={styles.buttonStyle}
           color="blue"
           value="Send Message"
-          onPress={handleEmail
-          }
+          onPress={handleEmail}
         >
           Submit
         </Button>
