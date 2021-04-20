@@ -152,33 +152,33 @@ export default function ProfileScreen(props){
 
                 <TouchableRipple onPress={() => props.navigation.navigate("EditProfileScreen")}>
                     <View style={styles.menuItem}>
-                    <MaterialIcons name="edit" size={20} color="grey" size={25}/>
+                    <MaterialIcons name="edit" size={20} color="orange" size={25}/>
                         <Text style={styles.menuItemText}>
                             Edit Profile
                         </Text>
                     </View>
                 </TouchableRipple >
 
-                <TouchableRipple onPress={() => props.navigation.navigate("SettingsScreen")}>
+                <TouchableRipple onPress={() => props.navigation.navigate("Settings")}>
                     <View style={styles.menuItem}>
-                    <MaterialIcons name="edit" size={20} color="grey" size={25}/>
+                    <MaterialIcons name="settings" size={20} color="grey" size={25}/>
                         <Text style={styles.menuItemText}>
                             Settings
                         </Text>
                     </View>
                 </TouchableRipple >
 
-                <View style={styles.text}>
+               {/* <View style={styles.text}>
                 <Button  onPress={() => {(!theme.dark) ? nextTheme = darkTheme : nextTheme = lightTheme; switchTheme(nextTheme) }} > 
 
-                {/* if not dark then do this? if theme is dark then do light theme */}
+                {/* if not dark then do this? if theme is dark then do light theme 
                     {(theme.dark) ? 'Light mode' : 'Dark mode'}
                 </Button>
                 
                 <Button onPress={logout} >
                     Log out
                 </Button>
-                </View>
+                </View> */}
 
             </View>
 
