@@ -27,11 +27,15 @@ const Tab = createMaterialBottomTabNavigator();
 
 
 
-const MainTabScreen = () => (
 
-  
 
+
+const MainTabScreen = () => {
   
+  const theme = useSelector((state) => state.theme.theme);
+ 
+
+  return (
   <Tab.Navigator initialRouteName="Home" activeColor="#fff">
     <Tab.Screen
       name="Home"
@@ -80,7 +84,8 @@ const MainTabScreen = () => (
       }}
     />
   </Tab.Navigator>
-);
+  )
+    };
 
 export default MainTabScreen;
 
@@ -114,7 +119,7 @@ const HomeStackScreen = ({ navigation }) => (
     <HomeStack.Screen name="EditProfileScreen" component={EditProfileScreen} />
 
     <HomeStack.Screen
-      name="Setting"
+      name="Settings"
       component={SettingsScreen}
       options={{ headerShown: true, headerStyle: { alignItems: "center" } }}
       options={({ route }) => ({ title: route.params.name })}

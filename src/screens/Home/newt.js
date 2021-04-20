@@ -150,7 +150,7 @@ function newt(props) {
                   <Card.Actions style={styles.actionContainer}>
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
-                        style={styles.appButtonText, { backgroundColor: theme.colors.background }} back
+                        style={styles.appButtonText, { backgroundColor: theme.colors.primary }} back
                         onPress={() =>
                           props.navigation.navigate("RestaurantDetails", {
                             name: item.name,
@@ -166,7 +166,7 @@ function newt(props) {
                     {/* <Button>Placeholder</Button> */}
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button 
-                       style={styles.appButtonText, { backgroundColor: theme.colors.background }}
+                       style={styles.appButtonText, { backgroundColor: theme.colors.primary }}
                       onPress={() => CallNum(item.display_phone)}>
                       <Text>
                         Call{" "}
@@ -176,7 +176,7 @@ function newt(props) {
 
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
-                       style={styles.appButtonText, { backgroundColor: theme.colors.background }}
+                       style={styles.appButtonText, { backgroundColor: theme.colors.primary }}
                         onPress={() =>
                           openMap({
                             end: item.location.display_address,
@@ -189,13 +189,13 @@ function newt(props) {
                       </Button>
                     </TouchableOpacity>
                     {/* need to move  */}
-                    <View style={( styles.buttonContainer, { backgroundColor: theme.colors.background })}>
+                    <View style={( styles.buttonContainer, { backgroundColor: theme.colors.primary})}>
                       <Rating
                         type="custom"
                         ratingCount={item.rating}
                         imageSize={20}
-                        ratingBackgroundColor= "{theme.colors.background}"
-                        tintColor="#009387"
+                        ratingBackgroundColor= {theme.colors.primary}
+                        tintColor={theme.colors.background}
                         ratingColor="lightgreen"
                         ratingCount={5}
                         unSelectedColor="black"
@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
 
   appButtonText: {
     fontSize: 14,
-    color: "#fff",
+    // color: "#fff",
     fontWeight: "bold",
     alignSelf: "center",
     textTransform: "uppercase",
