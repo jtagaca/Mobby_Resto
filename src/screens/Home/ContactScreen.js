@@ -13,18 +13,16 @@ import { useDispatch, useSelector } from "react-redux";
 import email from 'react-native-email';
 
 const ContactScreen = (props) => {
-  subjectText = '';
-  bodyText = '';
- 
+
   handleEmail = () => {
     const to = ['ppark3@csub.edu'] // string or array of email addresses
     email(to, {
         // Optional additional arguments
-        subject: subjectText,
-        body: bodyText
+        subject: 'subjecttest',
+        body: 'bodytest'
     }).catch(console.error)
   }
-  
+
   const theme = useSelector((state) => state.theme.theme);
   //error/bug is on theme-JT?
   return (
@@ -52,8 +50,8 @@ const ContactScreen = (props) => {
           style={styles.input}
         />
         <View style ={{flexDirection:"row"}}>
-        <Button title="Test button" onPress={this.handleEmail} />
-
+       
+        <Button style={styles.buttonStyle} title="Test button" onPress={this.handleEmail} />
         <Button
           style={styles.buttonStyle}
           color="blue"
