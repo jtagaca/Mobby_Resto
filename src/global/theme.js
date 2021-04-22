@@ -12,7 +12,7 @@ const dark = {
   colors: {
     ...DarkTheme.colors,
     primary: "#9932CC",
-    accent: Colors.lightGreen800,
+    accent:  "#301934",
     surface: "#000000",
   },
 };
@@ -24,7 +24,8 @@ const light = {
     ...DefaultTheme.colors,
 
     primary: "#009387",
-    accent: Colors.lightGreen800,
+   
+    accent:  "#006400",
     
     surface: "#FFFFFF",
   },

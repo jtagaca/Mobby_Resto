@@ -132,11 +132,13 @@ function newt(props) {
             onRefresh={onSearch}
             refreshing={refreshStart}
             renderItem={({ item }) => (
-              <View>
+              <View style={  { backgroundColor: theme.colors.primary }}>
                 <Card
                   style={
-                    ((styles.card, styles.spacing),
-                    { backgroundColor: theme.colors.background })
+                    ((styles.card, styles.spacing)
+                  )
+                  
+                  
                   }
                 >
                   <Card.Content>
