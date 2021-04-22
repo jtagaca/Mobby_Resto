@@ -30,6 +30,7 @@ import { set } from "react-hook-form";
 // import { mdiPhone, mdiGoogleMaps  } from '@mdi/js';
 import openMap from "react-native-open-maps";
 import ModalDropdown from "react-native-modal-dropdown";
+// import { Slider } from '@material-ui/core';
 
 export const CallNum = (number) => {
   let phoneNumber = "";
@@ -75,34 +76,33 @@ function newt(props) {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={({ flex: 1 })}>
+      <View style={{ flex: 1 }}>
         <Searchbar
           placeholder="What food would you like to eat..."
           onChangeText={onChangeSearch}
           value={searchQuery}
           onSubmitEditing={onSearch}
-          // inputStyle={{ backgroundColor: theme.colors.background }}
-          // platform={Platform.OS}
-          // backgroundColor="blue"
-          // containerStyle=
-          // cancelIcon
-          iconColor=  {theme.colors.primary }
-          selectionColor={theme.colors.primary }
+          iconColor={theme.colors.primary}
+          selectionColor={theme.colors.primary}
           animate={true}
           animationDuration={200}
           focusOnLayout={true}
         />
-        <Searchbar
-          placeholder="location"
-          // onChangeText={onChangeSearch}
-          // value={searchQuery}
-          // onSubmitEditing={onSearch}
-        />
-        {/* <View style={{ alignItems: "flex-end" }, { backgroundColor: theme.colors.background }}>
-          <TouchableOpacity>
-            <ModalDropdown options={["option 1", "option 2"]} />
-          </TouchableOpacity>
-        </View> */}
+        <Searchbar placeholder="location" />
+{/* 
+        <Slider
+          value={value}
+          min={0}
+          step={0.1}
+          max={6}
+          scale={(x) => x ** 10}
+          getAriaValueText={valueLabelFormat}
+          valueLabelFormat={valueLabelFormat}
+          onChange={handleChange}
+          valueLabelDisplay="auto"
+          aria-labelledby="non-linear-slider"
+        /> */}
+
         {isLoading || !restaurants ? (
           <View
             style={{
@@ -132,18 +132,13 @@ function newt(props) {
             onRefresh={onSearch}
             refreshing={refreshStart}
             renderItem={({ item }) => (
-              <View style={  { backgroundColor: theme.colors.primary }}>
-                <Card
-                  style={
-                    ((styles.card, styles.spacing)
-                  )
-                  
-                  
-                  }
-                >
+              <View style={{ backgroundColor: theme.colors.primary }}>
+                <Card style={(styles.card, styles.spacing)}>
                   <Card.Content>
                     <Title>{item.name}</Title>
                   </Card.Content>
+
+                  {/* <ImageViewer imageUrls={{uri: item.image_url}}/> */}
 
                   <Card.Cover source={{ uri: item.image_url }} />
                   {/* <View style={styles.imgContainer}>
@@ -296,7 +291,7 @@ const styles = StyleSheet.create({
     // color: "#fff",
     fontWeight: "bold",
     alignSelf: "center",
-    textTransform: "uppercase",
+    // textTransform: "uppercase",
     padding: 0,
     margin: 0,
   },

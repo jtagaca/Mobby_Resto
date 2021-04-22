@@ -34,7 +34,7 @@ const MainTabScreen = () => {
   
   const theme = useSelector((state) => state.theme.theme);
   
-
+  console.log(theme)
 
   return (
   <Tab.Navigator initialRouteName="Home" activeColor="#fff">
@@ -43,7 +43,7 @@ const MainTabScreen = () => {
       component={HomeStackScreen}
       options={{
         tabBarLabel: "Home",
-        tabBarColor: "#000000",
+        tabBarColor: "#009387",
         tabBarIcon: ({ color }) => (
           <Icon name="ios-home" color={color} size={26} />
         ),
