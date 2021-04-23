@@ -8,6 +8,7 @@ import {
   Image,
   Alert,
   TextInput,
+  Text,
 } from "react-native";
 import { Button } from "react-native-paper";
 import { useSelector } from "react-redux";
@@ -100,7 +101,13 @@ const ContactScreen = (props) => {
           onPress={ toggleOverlay }
         />
         <Overlay overlayStyle={styles.olStyle} isVisible={visible} onBackdropPress={toggleOverlay}>
+          <Text>
+            testing1
+          </Text>
           <TextInput placeholder='e.g. tacos,burgers,pizza'/>
+          <Text>
+            testing2
+          </Text>
           <TextInput placeholder='e.g. tacos,burgers,pizza'/>
           <Button style={styles.buttonStyle}>
             Random Pick
