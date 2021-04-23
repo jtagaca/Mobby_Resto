@@ -78,7 +78,7 @@ function newt(props) {
   const [visible, setVisible] = useState(false);
   const toggleOverlay = () => {
     setVisible(!visible);
-  }
+  };
 
   //  console.log(theme);
 
@@ -232,7 +232,13 @@ function newt(props) {
           onPress={ toggleOverlay }
       />
       <Overlay overlayStyle={styles.olStyle} isVisible={visible} onBackdropPress={toggleOverlay}>
+        <Text style={{color: 'black'}}>
+          I feel like eating...
+        </Text>
         <TextInput placeholder='e.g. tacos,burgers,pizza'/>
+        <Text style={{color: 'black'}}>
+          I don't feel like eating...
+        </Text>
         <TextInput placeholder='e.g. tacos,burgers,pizza'/>
         <Button>
           Random Pick

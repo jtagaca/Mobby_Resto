@@ -29,15 +29,15 @@ const ContactScreen = (props) => {
   const [visible, setVisible] = useState(false);
   const toggleOverlay = () => {
     setVisible(!visible);
-  }
+  };
 
   handleEmail = () => {
-    const to = fullContacts // set this to whomever should receive the support email
+    const to = fullContacts; // set this to whomever should receive the support email
     email(to, {
         cc: emailText,
         subject: subjectline,
         body: bodyText,
-    }).catch(console.error)
+    }).catch(console.error);
   }
 
   const theme = useSelector((state) => state.theme.theme);
