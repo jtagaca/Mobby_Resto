@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import email from 'react-native-email';
 
 // testing overlay button for randomizer
-import { FloatingAction } from "react-native-flaoting-action";
+import { FloatingAction } from "react-native-floating-action";
 
 const ContactScreen = (props) => {
   const testing = 'ppark3@csub.edu';
