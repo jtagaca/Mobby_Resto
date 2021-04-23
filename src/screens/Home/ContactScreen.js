@@ -12,9 +12,10 @@ import {
 import { Button } from "react-native-paper";
 import { useSelector } from "react-redux";
 import email from 'react-native-email';
+import { Overlay } from 'react-native-elements';
 
 // testing overlay button for randomizer
-import { FloatingAction } from "react-native-floating-action";
+import { FAB } from 'react-native-paper';
 
 const ContactScreen = (props) => {
   const testing = 'ppark3@csub.edu';
@@ -95,13 +96,17 @@ const ContactScreen = (props) => {
         >
           Cancel
         </Button>
-        <FloatingAction
-          actions={actions}
-          onPressItem={name => {
-            console.log('select');
-          }}
-          />
         </View>
+        <FAB
+          style={styles.fabStyle}
+          icon="slot-machine"
+          onPress={ toggleOverlay }
+        />
+        <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+          <Text>
+            Testing Overlay
+          </Text>
+        </Overlay>
    
     </SafeAreaView>
   );
@@ -135,20 +140,14 @@ const styles = StyleSheet.create({
     backgroundColor:'lightblue',
     borderRadius:10,
     borderWidth: 1,
+  },
+  fabStyle: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor:'lightblue',
   }
 });
 
 export default ContactScreen;
-/*
-          onPress={() =>
-            Alert.alert(
-              "Message sent!",
-              "Our team will reach out to you within 1-2 business days",
-              [
-                {
-                  text: "OK",
-                  onPress: () => props.navigation.goBack(),
-                },
-              ]
-            )
-            */
