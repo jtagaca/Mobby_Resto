@@ -7,10 +7,8 @@ import {
   View,
   Image,
   Alert,
-  TextInput,
-  Text,
 } from "react-native";
-import { Button } from "react-native-paper";
+import { Button, Text, TextInput } from "react-native-paper";
 import { useSelector } from "react-redux";
 import email from 'react-native-email';
 import { Overlay } from 'react-native-elements';
