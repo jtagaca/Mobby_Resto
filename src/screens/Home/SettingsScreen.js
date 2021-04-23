@@ -14,13 +14,10 @@ import { AUTH_LOGOUT } from "../../redux/actions/types";
 import { Button } from "react-native-paper";
 
 import { LinearGradient } from "expo-linear-gradient";
-import { Title, Card } from "react-native-paper";
+import { Title, Card, TouchableRipple, Switch } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import ToggleButton from "react-theme-toggle-button";
-
-
-
+// import ToggleButton from "react-theme-toggle-button";
 
 export default function SettingsScreen(props) {
   const dispatch = useDispatch();
@@ -31,8 +28,10 @@ export default function SettingsScreen(props) {
     dispatch({ type: AUTH_LOGOUT });
   };
 
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
-  const onHit=()=>{
+  const onHit = () => {
     !theme.dark ? (nextTheme = darkTheme) : (nextTheme = lightTheme);
     switchTheme(nextTheme);
   };
@@ -62,27 +61,17 @@ export default function SettingsScreen(props) {
           <Title style={{ fontSize: 25, fontWeight: "900" }}> Settings </Title>
         </View>
 
-        <TouchableOpacity style={{ background: theme.colors.background }}>
-          <Button
-            style={{ background: theme.colors.primary }}
-            onPress={() => onHit()}
-            underlayColor="#fff"
-          >
-            Theme Toggle 
-          </Button>
-        </TouchableOpacity>
+        <View style={styles.container}>
+          <Switch
+            trackColor={{ false: "#696969", true: "#009387" }}
+            thumbColor={isEnabled ? "#009387" : "#f4f3f4"}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={()=>onHit()}
+            value={isEnabled}
 
-        {/* not working */}
-        {/* <ToggleButton  onChange={() => onHit() } /> */}
-
-        {/* <Card style={styles.myCard}>
-                <View style={styles.cardContents}>
-                    <MaterialIcons name="credit-card" size={32} color="black"/>
-                    <Button onPress={logout} >
-                    Log out
-                </Button>
-                </View>
-            </Card> */}
+            
+          />
+        </View>
 
         <TouchableOpacity
           style={styles.ScreenButton}
