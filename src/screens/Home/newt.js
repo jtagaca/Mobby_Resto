@@ -83,7 +83,7 @@ function newt(props) {
   //  console.log(theme);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <View style={{ flex: 1 }}>
         <Searchbar
           placeholder="What food would you like to eat..."

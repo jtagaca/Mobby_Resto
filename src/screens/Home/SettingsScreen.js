@@ -46,7 +46,7 @@ export default function SettingsScreen(props) {
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <View style={styles.root}>
         <LinearGradient
-          colors={["#009387", "white"]}
+          colors={["#009387", theme.colors.background ]}
           style={{ height: "20%" }}
         />
         <View style={{ alignItems: "center" }}>
