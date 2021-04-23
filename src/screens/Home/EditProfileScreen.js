@@ -5,14 +5,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { lightTheme, darkTheme } from '../../global/';
 import { themeSwitch } from '../../redux/actions/ThemeActions';
 import { bindActionCreators } from 'redux';
+import {Text, TextInput} from 'react-native-paper';
 import { 
   View,
-  Text,
   StyleSheet,
-  TextInput, 
   TouchableOpacity,
   ScrollView,
+  ImagePickerIOS,
 } from 'react-native';
+
 
 export default function EditProfileScreen(props) {
 
@@ -82,8 +83,8 @@ export default function EditProfileScreen(props) {
   let nextTheme
   const theme = useSelector(state => state.theme.theme)
     return(
-        <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-            <ScrollView style={styles.scroll}>
+        <View style={[styles.container]}>
+            <ScrollView style={styles.scroll, { backgroundColor: theme.colors.background }}>
             <Text style={styles.innerText}>Edit Name</Text>
             <Text style={{height: 20}}> New Name: {name} </Text>
           
