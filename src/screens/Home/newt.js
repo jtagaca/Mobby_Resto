@@ -89,7 +89,7 @@ function newt(props) {
           focusOnLayout={true}
         />
         <Searchbar placeholder="location" />
-{/* 
+        {/* 
         <Slider
           value={value}
           min={0}
@@ -150,7 +150,7 @@ function newt(props) {
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
                         style={
-                          (styles.appButtonText,
+                          (
                           { backgroundColor: theme.colors.primary })
                         }
                         back
@@ -161,26 +161,26 @@ function newt(props) {
                           })
                         }
                       >
-                        <Text>More</Text>
+                        <Text style={{color: theme.colors.background}}>More</Text>
                       </Button>
                     </TouchableOpacity>
                     {/* <Button>Placeholder</Button> */}
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
                         style={
-                          (styles.appButtonText,
+                          (
                           { backgroundColor: theme.colors.primary })
                         }
                         onPress={() => CallNum(item.display_phone)}
                       >
-                        <Text>Call </Text>
+                        <Text style={{color: theme.colors.background}} >Call </Text>
                       </Button>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
                         style={
-                          (styles.appButtonText,
+                          (
                           { backgroundColor: theme.colors.primary })
                         }
                         onPress={() =>
@@ -189,7 +189,7 @@ function newt(props) {
                           })
                         }
                       >
-                        <Text>Map</Text>
+                        <Text  style={{color: theme.colors.background}}>Map</Text>
                       </Button>
                     </TouchableOpacity>
                     {/* need to move  */}
@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
 
   appButtonText: {
     fontSize: 14,
-    // color: "#fff",
+    color: "#FFFFFF",
     fontWeight: "bold",
     alignSelf: "center",
     // textTransform: "uppercase",
