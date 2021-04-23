@@ -26,13 +26,10 @@ const ContactScreen = (props) => {
   const [bodyText, setBody] = useState('');
 
   // testing button actions for randomizer
-  const actions = [
-    {
-      text: "test1",
-      name: "testing",
-      position: 1
-    }
-  ]
+  const [visible, setVisible] = useState(false);
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  }
 
   handleEmail = () => {
     const to = fullContacts // set this to whomever should receive the support email
@@ -102,10 +99,12 @@ const ContactScreen = (props) => {
           icon="slot-machine"
           onPress={ toggleOverlay }
         />
-        <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
-          <Text>
-            Testing Overlay
-          </Text>
+        <Overlay overlayStyle={styles.olStyle} isVisible={visible} onBackdropPress={toggleOverlay}>
+          <TextInput placeholder='e.g. tacos,burgers,pizza'/>
+          <TextInput placeholder='e.g. tacos,burgers,pizza'/>
+          <Button style={styles.buttonStyle}>
+            Random Pick
+          </Button>
         </Overlay>
    
     </SafeAreaView>
@@ -147,6 +146,13 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor:'lightblue',
+  },
+  olStyle: {
+    position: 'absolute',
+    top: 50,
+    bottom: 180,
+    left: 50,
+    right: 50,
   }
 });
 

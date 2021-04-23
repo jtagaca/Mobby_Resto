@@ -19,6 +19,7 @@ import {
   TouchableOpacity,
   Linking,
   Platform,
+  TextInput,
 } from "react-native";
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
 import { useSelector, useDispatch } from "react-redux";
@@ -31,6 +32,8 @@ import { set } from "react-hook-form";
 import openMap from "react-native-open-maps";
 import ModalDropdown from "react-native-modal-dropdown";
 // import { Slider } from '@material-ui/core';
+import { Overlay } from 'react-native-elements';
+import { FAB } from 'react-native-paper';
 
 export const CallNum = (number) => {
   let phoneNumber = "";
@@ -71,6 +74,11 @@ function newt(props) {
   const isLoading = useSelector(
     (state) => state.restaurant.isFetchingRestaurants
   );
+
+  const [visible, setVisible] = useState(false);
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  }
 
   //  console.log(theme);
 
@@ -218,6 +226,19 @@ function newt(props) {
           />
         )}
       </View>
+      <FAB
+          style={styles.fabStyle}
+          icon="slot-machine"
+          onPress={ toggleOverlay }
+      />
+      <Overlay overlayStyle={styles.olStyle} isVisible={visible} onBackdropPress={toggleOverlay}>
+        <TextInput placeholder='e.g. tacos,burgers,pizza'/>
+        <TextInput placeholder='e.g. tacos,burgers,pizza'/>
+        <Button>
+          Random Pick
+        </Button>
+      </Overlay>
+
     </SafeAreaView>
   );
 }
@@ -302,5 +323,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,
+  },
+  fabStyle: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor:'lightblue',
+  },
+  olStyle: {
+    position: 'absolute',
+    top: 50,
+    bottom: 180,
+    left: 50,
+    right: 50,
   },
 });
