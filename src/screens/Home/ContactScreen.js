@@ -13,6 +13,9 @@ import { Button } from "react-native-paper";
 import { useSelector } from "react-redux";
 import email from 'react-native-email';
 
+// testing overlay button for randomizer
+import { FloatingAction } from "react-native-flaoting-action";
+
 const ContactScreen = (props) => {
   const testing = 'ppark3@csub.edu';
   const fullContacts = ['ppark3@csub.edu', 'dgonzalez94@csub.edu', 'laguilar21@csub.edu', 'jtagaca@csub.edu'];
@@ -21,6 +24,14 @@ const ContactScreen = (props) => {
   const [subjectline, setSubjectline] = useState('');
   const [bodyText, setBody] = useState('');
 
+  // testing button actions for randomizer
+  const actions = [
+    {
+      text: "test1",
+      name: "testing",
+      position: 1
+    }
+  ]
 
   handleEmail = () => {
     const to = fullContacts // set this to whomever should receive the support email
@@ -84,6 +95,12 @@ const ContactScreen = (props) => {
         >
           Cancel
         </Button>
+        <FloatingAction
+          actions={actions}
+          onPressItem={name => {
+            console.log('select');
+          }}
+          />
         </View>
    
     </SafeAreaView>
