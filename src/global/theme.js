@@ -23,7 +23,7 @@ const light = {
   colors: {
     ...DefaultTheme.colors,
 
-    
+    primary: "#009387",
    
     accent:  "#006400",
     

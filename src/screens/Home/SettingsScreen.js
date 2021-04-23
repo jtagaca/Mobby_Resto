@@ -28,13 +28,17 @@ export default function SettingsScreen(props) {
     dispatch({ type: AUTH_LOGOUT });
   };
 
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   const onHit = () => {
     !theme.dark ? (nextTheme = darkTheme) : (nextTheme = lightTheme);
     switchTheme(nextTheme);
   };
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState)
+
+  ;
+
+
 
   let nextTheme;
   const theme = useSelector((state) => state.theme.theme);
@@ -64,12 +68,12 @@ export default function SettingsScreen(props) {
         <View style={styles.container}>
           <Switch
             trackColor={{ false: "#696969", true: "#009387" }}
-            thumbColor={isEnabled ? "#009387" : "#f4f3f4"}
+            thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
             ios_backgroundColor="#3e3e3e"
-            onValueChange={()=>onHit()}
+            onValueChange={toggleSwitch }
             value={isEnabled}
+            onChange={()=>onHit()}
 
-            
           />
         </View>
 
