@@ -1,4 +1,3 @@
-//TO DO clean the code to be more presentable use correct exports
 import {
   Provider as PaperProvider,
   Avatar,
@@ -10,7 +9,7 @@ import {
   ActivityIndicator,
   Searchbar,
 } from "react-native-paper";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   SafeAreaView,
   View,
@@ -20,20 +19,21 @@ import {
   Linking,
   Platform,
   TextInput,
+  Animated,
 } from "react-native";
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
 import { useSelector, useDispatch } from "react-redux";
-// import Search from "../../components/search";
+
 import TestScreen from "./TestScreen";
 import ImageViewer from "react-native-image-zoom-viewer";
 import { Rating, AirbnbRating } from "react-native-ratings";
 import { set } from "react-hook-form";
-// import { mdiPhone, mdiGoogleMaps  } from '@mdi/js';
+
 import openMap from "react-native-open-maps";
 import ModalDropdown from "react-native-modal-dropdown";
-// import { Slider } from '@material-ui/core';
-import { Overlay } from 'react-native-elements';
-import { FAB } from 'react-native-paper';
+
+import { Overlay } from "react-native-elements";
+import { FAB } from "react-native-paper";
 
 export const CallNum = (number) => {
   let phoneNumber = "";
@@ -51,6 +51,7 @@ function newt(props) {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [refreshStart, setRefreshStart] = useState(false);
+  const [toggleSearchBar, setToggleSearchBar] = useState(false);
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);
@@ -60,6 +61,23 @@ function newt(props) {
     dispatch(fetchRestaurants(searchQuery));
     setRefreshStart(false);
   };
+
+  const searchBarAnim = useRef(new Animated.Value(-45)).current;
+  useEffect(() => {
+    if (toggleSearchBar) {
+      Animated.timing(searchBarAnim, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(searchBarAnim, {
+        toValue: -45,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [toggleSearchBar]);
 
   useEffect(() => {
     dispatch(fetchRestaurants(searchQuery));
@@ -80,36 +98,33 @@ function newt(props) {
     setVisible(!visible);
   };
 
-  //  console.log(theme);
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <View style={{ flex: 1 }}>
-        <Searchbar
-          placeholder="What food would you like to eat..."
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-          onSubmitEditing={onSearch}
-          iconColor={theme.colors.primary}
-          selectionColor={theme.colors.primary}
-          animate={true}
-          animationDuration={200}
-          focusOnLayout={true}
-        />
-        <Searchbar placeholder="location" />
-        {/* 
-        <Slider
-          value={value}
-          min={0}
-          step={0.1}
-          max={6}
-          scale={(x) => x ** 10}
-          getAriaValueText={valueLabelFormat}
-          valueLabelFormat={valueLabelFormat}
-          onChange={handleChange}
-          valueLabelDisplay="auto"
-          aria-labelledby="non-linear-slider"
-        /> */}
+        <Animated.View style={{ transform: [{ translateY: searchBarAnim }] }}>
+          <View style={styles.searchBarWrap}>
+            <Searchbar
+              placeholder="What food would you like to eat..."
+              onChangeText={onChangeSearch}
+              value={searchQuery}
+              onSubmitEditing={onSearch}
+              iconColor={theme.colors.primary}
+              selectionColor={theme.colors.primary}
+              animate={true}
+              animationDuration={200}
+              focusOnLayout={true}
+              onHide
+            />
+          </View>
+        </Animated.View>
+
+        <SafeAreaView>
+          <FAB
+            style={styles.fabStyle}
+            onPress={() => setToggleSearchBar(!toggleSearchBar)}
+            label="Search"
+          />
+        </SafeAreaView>
 
         {isLoading || !restaurants ? (
           <View
@@ -134,7 +149,8 @@ function newt(props) {
             </Text>
           </View>
         ) : (
-          <FlatList
+          <Animated.FlatList
+            onScrollBeginDrag={() => setToggleSearchBar(false)}
             keyExtractor={(item) => item.id}
             data={restaurants}
             onRefresh={onSearch}
@@ -146,21 +162,12 @@ function newt(props) {
                     <Title>{item.name}</Title>
                   </Card.Content>
 
-                  {/* <ImageViewer imageUrls={{uri: item.image_url}}/> */}
-
                   <Card.Cover source={{ uri: item.image_url }} />
-                  {/* <View style={styles.imgContainer}>
-                        <ImageBackground source={item.image_url}>
-                          <Text style={styles.text}>Inside</Text>
-                        </ImageBackground>
-                      </View> */}
+
                   <Card.Actions style={styles.actionContainer}>
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
-                        style={
-                          (
-                          { backgroundColor: theme.colors.primary })
-                        }
+                        style={{ backgroundColor: theme.colors.primary }}
                         back
                         onPress={() =>
                           props.navigation.navigate("RestaurantDetails", {
@@ -169,35 +176,35 @@ function newt(props) {
                           })
                         }
                       >
-                        <Text style={{color: theme.colors.background}}>More</Text>
-                      </Button>
-                    </TouchableOpacity>
-                    {/* <Button>Placeholder</Button> */}
-                    <TouchableOpacity style={styles.buttonContainer}>
-                      <Button
-                        style={
-                          (
-                          { backgroundColor: theme.colors.primary })
-                        }
-                        onPress={() => CallNum(item.display_phone)}
-                      >
-                        <Text style={{color: theme.colors.background}} >Call </Text>
+                        <Text style={{ color: theme.colors.background }}>
+                          More
+                        </Text>
                       </Button>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
-                        style={
-                          (
-                          { backgroundColor: theme.colors.primary })
-                        }
+                        style={{ backgroundColor: theme.colors.primary }}
+                        onPress={() => CallNum(item.display_phone)}
+                      >
+                        <Text style={{ color: theme.colors.background }}>
+                          Call{" "}
+                        </Text>
+                      </Button>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.buttonContainer}>
+                      <Button
+                        style={{ backgroundColor: theme.colors.primary }}
                         onPress={() =>
                           openMap({
                             end: item.location.display_address,
                           })
                         }
                       >
-                        <Text  style={{color: theme.colors.background}}>Map</Text>
+                        <Text style={{ color: theme.colors.background }}>
+                          Map
+                        </Text>
                       </Button>
                     </TouchableOpacity>
                     {/* need to move  */}
@@ -227,24 +234,21 @@ function newt(props) {
         )}
       </View>
       <FAB
-          style={styles.fabStyle}
-          icon="slot-machine"
-          onPress={ toggleOverlay }
+        style={styles.fabStyle}
+        icon="slot-machine"
+        onPress={toggleOverlay}
       />
-      <Overlay overlayStyle={styles.olStyle} isVisible={visible} onBackdropPress={toggleOverlay}>
-        <Text style={{color: 'black'}}>
-          I feel like eating...
-        </Text>
-        <TextInput placeholder='e.g. tacos,burgers,pizza'/>
-        <Text style={{color: 'black'}}>
-          I don't feel like eating...
-        </Text>
-        <TextInput placeholder='e.g. tacos,burgers,pizza'/>
-        <Button>
-          Random Pick
-        </Button>
+      <Overlay
+        overlayStyle={styles.olStyle}
+        isVisible={visible}
+        onBackdropPress={toggleOverlay}
+      >
+        <Text style={{ color: "black" }}>I feel like eating...</Text>
+        <TextInput placeholder="e.g. tacos,burgers,pizza" />
+        <Text style={{ color: "black" }}>I don't feel like eating...</Text>
+        <TextInput placeholder="e.g. tacos,burgers,pizza" />
+        <Button>Random Pick</Button>
       </Overlay>
-
     </SafeAreaView>
   );
 }
@@ -299,17 +303,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
   },
   buttonContainer: {
-    // backgroundColor: "lightblue",
     borderRadius: 25,
-    // paddingVertical:12,
-    // paddingHorizontal:25,
+
     paddingTop: 0,
     paddingBottom: 0,
     marginRight: 1.8,
     marginLeft: 1.8,
     flex: 1,
-    // height:100,
-    // width:20
+
     borderRadius: 100,
   },
 
@@ -318,7 +319,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontWeight: "bold",
     alignSelf: "center",
-    // textTransform: "uppercase",
+
     padding: 0,
     margin: 0,
   },
@@ -331,14 +332,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   fabStyle: {
-    position: 'absolute',
+    position: "absolute",
     margin: 16,
     right: 0,
     bottom: 0,
-    backgroundColor:'lightblue',
+    backgroundColor: "lightblue",
   },
   olStyle: {
-    position: 'absolute',
+    position: "absolute",
     top: 50,
     bottom: 180,
     left: 50,
