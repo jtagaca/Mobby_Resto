@@ -118,14 +118,6 @@ function newt(props) {
           </View>
         </Animated.View>
 
-        <SafeAreaView>
-          <FAB
-            style={styles.fabStyle}
-            onPress={() => setToggleSearchBar(!toggleSearchBar)}
-            label="Search"
-          />
-        </SafeAreaView>
-
         {isLoading || !restaurants ? (
           <View
             style={{
@@ -152,6 +144,8 @@ function newt(props) {
           <Animated.FlatList
             onScrollBeginDrag={() => setToggleSearchBar(false)}
             keyExtractor={(item) => item.id}
+            style={{ transform: [{ translateY: searchBarAnim }] }}
+            // style={{ transform: [{ translateY: searchBarAnim }] }}
             data={restaurants}
             onRefresh={onSearch}
             refreshing={refreshStart}
@@ -233,22 +227,35 @@ function newt(props) {
           />
         )}
       </View>
-      <FAB
-        style={styles.fabStyle}
-        icon="slot-machine"
-        onPress={toggleOverlay}
-      />
-      <Overlay
-        overlayStyle={styles.olStyle}
-        isVisible={visible}
-        onBackdropPress={toggleOverlay}
-      >
-        <Text style={{ color: "black" }}>I feel like eating...</Text>
-        <TextInput placeholder="e.g. tacos,burgers,pizza" />
-        <Text style={{ color: "black" }}>I don't feel like eating...</Text>
-        <TextInput placeholder="e.g. tacos,burgers,pizza" />
-        <Button>Random Pick</Button>
-      </Overlay>
+
+      <View >
+        <FAB
+          style={(styles.allign )}
+          onPress={() => setToggleSearchBar(!toggleSearchBar)}
+          label="Search"
+          color={theme.colors.primary}
+        />
+      </View>
+
+      <View>
+        <FAB
+          style={styles.fabStyle}
+          icon="slot-machine"
+          onPress={toggleOverlay}
+        />
+
+        <Overlay
+          overlayStyle={styles.olStyle}
+          isVisible={visible}
+          onBackdropPress={toggleOverlay}
+        >
+          <Text style={{ color: "black" }}>I feel like eating...</Text>
+          <TextInput placeholder="e.g. tacos,burgers,pizza" />
+          <Text style={{ color: "black" }}>I don't feel like eating...</Text>
+          <TextInput placeholder="e.g. tacos,burgers,pizza" />
+          <Button>Random Pick</Button>
+        </Overlay>
+      </View>
     </SafeAreaView>
   );
 }
@@ -265,6 +272,12 @@ const styles = StyleSheet.create({
     paddingLeft: 0,
     paddingRight: 0,
     paddingBottom: 0,
+  },
+  allign: {
+    textAlign: "left",
+    alignSelf: "stretch",
+    marginRight: 300,
+    marginLeft: 0,
   },
   actionContainer: {
     flex: 1,
