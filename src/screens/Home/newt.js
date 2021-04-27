@@ -49,17 +49,19 @@ function newt(props) {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("burger");
   const [refreshStart, setRefreshStart] = useState(false);
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
-  const [searchLocation, setSearchLocation]=useState("Bakersfield");
+  const [searchLocation, setSearchLocation]=useState("");
+
+
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);
   };
   const onSearch = () => {
     setRefreshStart(true);
-    dispatch(fetchRestaurants(searchQuery));
+    dispatch(fetchRestaurants(searchQuery, setSearchLocation));
     setRefreshStart(false);
   };
 
@@ -81,7 +83,7 @@ function newt(props) {
   }, [toggleSearchBar]);
 
   useEffect(() => {
-    dispatch(fetchRestaurants(searchQuery));
+    dispatch(fetchRestaurants(searchQuery, setSearchLocation));
   }, []);
 
   const restaurants = useSelector((state) =>

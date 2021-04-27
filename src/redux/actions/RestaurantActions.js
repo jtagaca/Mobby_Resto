@@ -9,11 +9,11 @@ export const restaurantsFetchSuccess = (restaurants) => {
     }
 }
 
-export const fetchRestaurants = (searchTerm) => {
+export const fetchRestaurants = (searchTerm, locations) => {
     return (dispatch) => {
         dispatch({ type: RESTAURANTS_FETCH_STARTED })
 
-        searchRestaurants(searchTerm)
+        searchRestaurants(searchTerm, locations)
         .then(res => {
             dispatch(restaurantsFetchSuccess(res))
         })

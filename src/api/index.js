@@ -2,13 +2,13 @@ import yelp from './yelp';
 import axios from './axiosConfig';
 
 
-export const searchRestaurants = async (searchTerm) => {
+export const searchRestaurants = async (searchTerm, locations) => {
     return new Promise((resolve, reject) => {
         yelp.get('/search', {
             params: {
                 limit: 50,
                 term: searchTerm,
-                location: 'bakersfield'
+                location: locations
             }
         })
         .then((res) => resolve(res.data))
