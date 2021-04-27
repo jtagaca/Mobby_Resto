@@ -59,6 +59,10 @@ function newt(props) {
   const onChangeSearch = (query) => {
     setSearchQuery(query);
   };
+
+  const onChangeLocation = (query) => {
+    setSearchQuery(query);
+  };
   const onSearch = () => {
     setRefreshStart(true);
     dispatch(fetchRestaurants(searchQuery, searchLocation));
@@ -83,7 +87,7 @@ function newt(props) {
   }, [toggleSearchBar]);
 
   useEffect(() => {
-    dispatch(fetchRestaurants(searchQuery, searchLocation));
+    dispatch(fetchRestaurants("burger", "bakersfield"));
   }, []);
 
   const restaurants = useSelector((state) =>
@@ -114,7 +118,7 @@ function newt(props) {
             <Searchbar
               placeholder="What food would you like to eat..."
               onChangeText={onChangeSearch}
-              value={searchQuery}
+             
               onSubmitEditing={onSearch}
               iconColor={theme.colors.primary}
               selectionColor={theme.colors.primary}
@@ -126,8 +130,7 @@ function newt(props) {
 
             <Searchbar
               placeholder="location"
-              onChangeText={onChangeSearch}
-              value={searchQuery}
+              onChangeText={onChangeLocation}
               onSubmitEditing={onSearch}
               iconColor={theme.colors.primary}
               selectionColor={theme.colors.primary}
@@ -135,6 +138,7 @@ function newt(props) {
               animationDuration={200}
               focusOnLayout={true}
               onHide
+              // location is not updating
             />
           </View>
         </Animated.View>
