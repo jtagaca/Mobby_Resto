@@ -177,7 +177,7 @@ function newt(props) {
                     <Title>{item.name}</Title>
                   </Card.Content>
 
-                  <Card.Cover source={{ uri: item.image_url }} />
+                  <Card.Cover source={{ uri: (item.image_url) ? item.image_url : null }} />
 
                   <Card.Actions style={styles.actionContainer}>
                     <TouchableOpacity style={styles.buttonContainer}>

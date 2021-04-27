@@ -25,11 +25,11 @@ const LoginScreen = (props) => {
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => Keyboard.dismiss()}>
                 <View style={{ flex: 1 }}>
 
-                    <View style={{ flex: 0.5 }} />
+                    <View style={{ flex: 0.3 }} />
 
                     <View style={{ flex: 1, alignItems: 'center'}}>
                         <Image
-                            style={{ width: 100, height: 100 }}
+                            style={{ width: 65, height: 65 }}
                             source={require("../../../assets/templogo.png")}
                         />
                         <Text style={{ fontSize: 30 }}>
