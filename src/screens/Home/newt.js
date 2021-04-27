@@ -52,6 +52,7 @@ function newt(props) {
   const [searchQuery, setSearchQuery] = useState("");
   const [refreshStart, setRefreshStart] = useState(false);
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
+  const [searchLocation, setSearchLocation]=useState("Bakersfield");
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);
@@ -72,7 +73,7 @@ function newt(props) {
       }).start();
     } else {
       Animated.timing(searchBarAnim, {
-        toValue: -45,
+        toValue: -90,
         duration: 300,
         useNativeDriver: true,
       }).start();
@@ -110,6 +111,19 @@ function newt(props) {
           <View style={styles.searchBarWrap}>
             <Searchbar
               placeholder="What food would you like to eat..."
+              onChangeText={onChangeSearch}
+              value={searchQuery}
+              onSubmitEditing={onSearch}
+              iconColor={theme.colors.primary}
+              selectionColor={theme.colors.primary}
+              animate={true}
+              animationDuration={200}
+              focusOnLayout={true}
+              onHide
+            />
+
+            <Searchbar
+              placeholder="location"
               onChangeText={onChangeSearch}
               value={searchQuery}
               onSubmitEditing={onSearch}
@@ -274,17 +288,14 @@ function newt(props) {
                 position: "absolute",
                 bottom: 10,
                 right: 10,
-                backgroundColor:"#009387",
-              
+                backgroundColor: "#009387",
 
                 borderRadius: 100,
               }}
               icon="slot-machine"
-
               onPress={toggleOverlay}
               size={30}
               color={theme.colors.background}
-              
             />
 
             <Overlay
