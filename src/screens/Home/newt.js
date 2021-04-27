@@ -61,7 +61,7 @@ function newt(props) {
   };
 
   const onChangeLocation = (query) => {
-    setSearchQuery(query);
+    setSearchLocation(query);
   };
   const onSearch = () => {
     setRefreshStart(true);
@@ -117,8 +117,8 @@ function newt(props) {
           <View style={styles.searchBarWrap}>
             <Searchbar
               placeholder="What food would you like to eat..."
-              onChangeText={onChangeSearch}
-             
+              onChangeText={value =>setSearchQuery(value)}
+              value={searchQuery}
               onSubmitEditing={onSearch}
               iconColor={theme.colors.primary}
               selectionColor={theme.colors.primary}
@@ -130,7 +130,8 @@ function newt(props) {
 
             <Searchbar
               placeholder="location"
-              onChangeText={onChangeLocation}
+              onChangeText={value =>setSearchLocation(value)}
+              value={searchLocation}
               onSubmitEditing={onSearch}
               iconColor={theme.colors.primary}
               selectionColor={theme.colors.primary}
@@ -141,6 +142,8 @@ function newt(props) {
               // location is not updating
             />
           </View>
+
+
         </Animated.View>
 
         {isLoading || !restaurants ? (
