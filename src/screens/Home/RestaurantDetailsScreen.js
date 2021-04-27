@@ -42,6 +42,8 @@ const RestaurantDetailsScreen = (props) => {
       ? state.restaurantDetails.restaurantDetails
       : null
     );
+
+    console.log(restaurant)
     //if there is something here then you are returning that restaurant that was passed into the variable restaurant.
     //how is Dylan showing the top as the name of the restaurant?
 
@@ -77,7 +79,6 @@ const RestaurantDetailsScreen = (props) => {
             photos[i].uri = restaurant.photos[i];
         }
         let today = new Date();
-        console.log(restaurant.hours[0].open[today.getDay()].end)
 
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
