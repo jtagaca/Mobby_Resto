@@ -85,9 +85,12 @@ export default function EditProfileScreen(props) {
     return(
         <View style={[styles.container]}>
             <ScrollView style={styles.scroll, { backgroundColor: theme.colors.background }}>
-            <Text style={styles.innerText}>Edit Name</Text>
+            <View style={styles.row}>
+              <MaterialIcons name="face" size={30} color="limegreen"/>
+              <Text style={styles.innerText}>Edit Name</Text>
+            </View>
             <Text style={{height: 20}}> New Name: {name} </Text>
-          
+
           <TextInput style={styles.inputText} onChangeText={(text) => setName(text)}></TextInput>
           
           <TouchableOpacity style={styles.button} onPress= { () => save(alert('Name Saved!'))}>
@@ -96,7 +99,10 @@ export default function EditProfileScreen(props) {
             </Text>
           </TouchableOpacity>
 
+          <View style={styles.row}>
+            <MaterialIcons name="description" size={30} color="lightblue"/>
             <Text style={styles.innerText}>Edit Biography</Text>
+          </View>
             <Text style={{height: 20}}> New Biography: {bio} </Text>
 
           
@@ -108,7 +114,10 @@ export default function EditProfileScreen(props) {
             </Text>
           </TouchableOpacity>
 
+          <View style={styles.row}>
+            <MaterialIcons name="location-pin" size={30} color="red"/>
             <Text style={styles.innerText}>Edit Location</Text>
+          </View>
             <Text style={{height: 20}}> New Location: {loc} </Text>          
           <TextInput style={styles.inputText} onChangeText={(text) => setLoc(text)}></TextInput>
           
@@ -117,10 +126,10 @@ export default function EditProfileScreen(props) {
               Save Location
             </Text>
           </TouchableOpacity>
-
-          <Text style={styles.innerText}>
-            Edit Phone
-          </Text>
+          <View style={styles.row}>
+            <MaterialIcons name="phone" size={30} color="yellowgreen"/>
+            <Text style={styles.innerText}>Edit Phone</Text>
+          </View>
           <Text style={{height: 20}}> 
               New Phone: {phone} 
           </Text>          
@@ -132,12 +141,12 @@ export default function EditProfileScreen(props) {
           <TouchableOpacity 
             style={styles.button} onPress= { () => save(alert('Phone Saved!'))}
           >
-            <Text style={{color: "white"}}>
-              Save Phone
-            </Text>
+            <Text style={{color: "white"}}>Save Phone</Text>
           </TouchableOpacity>
-
-          <Text style={styles.innerText}>Edit email</Text>
+          <View style={styles.row}>
+            <MaterialIcons name="email" size={30} color="lightblue"/>
+            <Text style={styles.innerText}>Edit email</Text>
+          </View>
             <Text style={{height: 20}}> New email: {email} </Text>          
           <TextInput 
           style={styles.inputText}
@@ -181,7 +190,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: "lightblue",
+    backgroundColor: "#009387",
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "stretch",
@@ -195,5 +204,10 @@ const styles = StyleSheet.create({
   scroll: {
     flex: 1,
     marginHorizontal: 60,
-  }
+  },
+
+  row: {
+    flexDirection: 'row',
+    marginBottom: 10,
+},
 })
