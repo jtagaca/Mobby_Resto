@@ -101,7 +101,12 @@ function newt(props) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <View style={{ flex: 1 }}>
-        <Animated.View style={{ transform: [{ translateY: searchBarAnim }] }}>
+        <Animated.View
+          style={
+            ({ transform: [{ translateY: searchBarAnim }] },
+            { backgroundColor: "rgba(52, 52, 52, 0.8)" })
+          }
+        >
           <View style={styles.searchBarWrap}>
             <Searchbar
               placeholder="What food would you like to eat..."
@@ -227,34 +232,76 @@ function newt(props) {
           />
         )}
       </View>
-
-      <View >
+      <View>
+        {/* <View style={styles.invcontainer}>
         <FAB
-          style={(styles.allign )}
+          style={styles.allign}
           onPress={() => setToggleSearchBar(!toggleSearchBar)}
           label="Search"
           color={theme.colors.primary}
         />
-      </View>
+      </View> */}
+        <View style={{ background: theme.colors.background }}>
+          <TouchableOpacity
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              width: 70,
+              position: "absolute",
+              bottom: 10,
+              right: 0,
+              left: 10,
+              height: 70,
 
-      <View>
-        <FAB
-          style={styles.fabStyle}
-          icon="slot-machine"
-          onPress={toggleOverlay}
-        />
+              borderRadius: 100,
+            }}
+          >
+            <FAB
+              icon="magnify"
+              size={30}
+              color={theme.colors.background}
+              onPress={() => setToggleSearchBar(!toggleSearchBar)}
+              style={{ backgroundColor: theme.colors.primary }}
+            />
+          </TouchableOpacity>
 
-        <Overlay
-          overlayStyle={styles.olStyle}
-          isVisible={visible}
-          onBackdropPress={toggleOverlay}
-        >
-          <Text style={{ color: "black" }}>I feel like eating...</Text>
-          <TextInput placeholder="e.g. tacos,burgers,pizza" />
-          <Text style={{ color: "black" }}>I don't feel like eating...</Text>
-          <TextInput placeholder="e.g. tacos,burgers,pizza" />
-          <Button>Random Pick</Button>
-        </Overlay>
+          <View>
+            <FAB
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                width: 70,
+                position: "absolute",
+                bottom: 10,
+                right: 10,
+                backgroundColor:"#009387",
+              
+
+                borderRadius: 100,
+              }}
+              icon="slot-machine"
+
+              onPress={toggleOverlay}
+              size={30}
+              color={theme.colors.background}
+              
+            />
+
+            <Overlay
+              overlayStyle={styles.olStyle}
+              isVisible={visible}
+              onBackdropPress={toggleOverlay}
+            >
+              <Text style={{ color: "black" }}>I feel like eating...</Text>
+              <TextInput placeholder="e.g. tacos,burgers,pizza" />
+              <Text style={{ color: "black" }}>
+                I don't feel like eating...
+              </Text>
+              <TextInput placeholder="e.g. tacos,burgers,pizza" />
+              <Button>Random Pick</Button>
+            </Overlay>
+          </View>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -265,6 +312,11 @@ export default newt;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "black",
+  },
+
+  invcontainer: {
+    backgroundColor: "white",
+    opacity: 0.7,
   },
   text: {},
   spacing: {
