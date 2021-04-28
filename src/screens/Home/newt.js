@@ -107,8 +107,15 @@ function newt(props) {
 
   //testing randomizer stuff
   let randomList = [];
-  console.log(restaurants);
-
+  const randomPush = (restItem) => {
+    randomList.push(restItem);
+  };
+  const randomize = (restLength) => {
+    return(Math.floor(Math.random() * (restLength-1) + 0));
+  };
+  const getRest = (restLength) => {
+    return restaurants[randomize(restLength)];
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
@@ -317,13 +324,19 @@ function newt(props) {
               isVisible={visible}
               onBackdropPress={toggleOverlay}
             >
+            <View>
+            <Text style={{ color: 'black'}}>{'randomize: ' + randomize(restaurants.length)}</Text>
+            {console.log(getRest(restaurants.length).name)}
               <Text style={{ color: "black" }}>I feel like eating...</Text>
               <TextInput placeholder="e.g. tacos,burgers,pizza" />
               <Text style={{ color: "black" }}>
                 I don't feel like eating...
               </Text>
               <TextInput placeholder="e.g. tacos,burgers,pizza" />
-              <Button>Random Pick</Button>
+              <Button>
+                  Random Pick
+                  </Button>
+            </View>
             </Overlay>
           </View>
         </View>
