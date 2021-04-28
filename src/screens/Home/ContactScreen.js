@@ -43,14 +43,16 @@ const ContactScreen = (props) => {
   //error/bug is on theme-JT?
   return (
     <SafeAreaView style={{flex: 1, alignItems: 'center', backgroundColor: theme.colors.background}}>
+      <View>
         <Image
           style={{ width: 100, height: 100, }}
           source={require("../../../assets/templogo.png")}
         />
-
+      </View>
+        <View>
         <TextInput
           onChangeText={(text) => setEmail(text)}
-          placeholder="Email"
+          placeholder="Your Email"
           name="email"
           style={styles.input}
         />
@@ -65,9 +67,10 @@ const ContactScreen = (props) => {
           placeholder="Message"
           name="message"
           multiline
+          numberOfLines={4}
           style={styles.input}
         />
-
+        </View>
         <View style ={{flexDirection:"row"}}>
         <Button
           style={styles.buttonStyle}
@@ -128,12 +131,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   input: {
-    backgroundColor: 'white',
     borderWidth: 1,
     borderColor: "#777",
-    padding: 8,
+    padding: 4,
     margin: 10,
-    width: 200,
+    width: 220,
   },
   buttonStyle: {
     marginRight:10,
