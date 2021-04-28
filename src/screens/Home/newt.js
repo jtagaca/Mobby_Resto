@@ -258,6 +258,7 @@ function newt(props) {
               </View>
             )}
           />
+
         )}
       </View>
       <View>
@@ -324,7 +325,7 @@ function newt(props) {
                 I don't feel like eating...
               </Text>
               <TextInput placeholder="e.g. tacos,burgers,pizza" />
-              <Text style={{ color: 'black'}}>{'\n'}{randomize(50)}</Text>
+              {/*<Text style={{ color: 'black'}}>{'\n'}{randomize(50)}</Text>*/}
               </View>
               <Button style={{ width: '100%', position: 'absolute', bottom: 30}}>
                   Random Pick
