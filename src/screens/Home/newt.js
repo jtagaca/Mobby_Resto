@@ -105,6 +105,11 @@ function newt(props) {
     setVisible(!visible);
   };
 
+  //testing randomizer stuff
+  let randomList = [];
+  console.log(restaurants);
+
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <View style={{ flex: 1 }}>
