@@ -106,15 +106,8 @@ function newt(props) {
   };
 
   //testing randomizer stuff
-  let randomList = [];
-  const randomPush = (restItem) => {
-    randomList.push(restItem);
-  };
   const randomize = (restLength) => {
-    return(Math.floor(Math.random() * (restLength-1) + 0));
-  };
-  const getRest = (restLength) => {
-    return restaurants[randomize(restLength)];
+    return restaurants[Math.floor(Math.random() * (restLength-1) + 0)].name;
   };
 
   return (
@@ -325,17 +318,16 @@ function newt(props) {
               onBackdropPress={toggleOverlay}
             >
             <View>
-            <Text style={{ color: 'black'}}>{'randomize: ' + randomize(restaurants.length)}</Text>
-            {console.log(getRest(restaurants.length).name)}
               <Text style={{ color: "black" }}>I feel like eating...</Text>
               <TextInput placeholder="e.g. tacos,burgers,pizza" />
               <Text style={{ color: "black" }}>
                 I don't feel like eating...
               </Text>
               <TextInput placeholder="e.g. tacos,burgers,pizza" />
+              <Text style={{ color: 'black'}}>{'\n'}{randomize(50)}</Text>
               <Button>
                   Random Pick
-                  </Button>
+              </Button>
             </View>
             </Overlay>
           </View>
