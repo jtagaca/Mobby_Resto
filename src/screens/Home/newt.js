@@ -325,10 +325,10 @@ function newt(props) {
               </Text>
               <TextInput placeholder="e.g. tacos,burgers,pizza" />
               <Text style={{ color: 'black'}}>{'\n'}{randomize(50)}</Text>
-              <Button>
+              </View>
+              <Button style={{ width: '100%', position: 'absolute', bottom: 30}}>
                   Random Pick
               </Button>
-            </View>
             </Overlay>
           </View>
         </View>
