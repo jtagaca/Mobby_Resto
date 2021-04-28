@@ -102,7 +102,7 @@ export default function ProfileScreen(props){
                 </View>
             </View>
 
-            <View style={styles.infoWrap}>
+            {/*<View style={styles.infoWrap}>
                 <View style={styles.infoBox}>
                     <Title> 
                         Money In Account
@@ -120,7 +120,7 @@ export default function ProfileScreen(props){
                     </Caption>
                 </View>
                 <View></View>
-            </View>
+            </View> */}
 
             <View style={styles.menuWrapper}>
                 <TouchableRipple onPress={() =>{}}>
@@ -132,14 +132,14 @@ export default function ProfileScreen(props){
                     </View>
                 </TouchableRipple>
                 
-                <TouchableRipple onPress={() =>{}}>
+                {/*<TouchableRipple onPress={() =>{}}>
                     <View style={styles.menuItem}>
                     <MaterialIcons name="credit-card" size={20} color="yellowgreen" size={25}/>
                         <Text style={styles.menuItemText}>
                             Payment Info
                         </Text>
                     </View>
-                </TouchableRipple>
+                </TouchableRipple>*/}
 
                 <TouchableRipple onPress={() => props.navigation.navigate("Contact")}>
                     <View style={styles.menuItem}>
