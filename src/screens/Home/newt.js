@@ -107,11 +107,9 @@ function newt(props) {
   
   //testing randomizer stuff
   const randomize = () => {
-    let indexNum = 0;
-    let test;
+    let indexNum;
     if (!isLoading)
     {
-    //  test = restaurants.length;
       if (restaurants)
       {
         indexNum = Math.floor(Math.random() * (restaurants.length-1) + 0);
