@@ -104,10 +104,28 @@ function newt(props) {
   const toggleOverlay = () => {
     setVisible(!visible);
   };
-
+  
   //testing randomizer stuff
-  const randomize = (restLength) => {
-    return restaurants[Math.floor(Math.random() * (restLength-1) + 0)].name;
+  const randomize = () => {
+    let indexNum = 0;
+    let test;
+    if (!isLoading)
+    {
+    //  test = restaurants.length;
+      if (restaurants)
+      {
+        indexNum = Math.floor(Math.random() * (restaurants.length-1) + 0);
+        return restaurants[indexNum].name;
+      }
+      else
+      {
+        return 'No available restaurants';
+      }
+    }
+    else
+    {
+      return 'Nothing';
+    }
   };
 
   return (
@@ -318,6 +336,7 @@ function newt(props) {
               isVisible={visible}
               onBackdropPress={toggleOverlay}
             >
+
             <View>
               <Text style={{ color: "black" }}>I feel like eating...</Text>
               <TextInput placeholder="e.g. tacos,burgers,pizza" />
@@ -325,11 +344,12 @@ function newt(props) {
                 I don't feel like eating...
               </Text>
               <TextInput placeholder="e.g. tacos,burgers,pizza" />
-              {/*<Text style={{ color: 'black'}}>{'\n'}{randomize(50)}</Text>*/}
+              <Text style={{ color: 'black'}}>{'\n\n'}{randomize()}</Text>
               </View>
               <Button style={{ width: '100%', position: 'absolute', bottom: 30}}>
                   Random Pick
               </Button>
+              
             </Overlay>
           </View>
         </View>
