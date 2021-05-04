@@ -56,7 +56,7 @@ function newt(props) {
 
   const onSearch = () => {
     setRefreshStart(true);
-    How can I point to the previous value of the searchLocation
+    // How can I point to the previous value of the searchLocation
     if (searchLocation == "") {
       dispatch(fetchRestaurants(searchQuery, "bakersfield"));
     } else {
