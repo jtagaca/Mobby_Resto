@@ -6,6 +6,7 @@ import {
   Title,
   ActivityIndicator,
   Searchbar,
+  IconButton,
 } from "react-native-paper";
 import React, { useEffect, useState, useRef } from "react";
 import {
@@ -138,19 +139,30 @@ function newt(props) {
         >
           {/* append the values of item.name, item.rating to the filterlist */}
 
-          <View style={styles.searchBarWrap}>
-            <Searchbar
-              placeholder="What food would you like to eat..."
-              onChangeText={(value) => setSearchQuery(value)}
-              value={searchQuery}
-              onSubmitEditing={onSearch}
-              iconColor={theme.colors.primary}
-              selectionColor={theme.colors.primary}
-              animate={true}
-              animationDuration={200}
-              focusOnLayout={true}
-              onHide
-            />
+          <View style={{ backgroundColor: theme.colors.background }} >
+            <View style={{ flexDirection: 'row' }}>
+              
+              <View style={{ flex: 1}}>
+
+                <Searchbar
+                  placeholder="What food would you like to eat..."
+                  onChangeText={(value) => setSearchQuery(value)}
+                  value={searchQuery}
+                  onSubmitEditing={onSearch}
+                  iconColor={theme.colors.primary}
+                  selectionColor={theme.colors.primary}
+                  animate={true}
+                  animationDuration={200}
+                  focusOnLayout={true}
+                  onHide
+                  />
+              </View>
+              <View style={{ flex: 0.2}}>
+                <IconButton>
+                  
+                </IconButton>
+              </View>
+            </View>
             <Searchbar
               placeholder="location"
               onChangeText={(value) => setSearchLocation(value)}
@@ -192,7 +204,7 @@ function newt(props) {
           <Animated.FlatList
             onScrollBeginDrag={() => setToggleSearchBar(false)}
             keyExtractor={(item) => item.id}
-            style={{ transform: [{ translateY: searchBarAnim }] }}
+            // style={{ transform: [{ translateY: searchBarAnim }] }}
             // style={{ transform: [{ translateY: searchBarAnim }] }}
             data={filteredRestaurants}
             onRefresh={onSearch}
@@ -218,7 +230,7 @@ function newt(props) {
                           })
                         }
                       >
-                        <Text style={{ color: theme.colors.background }}>
+                        <Text style={{ color: theme.colors.background }} >
                           More
                         </Text>
                       </Button>
@@ -264,6 +276,7 @@ function newt(props) {
                         ratingColor={theme.colors.primary}
                         ratingCount={5}
                         unSelectedColor="black"
+                        readonly
                       />
                     </View>
                   </Card.Actions>

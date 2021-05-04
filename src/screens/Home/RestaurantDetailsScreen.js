@@ -114,12 +114,12 @@ const RestaurantDetailsScreen = (props) => {
                         </View>
 
                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', padding: 8 }}>
-                            <Button mode="outlined" onPress={() => openMap({ end: restaurant.location.display_address })} >
+                            <Button mode="contained" onPress={() => openMap({ end: restaurant.location.display_address })} >
                                 <Text>
                                     Directions
                                 </Text>
                             </Button>
-                            <Button mode="outlined" onPress={() => CallNum(restaurant.phone)} >
+                            <Button mode="contained" onPress={() => CallNum(restaurant.phone)} >
                                 <Text>
                                     {restaurant.display_phone}
                                 </Text>
@@ -148,14 +148,14 @@ const RestaurantDetailsScreen = (props) => {
                             //     </View>
                             // }
                             renderItem={({item}) => (
-                                <View style={{ flex: 1, backgroundColor: theme.colors.accent, borderRadius: 15, borderTopLeftRadius: 0, borderTopRightRadius: 0, marginBottom: 8, padding: 2 }}>
+                                <View style={{ flex: 1, backgroundColor: theme.colors.primary, borderRadius: 15, borderTopLeftRadius: 0, borderTopRightRadius: 0, marginBottom: 8, padding: 2 }}>
                                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                                        <Text style={{ fontSize: 18, marginLeft: 2 }}>
+                                        <Text style={{ fontSize: 18, marginLeft: 2, color: theme.colors.background }}>
                                             {item.user.name}
                                         </Text>
                                         <View style={{ flexDirection: 'row', marginRight: 15 }}>
-                                            <MaterialIcons name="star" size={20} color={theme.colors.text} style={{ padding: 1 }}/>
-                                            <Text style={{ fontSize: 18 }} >
+                                            <MaterialIcons name="star" size={20} color={theme.colors.background} style={{ padding: 1 }}/>
+                                            <Text style={{ fontSize: 18, color: theme.colors.background }} >
                                                 {item.rating}
                                             </Text>
                                         </View>
