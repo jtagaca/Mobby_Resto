@@ -1,11 +1,9 @@
 import {
   Provider as PaperProvider,
-  Avatar,
   Text,
   Button,
   Card,
   Title,
-  Paragraph,
   ActivityIndicator,
   Searchbar,
 } from "react-native-paper";
@@ -26,6 +24,7 @@ import { Rating } from "react-native-ratings";
 import openMap from "react-native-open-maps";
 import { Overlay } from "react-native-elements";
 import { FAB } from "react-native-paper";
+
 export const CallNum = (number) => {
   let phoneNumber = "";
   if (Platform.OS === "android") {
@@ -35,12 +34,16 @@ export const CallNum = (number) => {
   }
   Linking.openURL(phoneNumber);
 };
+
 function newt(props) {
-  const filterList = [];
 
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const [rating, setRating] = useState(-1.0);
+  const [sortRating, setSortRating] = useState(false);
+
   const [refreshStart, setRefreshStart] = useState(false);
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
   const [searchLocation, setSearchLocation] = useState("");
@@ -52,6 +55,7 @@ function newt(props) {
     setRefreshStart(false);
   };
   const searchBarAnim = useRef(new Animated.Value(-45)).current;
+
   useEffect(() => {
     if (toggleSearchBar) {
       Animated.timing(searchBarAnim, {
@@ -67,9 +71,11 @@ function newt(props) {
       }).start();
     }
   }, [toggleSearchBar]);
+
   useEffect(() => {
     dispatch(fetchRestaurants("burger", "bakersfield"));
   }, []);
+  
   const restaurants = useSelector((state) =>
     state.restaurant.restaurants
       ? state.restaurant.restaurants.businesses
@@ -97,14 +103,30 @@ function newt(props) {
       return "Nothing";
     }
   }; 
+
+  let filteredRestaurants = [];
+  if (!isLoading && restaurants)
+  {
+    filteredRestaurants = restaurants;
+  }
+
+  if (!isLoading && restaurants && rating !== -1.0)
+  {
+    filteredRestaurants = [];
+    for (let i = 0; i < restaurants.length; i++)
+    {
+      if (restaurants[i].rating >= rating)
+      {
+        filteredRestaurants.push(restaurants[i]);
+      }
+    }
+  }
+  if (sortRating)
+  {
+    filteredRestaurants.sort((a, b) => (a.rating > b.rating) ? -1 : 1);
+  }
   
 
-  // console.log(restaurants.rating);
-  // console.log(restaurants);
-
-  // filterList.push(restaurants.name, restaurants.rating);
-
-  console.log(filterList);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <View style={{ flex: 1 }}>
@@ -172,7 +194,7 @@ function newt(props) {
             keyExtractor={(item) => item.id}
             style={{ transform: [{ translateY: searchBarAnim }] }}
             // style={{ transform: [{ translateY: searchBarAnim }] }}
-            data={restaurants}
+            data={filteredRestaurants}
             onRefresh={onSearch}
             refreshing={refreshStart}
             renderItem={({ item }) => (
@@ -260,7 +282,7 @@ function newt(props) {
           color={theme.colors.primary}
         />
       </View> */}
-        <View style={{ background: theme.colors.background }}>
+        <View >
           <TouchableOpacity
             style={{
               alignItems: "center",

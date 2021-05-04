@@ -43,7 +43,6 @@ const RestaurantDetailsScreen = (props) => {
       : null
     );
 
-    console.log(restaurant)
     //if there is something here then you are returning that restaurant that was passed into the variable restaurant.
     //how is Dylan showing the top as the name of the restaurant?
 

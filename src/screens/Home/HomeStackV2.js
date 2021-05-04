@@ -34,8 +34,6 @@ const MainTabScreen = () => {
   
   const theme = useSelector((state) => state.theme.theme);
   
-  console.log(theme)
-
   return (
   <Tab.Navigator initialRouteName="Home" activeColor="#fff">
     <Tab.Screen
