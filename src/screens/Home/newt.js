@@ -36,6 +36,8 @@ export const CallNum = (number) => {
   Linking.openURL(phoneNumber);
 };
 function newt(props) {
+  const filterList = [];
+
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
   const [searchQuery, setSearchQuery] = useState("");
@@ -44,9 +46,6 @@ function newt(props) {
   const [searchLocation, setSearchLocation] = useState("");
   const onSearch = () => {
     setRefreshStart(true);
-    // How can I point to the previous value of the searchLocation
-
-    // else if not working
 
     dispatch(fetchRestaurants(searchQuery, searchLocation));
 
@@ -84,6 +83,7 @@ function newt(props) {
     setVisible(!visible);
   };
   //testing randomizer stuff
+
   const randomize = () => {
     let indexNum;
     if (!isLoading) {
@@ -97,8 +97,13 @@ function newt(props) {
       return "Nothing";
     }
   };
+
   // console.log(restaurants.rating);
-  console.log(restaurants);
+  // console.log(restaurants);
+
+  filterList.push(restaurants.name, restaurants.rating);
+
+  console.log(filterList);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <View style={{ flex: 1 }}>
@@ -108,6 +113,8 @@ function newt(props) {
             { backgroundColor: "rgba(52, 52, 52, 0.8)" })
           }
         >
+          {/* append the values of item.name, item.rating to the filterlist */}
+
           <View style={styles.searchBarWrap}>
             <Searchbar
               placeholder="What food would you like to eat..."
