@@ -49,23 +49,20 @@ function newt(props) {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
 
-  const [searchQuery, setSearchQuery] = useState("burger");
+  const [searchQuery, setSearchQuery] = useState("");
   const [refreshStart, setRefreshStart] = useState(false);
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
-  const [searchLocation, setSearchLocation]=useState("bakersfield");
+  const [searchLocation, setSearchLocation] = useState("");
 
-
-
-  const onChangeSearch = (query) => {
-    setSearchQuery(query);
-  };
-
-  const onChangeLocation = (query) => {
-    setSearchLocation(query);
-  };
   const onSearch = () => {
     setRefreshStart(true);
-    dispatch(fetchRestaurants(searchQuery, searchLocation));
+    How can I point to the previous value of the searchLocation
+    if (searchLocation == "") {
+      dispatch(fetchRestaurants(searchQuery, "bakersfield"));
+    } else {
+      dispatch(fetchRestaurants(searchQuery, searchLocation));
+    }
+
     setRefreshStart(false);
   };
 
@@ -104,25 +101,19 @@ function newt(props) {
   const toggleOverlay = () => {
     setVisible(!visible);
   };
-  
+
   //testing randomizer stuff
   const randomize = () => {
     let indexNum;
-    if (!isLoading)
-    {
-      if (restaurants)
-      {
-        indexNum = Math.floor(Math.random() * (restaurants.length-1) + 0);
+    if (!isLoading) {
+      if (restaurants) {
+        indexNum = Math.floor(Math.random() * (restaurants.length - 1) + 0);
         return restaurants[indexNum].name;
+      } else {
+        return "No available restaurants";
       }
-      else
-      {
-        return 'No available restaurants';
-      }
-    }
-    else
-    {
-      return 'Nothing';
+    } else {
+      return "Nothing";
     }
   };
 
@@ -138,7 +129,7 @@ function newt(props) {
           <View style={styles.searchBarWrap}>
             <Searchbar
               placeholder="What food would you like to eat..."
-              onChangeText={value =>setSearchQuery(value)}
+              onChangeText={(value) => setSearchQuery(value)}
               value={searchQuery}
               onSubmitEditing={onSearch}
               iconColor={theme.colors.primary}
@@ -151,7 +142,7 @@ function newt(props) {
 
             <Searchbar
               placeholder="location"
-              onChangeText={value =>setSearchLocation(value)}
+              onChangeText={(value) => setSearchLocation(value)}
               value={searchLocation}
               onSubmitEditing={onSearch}
               iconColor={theme.colors.primary}
@@ -163,8 +154,6 @@ function newt(props) {
               // location is not updating
             />
           </View>
-
-
         </Animated.View>
 
         {isLoading || !restaurants ? (
@@ -205,7 +194,9 @@ function newt(props) {
                     <Title>{item.name}</Title>
                   </Card.Content>
 
-                  <Card.Cover source={{ uri: (item.image_url) ? item.image_url : null }} />
+                  <Card.Cover
+                    source={{ uri: item.image_url ? item.image_url : null }}
+                  />
 
                   <Card.Actions style={styles.actionContainer}>
                     <TouchableOpacity style={styles.buttonContainer}>
@@ -274,7 +265,6 @@ function newt(props) {
               </View>
             )}
           />
-
         )}
       </View>
       <View>
@@ -334,20 +324,23 @@ function newt(props) {
               isVisible={visible}
               onBackdropPress={toggleOverlay}
             >
-
-            <View>
-              <Text style={{ color: "black" }}>I feel like eating...</Text>
-              <TextInput placeholder="e.g. tacos,burgers,pizza" />
-              <Text style={{ color: "black" }}>
-                I don't feel like eating...
-              </Text>
-              <TextInput placeholder="e.g. tacos,burgers,pizza" />
-              <Text style={{ color: 'black'}}>{'\n\n'}{randomize()}</Text>
+              <View>
+                <Text style={{ color: "black" }}>I feel like eating...</Text>
+                <TextInput placeholder="e.g. tacos,burgers,pizza" />
+                <Text style={{ color: "black" }}>
+                  I don't feel like eating...
+                </Text>
+                <TextInput placeholder="e.g. tacos,burgers,pizza" />
+                <Text style={{ color: "black" }}>
+                  {"\n\n"}
+                  {randomize()}
+                </Text>
               </View>
-              <Button style={{ width: '100%', position: 'absolute', bottom: 30}}>
-                  Random Pick
+              <Button
+                style={{ width: "100%", position: "absolute", bottom: 30 }}
+              >
+                Random Pick
               </Button>
-              
             </Overlay>
           </View>
         </View>
