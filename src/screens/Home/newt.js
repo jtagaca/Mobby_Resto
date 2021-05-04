@@ -54,12 +54,27 @@ function newt(props) {
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
   const [searchLocation, setSearchLocation] = useState("");
 
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
   const onSearch = () => {
     setRefreshStart(true);
     // How can I point to the previous value of the searchLocation
     if (searchLocation == "") {
       dispatch(fetchRestaurants(searchQuery, "bakersfield"));
-    } else {
+    }
+    // else if not working
+    // else if (
+    //   searchLocation.length >= 1 &&
+    //   searchLocation == usePrevious(searchLocation)
+    // ) {
+    //   dispatch(fetchRestaurants(searchQuery, usePrevious(searchLocation)));
+    // }
+    else {
       dispatch(fetchRestaurants(searchQuery, searchLocation));
     }
 
