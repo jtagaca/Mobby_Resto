@@ -26,17 +26,23 @@ export default function EditProfileScreen(props) {
 
   const save = async() => {
     try {
-      await AsyncStorage.setItem("myName", name);
-      await AsyncStorage.setItem("myBio", bio);
-      await AsyncStorage.setItem("myLoc", loc);
-      await AsyncStorage.setItem("myPhone", phone);
-      await AsyncStorage.setItem("myEmail", email);
+      if (name)
+        await AsyncStorage.setItem("myName", name);
+      if (bio)
+        await AsyncStorage.setItem("myBio", bio);
+      if (loc)
+        await AsyncStorage.setItem("myLoc", loc);
+      if (phone)
+        await AsyncStorage.setItem("myPhone", phone);
+      if (email)
+        await AsyncStorage.setItem("myEmail", email);
 
       
     } catch (error) {
       alert(console.error());
       
-    }
+    } 
+    alert('Saved!')
   }
 
   const load = async () => {
@@ -93,7 +99,7 @@ export default function EditProfileScreen(props) {
 
           <TextInput style={styles.inputText} onChangeText={(text) => setName(text)}></TextInput>
           
-          <TouchableOpacity style={styles.button} onPress= { () => save(alert('Name Saved!'))}>
+          <TouchableOpacity style={styles.button} onPress= { () => save()}>
             <Text style={{color: "white"}}>
               Save Name
             </Text>
@@ -108,7 +114,7 @@ export default function EditProfileScreen(props) {
           
           <TextInput style={styles.inputText} onChangeText={(text) => setBio(text)}></TextInput>
           
-          <TouchableOpacity style={styles.button} onPress= { () => save(alert('Biography Saved!'))}>
+          <TouchableOpacity style={styles.button} onPress= { () => save()}>
             <Text style={{color: "white"}}>
               Save Biography
             </Text>
@@ -121,7 +127,7 @@ export default function EditProfileScreen(props) {
             <Text style={{height: 20}}> New Location: {loc} </Text>          
           <TextInput style={styles.inputText} onChangeText={(text) => setLoc(text)}></TextInput>
           
-          <TouchableOpacity style={styles.button} onPress= { () => save(alert('Location Saved'))}>
+          <TouchableOpacity style={styles.button} onPress= { () => save()}>
             <Text style={{color: "white"}}>
               Save Location
             </Text>
@@ -139,7 +145,7 @@ export default function EditProfileScreen(props) {
           </TextInput>
           
           <TouchableOpacity 
-            style={styles.button} onPress= { () => save(alert('Phone Saved!'))}
+            style={styles.button} onPress= { () => save()}
           >
             <Text style={{color: "white"}}>Save Phone</Text>
           </TouchableOpacity>
@@ -154,7 +160,7 @@ export default function EditProfileScreen(props) {
           onChangeText={(text) => setEmail(text)}
           />
           
-          <TouchableOpacity style={styles.button} onPress= { () => save(alert('Email Saved!'))}>
+          <TouchableOpacity style={styles.button} onPress= { () => save()}>
             <Text style={{color: "white"}}>
               Save email
             </Text>
