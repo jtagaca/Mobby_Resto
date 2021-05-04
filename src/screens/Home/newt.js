@@ -14,7 +14,6 @@ import {
   SafeAreaView,
   View,
   StyleSheet,
-  FlatList,
   TouchableOpacity,
   Linking,
   Platform,
@@ -23,18 +22,10 @@ import {
 } from "react-native";
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
 import { useSelector, useDispatch } from "react-redux";
-
-import TestScreen from "./TestScreen";
-import ImageViewer from "react-native-image-zoom-viewer";
-import { Rating, AirbnbRating } from "react-native-ratings";
-import { set } from "react-hook-form";
-
+import { Rating } from "react-native-ratings";
 import openMap from "react-native-open-maps";
-import ModalDropdown from "react-native-modal-dropdown";
-
 import { Overlay } from "react-native-elements";
 import { FAB } from "react-native-paper";
-
 export const CallNum = (number) => {
   let phoneNumber = "";
   if (Platform.OS === "android") {
@@ -44,43 +35,23 @@ export const CallNum = (number) => {
   }
   Linking.openURL(phoneNumber);
 };
-
 function newt(props) {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
-
   const [searchQuery, setSearchQuery] = useState("");
   const [refreshStart, setRefreshStart] = useState(false);
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
   const [searchLocation, setSearchLocation] = useState("");
-
-  function usePrevious(value) {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-  }
   const onSearch = () => {
     setRefreshStart(true);
     // How can I point to the previous value of the searchLocation
-    if (searchLocation == "") {
-      dispatch(fetchRestaurants(searchQuery, "bakersfield"));
-    }
+
     // else if not working
-    // else if (
-    //   searchLocation.length >= 1 &&
-    //   searchLocation == usePrevious(searchLocation)
-    // ) {
-    //   dispatch(fetchRestaurants(searchQuery, usePrevious(searchLocation)));
-    // }
-    else {
-      dispatch(fetchRestaurants(searchQuery, searchLocation));
-    }
+
+    dispatch(fetchRestaurants(searchQuery, searchLocation));
 
     setRefreshStart(false);
   };
-
   const searchBarAnim = useRef(new Animated.Value(-45)).current;
   useEffect(() => {
     if (toggleSearchBar) {
@@ -97,26 +68,21 @@ function newt(props) {
       }).start();
     }
   }, [toggleSearchBar]);
-
   useEffect(() => {
     dispatch(fetchRestaurants("burger", "bakersfield"));
   }, []);
-
   const restaurants = useSelector((state) =>
     state.restaurant.restaurants
       ? state.restaurant.restaurants.businesses
       : null
   );
-
   const isLoading = useSelector(
     (state) => state.restaurant.isFetchingRestaurants
   );
-
   const [visible, setVisible] = useState(false);
   const toggleOverlay = () => {
     setVisible(!visible);
   };
-
   //testing randomizer stuff
   const randomize = () => {
     let indexNum;
@@ -131,7 +97,8 @@ function newt(props) {
       return "Nothing";
     }
   };
-
+  // console.log(restaurants.rating);
+  console.log(restaurants);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <View style={{ flex: 1 }}>
@@ -154,7 +121,6 @@ function newt(props) {
               focusOnLayout={true}
               onHide
             />
-
             <Searchbar
               placeholder="location"
               onChangeText={(value) => setSearchLocation(value)}
@@ -170,7 +136,6 @@ function newt(props) {
             />
           </View>
         </Animated.View>
-
         {isLoading || !restaurants ? (
           <View
             style={{
@@ -208,11 +173,9 @@ function newt(props) {
                   <Card.Content>
                     <Title>{item.name}</Title>
                   </Card.Content>
-
                   <Card.Cover
                     source={{ uri: item.image_url ? item.image_url : null }}
                   />
-
                   <Card.Actions style={styles.actionContainer}>
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
@@ -230,7 +193,6 @@ function newt(props) {
                         </Text>
                       </Button>
                     </TouchableOpacity>
-
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
                         style={{ backgroundColor: theme.colors.primary }}
@@ -241,7 +203,6 @@ function newt(props) {
                         </Text>
                       </Button>
                     </TouchableOpacity>
-
                     <TouchableOpacity style={styles.buttonContainer}>
                       <Button
                         style={{ backgroundColor: theme.colors.primary }}
@@ -265,14 +226,14 @@ function newt(props) {
                     >
                       <Rating
                         type="custom"
-                        ratingCount={item.rating}
+                        // defaultValue={item.rating}
                         imageSize={20}
+                        startingValue={item.rating}
                         ratingBackgroundColor={theme.colors.surface}
                         tintColor={theme.colors.background}
                         ratingColor={theme.colors.primary}
                         ratingCount={5}
                         unSelectedColor="black"
-                        readonly
                       />
                     </View>
                   </Card.Actions>
@@ -302,7 +263,6 @@ function newt(props) {
               right: 0,
               left: 10,
               height: 70,
-
               borderRadius: 100,
             }}
           >
@@ -314,7 +274,6 @@ function newt(props) {
               style={{ backgroundColor: theme.colors.primary }}
             />
           </TouchableOpacity>
-
           <View>
             <FAB
               style={{
@@ -325,7 +284,6 @@ function newt(props) {
                 bottom: 10,
                 right: 10,
                 backgroundColor: "#009387",
-
                 borderRadius: 100,
               }}
               icon="slot-machine"
@@ -333,7 +291,6 @@ function newt(props) {
               size={30}
               color={theme.colors.background}
             />
-
             <Overlay
               overlayStyle={styles.olStyle}
               isVisible={visible}
@@ -363,14 +320,11 @@ function newt(props) {
     </SafeAreaView>
   );
 }
-
 export default newt;
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "black",
   },
-
   invcontainer: {
     backgroundColor: "white",
     opacity: 0.7,
@@ -411,7 +365,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
   },
   rating: {
@@ -426,22 +379,17 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     borderRadius: 25,
-
     paddingTop: 0,
     paddingBottom: 0,
     marginRight: 1.8,
     marginLeft: 1.8,
     flex: 1,
-
-    borderRadius: 100,
   },
-
   appButtonText: {
     fontSize: 14,
     color: "#FFFFFF",
     fontWeight: "bold",
     alignSelf: "center",
-
     padding: 0,
     margin: 0,
   },
