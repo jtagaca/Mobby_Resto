@@ -96,12 +96,13 @@ function newt(props) {
     } else {
       return "Nothing";
     }
-  };
+  }; 
+  
 
   // console.log(restaurants.rating);
   // console.log(restaurants);
 
-  filterList.push(restaurants.name, restaurants.rating);
+  // filterList.push(restaurants.name, restaurants.rating);
 
   console.log(filterList);
   return (
