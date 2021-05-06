@@ -25,7 +25,7 @@ import { Rating } from "react-native-ratings";
 import openMap from "react-native-open-maps";
 import { Overlay } from "react-native-elements";
 import { FAB } from "react-native-paper";
-
+import Icon from "react-native-vector-icons/FontAwesome";
 export const CallNum = (number) => {
   let phoneNumber = "";
   if (Platform.OS === "android") {
@@ -37,7 +37,6 @@ export const CallNum = (number) => {
 };
 
 function newt(props) {
-
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
   const [searchQuery, setSearchQuery] = useState("");
@@ -76,7 +75,7 @@ function newt(props) {
   useEffect(() => {
     dispatch(fetchRestaurants("burger", "bakersfield"));
   }, []);
-  
+
   const restaurants = useSelector((state) =>
     state.restaurant.restaurants
       ? state.restaurant.restaurants.businesses
@@ -103,30 +102,24 @@ function newt(props) {
     } else {
       return "Nothing";
     }
-  }; 
+  };
 
   let filteredRestaurants = [];
-  if (!isLoading && restaurants)
-  {
+  if (!isLoading && restaurants) {
     filteredRestaurants = restaurants;
   }
 
-  if (!isLoading && restaurants && rating !== -1.0)
-  {
+  if (!isLoading && restaurants && rating !== -1.0) {
     filteredRestaurants = [];
-    for (let i = 0; i < restaurants.length; i++)
-    {
-      if (restaurants[i].rating >= rating)
-      {
+    for (let i = 0; i < restaurants.length; i++) {
+      if (restaurants[i].rating >= rating) {
         filteredRestaurants.push(restaurants[i]);
       }
     }
   }
-  if (sortRating)
-  {
-    filteredRestaurants.sort((a, b) => (a.rating > b.rating) ? -1 : 1);
+  if (sortRating) {
+    filteredRestaurants.sort((a, b) => (a.rating > b.rating ? -1 : 1));
   }
-  
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
@@ -139,11 +132,9 @@ function newt(props) {
         >
           {/* append the values of item.name, item.rating to the filterlist */}
 
-          <View style={{ backgroundColor: theme.colors.background }} >
-            <View style={{ flexDirection: 'row' }}>
-              
-              <View style={{ flex: 1}}>
-
+          <View style={{ backgroundColor: theme.colors.background }}>
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1 }}>
                 <Searchbar
                   placeholder="What food would you like to eat..."
                   onChangeText={(value) => setSearchQuery(value)}
@@ -155,14 +146,23 @@ function newt(props) {
                   animationDuration={200}
                   focusOnLayout={true}
                   onHide
-                  />
+                />
               </View>
-              <View style={{ flex: 0.2}}>
-                <IconButton>
-                  
-                </IconButton>
+
+              <View style={{ flex: 0.2 }}>
+                <FAB
+                  icon="magnify"
+                  size={30}
+                  onPress={() => setToggleSearchBar(!toggleSearchBar)}
+                  style={{ backgroundColor: theme.colors.primary }}
+                />
+              </View>
+              <View>
+                {/* <Icon name="accessible-icon" size={80} /> */}
+                <Text></Text>
               </View>
             </View>
+
             <Searchbar
               placeholder="location"
               onChangeText={(value) => setSearchLocation(value)}
@@ -230,7 +230,7 @@ function newt(props) {
                           })
                         }
                       >
-                        <Text style={{ color: theme.colors.background }} >
+                        <Text style={{ color: theme.colors.background }}>
                           More
                         </Text>
                       </Button>
@@ -295,7 +295,7 @@ function newt(props) {
           color={theme.colors.primary}
         />
       </View> */}
-        <View >
+        <View>
           <TouchableOpacity
             style={{
               alignItems: "center",
@@ -308,15 +308,7 @@ function newt(props) {
               height: 70,
               borderRadius: 100,
             }}
-          >
-            <FAB
-              icon="magnify"
-              size={30}
-              color={theme.colors.background}
-              onPress={() => setToggleSearchBar(!toggleSearchBar)}
-              style={{ backgroundColor: theme.colors.primary }}
-            />
-          </TouchableOpacity>
+          ></TouchableOpacity>
           <View>
             <FAB
               style={{
