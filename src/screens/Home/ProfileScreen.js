@@ -64,126 +64,151 @@ export default function ProfileScreen(props){
     let nextTheme
     const theme = useSelector(state => state.theme.theme)
 
-    return(
-        <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
-            <View style={styles.userInfo}>
-                <View style={{flexDirection: 'row', marginTop: 15}}>
-                    <Avatar.Image 
-                    source={require("../../../assets/templogo.png")}>
-                    </Avatar.Image>
-                    <View style={{marginLeft: 20}}>
-                        <Title style={[styles.title, {marginTop: 15, marginBottom: 5,}]}>
-                            {name}
+        // grabbing user from redux (state management)
+        // api call for user info made on the homescreen so we're ready for it here
+    const user = useSelector(state => state.user.user)
+    console.log(user)
+    if (!user) {
+        return (
+        <View
+            style={{
+              flex: 1,
+              position: "absolute",
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: 0.5,
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+            }}
+          >
+            <ActivityIndicator size="large" />
+          </View>
+        )
+    }
+    else {
+        return(
+            <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
+                <View style={styles.userInfo}>
+                    <View style={{flexDirection: 'row', marginTop: 15}}>
+                        <Avatar.Image 
+                        source={require("../../../assets/templogo.png")}>
+                        </Avatar.Image>
+                        <View style={{marginLeft: 20}}>
+                            <Title style={[styles.title, {marginTop: 15, marginBottom: 5,}]}>
+                                {user.userName}
+                            </Title>
+                            <Caption style={styles.Caption}>
+                                {bio}
+                            </Caption>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.userInfo}>
+                    <View style={styles.row}>
+                    <MaterialIcons name="location-pin" size={20} color="grey"/>
+                        <Text style={{marginLeft: 20}}>
+                            {loc}
+                        </Text>
+                    </View>
+                    <View style={styles.row}>
+                    <MaterialIcons name="phone" size={20} color="grey"/>
+                        <Text style={{marginLeft: 20}}>
+                            {phone}
+                        </Text>
+                    </View>
+                    <View style={styles.row}>
+                    <MaterialIcons name="email" size={20} color="grey"/>
+                        <Text style={{marginLeft: 20}}>
+                            {user.email}
+                        </Text>
+                    </View>
+                </View>
+    
+                {/*<View style={styles.infoWrap}>
+                    <View style={styles.infoBox}>
+                        <Title> 
+                            Money In Account
                         </Title>
-                        <Caption style={styles.Caption}>
-                            {bio}
+                        <Caption>
+                            Wallet
                         </Caption>
                     </View>
-                </View>
-            </View>
-            <View style={styles.userInfo}>
-                <View style={styles.row}>
-                <MaterialIcons name="location-pin" size={20} color="grey"/>
-                    <Text style={{marginLeft: 20}}>
-                        {loc}
-                    </Text>
-                </View>
-                <View style={styles.row}>
-                <MaterialIcons name="phone" size={20} color="grey"/>
-                    <Text style={{marginLeft: 20}}>
-                        {phone}
-                    </Text>
-                </View>
-                <View style={styles.row}>
-                <MaterialIcons name="email" size={20} color="grey"/>
-                    <Text style={{marginLeft: 20}}>
-                        {email}
-                    </Text>
-                </View>
-            </View>
-
-            {/*<View style={styles.infoWrap}>
-                <View style={styles.infoBox}>
-                    <Title> 
-                        Money In Account
-                    </Title>
-                    <Caption>
-                        Wallet
-                    </Caption>
-                </View>
-                <View style={styles.infoBox}>
-                    <Title> 
-                        # of Saved Restruants
-                    </Title>
-                    <Caption>
-                        Saved Restraunts
-                    </Caption>
-                </View>
-                <View></View>
-            </View> */}
-
-            <View style={styles.menuWrapper}>
-                <TouchableRipple onPress={() =>{}}>
-                    <View style={styles.menuItem}>
-                    <MaterialIcons name="star" size={20} color="gold" size={25}/>
-                        <Text style={styles.menuItemText}>
-                            Favorite Restraunts
-                        </Text>
+                    <View style={styles.infoBox}>
+                        <Title> 
+                            # of Saved Restruants
+                        </Title>
+                        <Caption>
+                            Saved Restraunts
+                        </Caption>
                     </View>
-                </TouchableRipple>
-                
-                {/*<TouchableRipple onPress={() =>{}}>
-                    <View style={styles.menuItem}>
-                    <MaterialIcons name="credit-card" size={20} color="yellowgreen" size={25}/>
-                        <Text style={styles.menuItemText}>
-                            Payment Info
-                        </Text>
-                    </View>
-                </TouchableRipple>*/}
-
-                <TouchableRipple onPress={() => props.navigation.navigate("Contact")}>
-                    <View style={styles.menuItem}>
-                    <MaterialIcons name="person-outline" size={20} color="red" size={25}/>
-                        <Text style={styles.menuItemText}>
-                            Customer Support
-                        </Text>
-                    </View>
-                </TouchableRipple>
-
-                <TouchableRipple onPress={() => props.navigation.navigate("EditProfileScreen")}>
-                    <View style={styles.menuItem}>
-                    <MaterialIcons name="edit" size={20} color="orange" size={25}/>
-                        <Text style={styles.menuItemText}>
-                            Edit Profile
-                        </Text>
-                    </View>
-                </TouchableRipple >
-
-                <TouchableRipple onPress={() => props.navigation.navigate("Settings")}>
-                    <View style={styles.menuItem}>
-                    <MaterialIcons name="settings" size={20} color="grey" size={25}/>
-                        <Text style={styles.menuItemText}>
-                            Settings
-                        </Text>
-                    </View>
-                </TouchableRipple >
-
-               {/* <View style={styles.text}>
-                <Button  onPress={() => {(!theme.dark) ? nextTheme = darkTheme : nextTheme = lightTheme; switchTheme(nextTheme) }} > 
-
-                {/* if not dark then do this? if theme is dark then do light theme 
-                    {(theme.dark) ? 'Light mode' : 'Dark mode'}
-                </Button>
-                
-                <Button onPress={logout} >
-                    Log out
-                </Button>
+                    <View></View>
                 </View> */}
-
-            </View>
-
-        </SafeAreaView>
-    )
+    
+                <View style={styles.menuWrapper}>
+                    <TouchableRipple onPress={() =>{}}>
+                        <View style={styles.menuItem}>
+                        <MaterialIcons name="star" size={20} color="gold" size={25}/>
+                            <Text style={styles.menuItemText}>
+                                Favorite Restraunts
+                            </Text>
+                        </View>
+                    </TouchableRipple>
+                    
+                    {/*<TouchableRipple onPress={() =>{}}>
+                        <View style={styles.menuItem}>
+                        <MaterialIcons name="credit-card" size={20} color="yellowgreen" size={25}/>
+                            <Text style={styles.menuItemText}>
+                                Payment Info
+                            </Text>
+                        </View>
+                    </TouchableRipple>*/}
+    
+                    <TouchableRipple onPress={() => props.navigation.navigate("Contact")}>
+                        <View style={styles.menuItem}>
+                        <MaterialIcons name="person-outline" size={20} color="red" size={25}/>
+                            <Text style={styles.menuItemText}>
+                                Customer Support
+                            </Text>
+                        </View>
+                    </TouchableRipple>
+    
+                    <TouchableRipple onPress={() => props.navigation.navigate("EditProfileScreen")}>
+                        <View style={styles.menuItem}>
+                        <MaterialIcons name="edit" size={20} color="orange" size={25}/>
+                            <Text style={styles.menuItemText}>
+                                Edit Profile
+                            </Text>
+                        </View>
+                    </TouchableRipple >
+    
+                    <TouchableRipple onPress={() => props.navigation.navigate("Settings")}>
+                        <View style={styles.menuItem}>
+                        <MaterialIcons name="settings" size={20} color="grey" size={25}/>
+                            <Text style={styles.menuItemText}>
+                                Settings
+                            </Text>
+                        </View>
+                    </TouchableRipple >
+    
+                   {/* <View style={styles.text}>
+                    <Button  onPress={() => {(!theme.dark) ? nextTheme = darkTheme : nextTheme = lightTheme; switchTheme(nextTheme) }} > 
+    
+                    {/* if not dark then do this? if theme is dark then do light theme 
+                        {(theme.dark) ? 'Light mode' : 'Dark mode'}
+                    </Button>
+                    
+                    <Button onPress={logout} >
+                        Log out
+                    </Button>
+                    </View> */}
+    
+                </View>
+    
+            </SafeAreaView>
+        )
+    }
 }
 
 

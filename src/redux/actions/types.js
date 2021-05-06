@@ -12,3 +12,6 @@ export const RESTAURANT_DETAILS_FETCH_STARTED = "restaurant_deatils/fetch_starte
 export const RESTAURANT_DETAILS_FETCH_FAIL = "restaurant_details/fetch_fail"
 
 export const THEME_SWITCH = "theme/switch"
+
+export const USER_FETCH = "user/fetch"
+

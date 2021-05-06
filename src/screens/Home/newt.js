@@ -20,12 +20,14 @@ import {
   Animated,
 } from "react-native";
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
+import { getUser } from "../../redux/actions/UserActions"
 import { useSelector, useDispatch } from "react-redux";
 import { Rating } from "react-native-ratings";
 import openMap from "react-native-open-maps";
 import { Overlay } from "react-native-elements";
 import { FAB } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
+
 export const CallNum = (number) => {
   let phoneNumber = "";
   if (Platform.OS === "android") {
@@ -74,6 +76,7 @@ function newt(props) {
 
   useEffect(() => {
     dispatch(fetchRestaurants("burger", "bakersfield"));
+    dispatch(getUser());
   }, []);
 
   const restaurants = useSelector((state) =>

@@ -54,3 +54,11 @@ export const postRegister = async (username, email, password) => {
             .catch((err) => reject(err))
     })
 }
+
+export const getUserInfo = async () => {
+    return new Promise((resolve, reject) => {
+        axios.get('User')
+        .then((res) => resolve(res.data))
+        .catch((err) => reject(err))
+    })
+}
