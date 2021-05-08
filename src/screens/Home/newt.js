@@ -20,6 +20,8 @@ import {
   Platform,
   TextInput,
   Animated,
+  Image,
+  Map,
 } from "react-native";
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
 import { getUser } from "../../redux/actions/UserActions";
@@ -30,6 +32,7 @@ import { Overlay } from "react-native-elements";
 import { FAB } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Slider from "@react-native-community/slider";
+import color from "color";
 
 export const CallNum = (number) => {
   let phoneNumber = "";
@@ -324,15 +327,24 @@ function newt(props) {
                             end: item.location.display_address,
                           })
                         }
+                        icon={() => (
+                          <Image
+                            source={require("./directions.png")}
+                            style={
+                              ({
+                                width: 25,
+                                height: 25,
+                                // tintColor: {
+                                //   theme.colors.primary},
+                              })
+                              // { color: theme.colors.backgroundColor }
+                            }
+                          />
+                        )}
                       >
-                        {/* <Icon
-                          name="map-marker-left"
-                          style={{ color: theme.colors.background }}
-                          size={19}
-                        /> */}
-                        <Text style={{ color: theme.colors.background }}>
-                          MAP
-                        </Text>
+                        {/* {" "}
+                        style={{ color: theme.colors.background }}
+                        size={19} */}
                       </Button>
                     </TouchableOpacity>
                     {/* need to move  */}
