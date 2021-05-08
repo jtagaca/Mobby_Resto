@@ -49,7 +49,7 @@ function newt(props) {
 
   const [refreshStart, setRefreshStart] = useState(false);
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
-  const [searchLocation, setSearchLocation] = useState("");
+
   const onSearch = () => {
     setRefreshStart(true);
 
@@ -128,6 +128,9 @@ function newt(props) {
   const changeRating = (value) => {
     setRating(value);
   };
+  // const [searchLocation, setSearchLocation] = ;
+  const [econ, setIcon] = useState(iconArr[0]);
+  // const onPressicon=
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
@@ -192,10 +195,11 @@ function newt(props) {
                   maximumValue={5}
                   minimumTrackTintColor={theme.colors.primary}
                   maximumTrackTintColor="grey"
-                  // onSlidingStart
+                  // onSlidingStartc
                   onSlidingComplete={(value) => {
                     setRating(value);
                   }}
+                  // how is value changing shouldn't value be initialized to be rating value
                   value={0}
                   thumbTintColor="blue"
                 />
@@ -204,9 +208,9 @@ function newt(props) {
 
               <View style={{ flex: 0.2 }}>
                 <FAB
-                  icon="map-marker-plus"
+                  icon={econ}
                   size={30}
-                  onPress={() => setToggleSearchBar(!toggleSearchBar)}
+                  onPress={() => setSortRating(!sortRating)}
                   style={{ backgroundColor: theme.colors.primary }}
                 />
               </View>
