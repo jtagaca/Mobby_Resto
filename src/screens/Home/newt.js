@@ -27,6 +27,7 @@ import openMap from "react-native-open-maps";
 import { Overlay } from "react-native-elements";
 import { FAB } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
+import Slider from "@react-native-community/slider";
 
 export const CallNum = (number) => {
   let phoneNumber = "";
@@ -166,7 +167,7 @@ function newt(props) {
               </View>
             </View>
 
-            <Searchbar
+            {/* <Searchbar
               placeholder="location"
               onChangeText={(value) => setSearchLocation(value)}
               value={searchLocation}
@@ -178,6 +179,13 @@ function newt(props) {
               focusOnLayout={true}
               onHide
               // location is not updating
+            /> */}
+            <Slider
+              style={{ width: 200, height: 40 }}
+              minimumValue={0}
+              maximumValue={1}
+              minimumTrackTintColor="#FFFFFF"
+              maximumTrackTintColor="#000000"
             />
           </View>
         </Animated.View>
