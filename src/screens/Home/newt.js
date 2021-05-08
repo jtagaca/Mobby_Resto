@@ -130,7 +130,14 @@ function newt(props) {
   };
   // const [searchLocation, setSearchLocation] = ;
   const [econ, setIcon] = useState(iconArr[0]);
-  // const onPressicon=
+  const onPressicon = (econ) => {
+    if (econ == iconArr[0]) {
+      setIcon(iconArr[1]);
+    } else {
+      setIcon(iconArr[0]);
+    }
+    setSortRating(!sortRating);
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
@@ -210,7 +217,8 @@ function newt(props) {
                 <FAB
                   icon={econ}
                   size={30}
-                  onPress={() => setSortRating(!sortRating)}
+                  onPress={() => onPressicon(econ)}
+                  // onPress={() => onPressicon(econ)}
                   style={{ backgroundColor: theme.colors.primary }}
                 />
               </View>
