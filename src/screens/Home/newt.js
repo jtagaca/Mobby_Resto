@@ -125,6 +125,9 @@ function newt(props) {
   if (sortRating) {
     filteredRestaurants.sort((a, b) => (a.rating > b.rating ? -1 : 1));
   }
+  const changeRating = (value) => {
+    setRating(value);
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
@@ -179,13 +182,24 @@ function newt(props) {
             /> */}
             <View style={{ flexDirection: "row" }}>
               <View style={{ flex: 1 }}>
+                <View style={styles.leftContainer}>
+                  <Text>0</Text>
+                </View>
+
                 <Slider
                   style={{ width: 300, height: 40 }}
                   minimumValue={0}
-                  maximumValue={1}
-                  minimumTrackTintColor="#FFFFFF"
-                  maximumTrackTintColor="#000000"
+                  maximumValue={5}
+                  minimumTrackTintColor={theme.colors.primary}
+                  maximumTrackTintColor="grey"
+                  // onSlidingStart
+                  onSlidingComplete={(value) => {
+                    setRating(value);
+                  }}
+                  value={0}
+                  thumbTintColor="blue"
                 />
+                <Text>5</Text>
               </View>
 
               <View style={{ flex: 0.2 }}>
@@ -470,5 +484,15 @@ const styles = StyleSheet.create({
     bottom: 180,
     left: 50,
     right: 50,
+  },
+  leftContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+  },
+  rightContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end",
   },
 });
