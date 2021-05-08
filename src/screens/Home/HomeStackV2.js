@@ -25,66 +25,65 @@ const DetailsStack = createStackNavigator();
 
 const Tab = createMaterialBottomTabNavigator();
 
-
-
-
-
-
 const MainTabScreen = () => {
-  
   const theme = useSelector((state) => state.theme.theme);
-  
+
   return (
-  <Tab.Navigator initialRouteName="Home" activeColor="#fff">
-    <Tab.Screen
-      name="Home"
-      component={HomeStackScreen}
-      options={{
-        tabBarLabel: "Home",
-        tabBarColor: "#009387",
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-home" color={color} size={26} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Profile"
-      component={ProfileScreen}
-      options={{
-        tabBarLabel: "Profile",
-        tabBarColor: "#009387",
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-person" color={color} size={26} />
-        ),
-      }}
-    />
+    <Tab.Navigator initialRouteName="Home" activeColor="#fff">
+      <Tab.Screen
+        name="Home"
+        component={HomeStackScreen}
+        options={{
+          tabBarLabel: "Home",
+          tabBarColor: "#009387",
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-home" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: "Profile",
+          tabBarColor: "#009387",
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-person" color={color} size={26} />
+          ),
+        }}
+      />
 
-    <Tab.Screen
-      name="Settings"
-      component={SettingsScreen}
-      options={{
-        tabBarLabel: "Settings",
-        tabBarColor: "#009387",
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-settings" color={color} size={26} />
-        ),
-      }}
-    />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          tabBarLabel: "Settings",
+          tabBarColor: "#009387",
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-settings" color={color} size={26} />
+          ),
+        }}
+      />
 
-    <Tab.Screen
-      name="Contact"
-      component={ContactScreen}
-      options={{
-        tabBarLabel: "Contact",
-        tabBarColor: "#009387",
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-contact" color={color} size={26} />
-        ),
-      }}
-    />
-  </Tab.Navigator>
-  )
-    };
+      <Tab.Screen
+        name="Contact"
+        component={ContactScreen}
+        options={{
+          tabBarLabel: "Contact",
+          tabBarColor: "#009387",
+          tabBarIcon: ({ color }) => (
+            <Icon
+              name="ios-bookmarks
+"
+              color={color}
+              size={26}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 export default MainTabScreen;
 
@@ -124,8 +123,6 @@ const HomeStackScreen = ({ navigation }) => (
       options={({ route }) => ({ title: route.params.name })}
     />
     {/* why is this not working? not showing the header*/}
-
-
   </HomeStack.Navigator>
 );
 

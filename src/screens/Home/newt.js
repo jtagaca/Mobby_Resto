@@ -20,7 +20,7 @@ import {
   Animated,
 } from "react-native";
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
-import { getUser } from "../../redux/actions/UserActions"
+import { getUser } from "../../redux/actions/UserActions";
 import { useSelector, useDispatch } from "react-redux";
 import { Rating } from "react-native-ratings";
 import openMap from "react-native-open-maps";
@@ -154,7 +154,7 @@ function newt(props) {
 
               <View style={{ flex: 0.2 }}>
                 <FAB
-                  icon="magnify"
+                  icon="map-marker-plus"
                   size={30}
                   onPress={() => setToggleSearchBar(!toggleSearchBar)}
                   style={{ backgroundColor: theme.colors.primary }}
