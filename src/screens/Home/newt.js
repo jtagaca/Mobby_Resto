@@ -93,6 +93,7 @@ function newt(props) {
     setVisible(!visible);
   };
   //testing randomizer stuff
+  var iconArr = ["arrow-up-bold", "arrow-down-bold"];
 
   const randomize = () => {
     let indexNum;
@@ -161,10 +162,6 @@ function newt(props) {
                   style={{ backgroundColor: theme.colors.primary }}
                 />
               </View>
-              <View>
-                {/* <Icon name="accessible-icon" size={80} /> */}
-                <Text></Text>
-              </View>
             </View>
 
             {/* <Searchbar
@@ -180,13 +177,26 @@ function newt(props) {
               onHide
               // location is not updating
             /> */}
-            <Slider
-              style={{ width: 200, height: 40 }}
-              minimumValue={0}
-              maximumValue={1}
-              minimumTrackTintColor="#FFFFFF"
-              maximumTrackTintColor="#000000"
-            />
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1 }}>
+                <Slider
+                  style={{ width: 300, height: 40 }}
+                  minimumValue={0}
+                  maximumValue={1}
+                  minimumTrackTintColor="#FFFFFF"
+                  maximumTrackTintColor="#000000"
+                />
+              </View>
+
+              <View style={{ flex: 0.2 }}>
+                <FAB
+                  icon="map-marker-plus"
+                  size={30}
+                  onPress={() => setToggleSearchBar(!toggleSearchBar)}
+                  style={{ backgroundColor: theme.colors.primary }}
+                />
+              </View>
+            </View>
           </View>
         </Animated.View>
         {isLoading || !restaurants ? (
