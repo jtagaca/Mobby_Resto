@@ -224,37 +224,27 @@ function newt(props) {
             </View>
           </View>
 
-          <View style={styles.popupmodal}>
-            <Button style title="Show modal" onPress={toggleModal} />
-
-            <Modal
-              style={styles.popupmodal}
-              onBackdropPress={() => toggleModal()}
-              isVisible={isModalVisible}
-            >
-              <View
-                style={
-                  (styles.popupmodal,
-                  { marginTop: 100 },
-                  { backgroundColor: "#ffffff" })
-                }
-              >
-                <Searchbar
-                  placeholder="location"
-                  onChangeText={(value) => setSearchLocation(value)}
-                  value={searchLocation}
-                  onSubmitEditing={onSearch}
-                  iconColor={theme.colors.primary}
-                  selectionColor={theme.colors.primary}
-                  animate={true}
-                  animationDuration={200}
-                  focusOnLayout={true}
-                  onHide
-                  // location is not updating
-                />
-              </View>
-            </Modal>
-          </View>
+          <Modal
+            style={styles.popupmodal}
+            onBackdropPress={() => toggleModal()}
+            isVisible={isModalVisible}
+          >
+            <View>
+              <Searchbar
+                placeholder="location"
+                onChangeText={(value) => setSearchLocation(value)}
+                value={searchLocation}
+                onSubmitEditing={onSearch}
+                iconColor={theme.colors.primary}
+                selectionColor={theme.colors.primary}
+                animate={true}
+                animationDuration={200}
+                focusOnLayout={true}
+                onHide
+                // location is not updating
+              />
+            </View>
+          </Modal>
         </Animated.View>
         {isLoading || !restaurants ? (
           <View
