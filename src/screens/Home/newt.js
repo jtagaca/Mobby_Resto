@@ -123,16 +123,15 @@ function newt(props) {
     }
   }
   if (sortRating) {
-    filteredRestaurants.sort((a, b) => (a.rating > b.rating ? -1 : 1));
+    filteredRestaurants.sort((a, b) => (a.rating < b.rating ? -1 : 1));
   }
-  const changeRating = (value) => {
-    setRating(value);
-  };
+
   // const [searchLocation, setSearchLocation] = ;
   const [econ, setIcon] = useState(iconArr[0]);
   const onPressicon = (econ) => {
     if (econ == iconArr[0]) {
       setIcon(iconArr[1]);
+      filteredRestaurants.sort((a, b) => (a.rating > b.rating ? -1 : 1));
     } else {
       setIcon(iconArr[0]);
     }
