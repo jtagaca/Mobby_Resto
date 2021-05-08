@@ -247,6 +247,24 @@ function newt(props) {
               </View>
             </View>
           </View>
+
+          <View style={styles.popupmodal}>
+            <Button style title="Show modal" onPress={toggleModal} />
+
+            <Modal style={styles.popupmodal} isVisible={isModalVisible}>
+              <View
+                style={
+                  (styles.popupmodal,
+                  { marginTop: 100 },
+                  { backgroundColor: "#ffffff" })
+                }
+              >
+                <Text>Hello!</Text>
+
+                <Button title="Hide modal" onPress={toggleModal} />
+              </View>
+            </Modal>
+          </View>
         </Animated.View>
         {isLoading || !restaurants ? (
           <View
@@ -529,5 +547,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "flex-end",
+  },
+  popupmodal: {
+    margin: 50,
   },
 });
