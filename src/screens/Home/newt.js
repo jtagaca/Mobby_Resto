@@ -137,7 +137,7 @@ function newt(props) {
     filteredRestaurants.sort((a, b) => (a.rating < b.rating ? -1 : 1));
   }
 
-  // const [searchLocation, setSearchLocation] = ;
+  const [searchLocation, setSearchLocation] = useState("");
   const [econ, setIcon] = useState(iconArr[0]);
   const onPressicon = (econ) => {
     if (econ == iconArr[0]) {
@@ -186,33 +186,9 @@ function newt(props) {
                   onBackdropPress={() => toggleModal()}
                   style={{ backgroundColor: theme.colors.primary }}
                 />
-
-                <Modal
-                  isVisible={isModalVisible}
-                  onSwipeComplete={() => setModalVisible(false)}
-                >
-                  <View style={{ flex: 1 }}>
-                    <Text>Hello!</Text>
-
-                    <Button title="Hide modal" onPress={toggleModal} />
-                  </View>
-                </Modal>
               </View>
             </View>
 
-            {/* <Searchbar
-              placeholder="location"
-              onChangeText={(value) => setSearchLocation(value)}
-              value={searchLocation}
-              onSubmitEditing={onSearch}
-              iconColor={theme.colors.primary}
-              selectionColor={theme.colors.primary}
-              animate={true}
-              animationDuration={200}
-              focusOnLayout={true}
-              onHide
-              // location is not updating
-            /> */}
             <View style={{ flexDirection: "row" }}>
               <View style={{ flex: 1 }}>
                 <View style={styles.leftContainer}>
@@ -251,7 +227,11 @@ function newt(props) {
           <View style={styles.popupmodal}>
             <Button style title="Show modal" onPress={toggleModal} />
 
-            <Modal style={styles.popupmodal} isVisible={isModalVisible}>
+            <Modal
+              style={styles.popupmodal}
+              onBackdropPress={() => toggleModal()}
+              isVisible={isModalVisible}
+            >
               <View
                 style={
                   (styles.popupmodal,
@@ -259,9 +239,19 @@ function newt(props) {
                   { backgroundColor: "#ffffff" })
                 }
               >
-                <Text>Hello!</Text>
-
-                <Button title="Hide modal" onPress={toggleModal} />
+                <Searchbar
+                  placeholder="location"
+                  onChangeText={(value) => setSearchLocation(value)}
+                  value={searchLocation}
+                  onSubmitEditing={onSearch}
+                  iconColor={theme.colors.primary}
+                  selectionColor={theme.colors.primary}
+                  animate={true}
+                  animationDuration={200}
+                  focusOnLayout={true}
+                  onHide
+                  // location is not updating
+                />
               </View>
             </Modal>
           </View>
