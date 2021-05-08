@@ -9,6 +9,7 @@ import {
   IconButton,
 } from "react-native-paper";
 import React, { useEffect, useState, useRef } from "react";
+import Modal from "react-native-modal";
 import {
   SafeAreaView,
   View,
@@ -40,6 +41,11 @@ export const CallNum = (number) => {
 };
 
 function newt(props) {
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
   const [searchQuery, setSearchQuery] = useState("");
@@ -60,6 +66,7 @@ function newt(props) {
   const searchBarAnim = useRef(new Animated.Value(-45)).current;
 
   useEffect(() => {
+    let isMounted = true;
     if (toggleSearchBar) {
       Animated.timing(searchBarAnim, {
         toValue: 0,
@@ -90,6 +97,10 @@ function newt(props) {
   );
   const [visible, setVisible] = useState(false);
   const toggleOverlay = () => {
+    setVisible(!visible);
+  };
+
+  const toggleOverlay2 = () => {
     setVisible(!visible);
   };
   //testing randomizer stuff
@@ -134,6 +145,7 @@ function newt(props) {
       filteredRestaurants.sort((a, b) => (a.rating > b.rating ? -1 : 1));
     } else {
       setIcon(iconArr[0]);
+      filteredRestaurants.sort((a, b) => (a.rating > b.rating ? -1 : 1));
     }
     setSortRating(!sortRating);
   };
@@ -170,9 +182,21 @@ function newt(props) {
                 <FAB
                   icon="map-marker-plus"
                   size={30}
-                  onPress={() => setToggleSearchBar(!toggleSearchBar)}
+                  onPress={() => toggleModal()}
+                  onBackdropPress={() => toggleModal()}
                   style={{ backgroundColor: theme.colors.primary }}
                 />
+
+                <Modal
+                  isVisible={isModalVisible}
+                  onSwipeComplete={() => setModalVisible(false)}
+                >
+                  <View style={{ flex: 1 }}>
+                    <Text>Hello!</Text>
+
+                    <Button title="Hide modal" onPress={toggleModal} />
+                  </View>
+                </Modal>
               </View>
             </View>
 
