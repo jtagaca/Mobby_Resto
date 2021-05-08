@@ -72,12 +72,7 @@ const MainTabScreen = () => {
           tabBarLabel: "Contact",
           tabBarColor: "#009387",
           tabBarIcon: ({ color }) => (
-            <Icon
-              name="ios-bookmarks
-"
-              color={color}
-              size={26}
-            />
+            <Icon name="ios-bookmarks" color={color} size={26} />
           ),
         }}
       />

@@ -10,6 +10,7 @@ import {
 } from "react-native-paper";
 import React, { useEffect, useState, useRef } from "react";
 import Modal from "react-native-modal";
+import { mdiMapMarkerLeft } from "@mdi/js";
 import {
   SafeAreaView,
   View,
@@ -308,9 +309,11 @@ function newt(props) {
                         style={{ backgroundColor: theme.colors.primary }}
                         onPress={() => CallNum(item.display_phone)}
                       >
-                        <Text style={{ color: theme.colors.background }}>
-                          Call{" "}
-                        </Text>
+                        <Icon
+                          style={{ color: theme.colors.background }}
+                          name="phone"
+                          size={19}
+                        />
                       </Button>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.buttonContainer}>
@@ -322,8 +325,13 @@ function newt(props) {
                           })
                         }
                       >
+                        {/* <Icon
+                          name="map-marker-left"
+                          style={{ color: theme.colors.background }}
+                          size={19}
+                        /> */}
                         <Text style={{ color: theme.colors.background }}>
-                          Map
+                          MAP
                         </Text>
                       </Button>
                     </TouchableOpacity>
