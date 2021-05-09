@@ -23,16 +23,17 @@ export default function ProfileScreen(props){
     const load = async () => {
         try {
           let name = await AsyncStorage.getItem("myName")
-          let bio = await AsyncStorage.getItem("myBio")
+          {/*let bio = await AsyncStorage.getItem("myBio")
           let loc = await AsyncStorage.getItem("myLoc")
           let phone = await AsyncStorage.getItem("myPhone")
+        */}
           let email = await AsyncStorage.getItem("myEmail")
     
     
           if(name !== null){
             setName(name);
           }
-          if(bio !== null){
+          {/* if(bio !== null){
             setBio(bio);
           }
           if(loc !== null){
@@ -41,6 +42,7 @@ export default function ProfileScreen(props){
          if(phone !== null){
           setPhone(phone);
          }
+        */}
           if(email !== null){
             setEmail(email);
           }
@@ -99,12 +101,17 @@ export default function ProfileScreen(props){
                             <Title style={[styles.title, {marginTop: 15, marginBottom: 5,}]}>
                                 {user.userName}
                             </Title>
-                            <Caption style={styles.Caption}>
+                        <Text style={{marginLeft: 20}}>
+                            {user.email}
+                        </Text>
+                            {/*<Caption style={styles.Caption}>
                                 {bio}
                             </Caption>
+                            */}
                         </View>
                     </View>
                 </View>
+                {/* 
                 <View style={styles.userInfo}>
                     <View style={styles.row}>
                     <MaterialIcons name="location-pin" size={20} color="grey"/>
@@ -125,26 +132,7 @@ export default function ProfileScreen(props){
                         </Text>
                     </View>
                 </View>
-    
-                {/*<View style={styles.infoWrap}>
-                    <View style={styles.infoBox}>
-                        <Title> 
-                            Money In Account
-                        </Title>
-                        <Caption>
-                            Wallet
-                        </Caption>
-                    </View>
-                    <View style={styles.infoBox}>
-                        <Title> 
-                            # of Saved Restruants
-                        </Title>
-                        <Caption>
-                            Saved Restraunts
-                        </Caption>
-                    </View>
-                    <View></View>
-                </View> */}
+                */}
     
                 <View style={styles.menuWrapper}>
                     <TouchableRipple onPress={() =>{}}>
@@ -155,15 +143,6 @@ export default function ProfileScreen(props){
                             </Text>
                         </View>
                     </TouchableRipple>
-                    
-                    {/*<TouchableRipple onPress={() =>{}}>
-                        <View style={styles.menuItem}>
-                        <MaterialIcons name="credit-card" size={20} color="yellowgreen" size={25}/>
-                            <Text style={styles.menuItemText}>
-                                Payment Info
-                            </Text>
-                        </View>
-                    </TouchableRipple>*/}
     
                     <TouchableRipple onPress={() => props.navigation.navigate("Contact")}>
                         <View style={styles.menuItem}>
@@ -191,21 +170,7 @@ export default function ProfileScreen(props){
                             </Text>
                         </View>
                     </TouchableRipple >
-    
-                   {/* <View style={styles.text}>
-                    <Button  onPress={() => {(!theme.dark) ? nextTheme = darkTheme : nextTheme = lightTheme; switchTheme(nextTheme) }} > 
-    
-                    {/* if not dark then do this? if theme is dark then do light theme 
-                        {(theme.dark) ? 'Light mode' : 'Dark mode'}
-                    </Button>
-                    
-                    <Button onPress={logout} >
-                        Log out
-                    </Button>
-                    </View> */}
-    
                 </View>
-    
             </SafeAreaView>
         )
     }
