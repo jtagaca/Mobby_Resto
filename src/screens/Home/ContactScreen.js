@@ -13,9 +13,6 @@ import { useSelector } from "react-redux";
 import email from 'react-native-email';
 import { Overlay } from 'react-native-elements';
 
-// testing overlay button for randomizer
-import { FAB } from 'react-native-paper';
-
 const ContactScreen = (props) => {
   const testing = 'ppark3@csub.edu';
   const fullContacts = ['ppark3@csub.edu', 'dgonzalez94@csub.edu', 'laguilar21@csub.edu', 'jtagaca@csub.edu'];
@@ -42,7 +39,8 @@ const ContactScreen = (props) => {
   const theme = useSelector((state) => state.theme.theme);
   //error/bug is on theme-JT?
   return (
-    <SafeAreaView style={{flex: 1, alignItems: 'center', backgroundColor: theme.colors.background}}>
+    <SafeAreaView style={{flex: 1, alignItems: 'center', backgroundColor: theme.colors.primary}}>
+      <View style={styles.container,{flex: 1, alignItems: 'center', backgroundColor: theme.colors.background}}>
       <View>
         <Image
           style={{ width: 100, height: 100, }}
@@ -73,16 +71,16 @@ const ContactScreen = (props) => {
         </View>
         <View style ={{flexDirection:"row"}}>
         <Button
-          style={styles.buttonStyle}
-          color="blue"
+          style={styles.buttonStyle, {backgroundColor: theme.colors.primary}}
+          color={theme.colors.background}
           value="Send Message"
           onPress={handleEmail}
         >
           Submit
         </Button>
         <Button
-          style={styles.buttonStyle}
-          color="blue"
+          style={styles.buttonStyle, {backgroundColor: theme.colors.primary}}
+          color={theme.colors.background}
           onPress={() =>
             Alert.alert("Discard message?", "", [
               {
@@ -96,39 +94,18 @@ const ContactScreen = (props) => {
           Cancel
         </Button>
         </View>
-        <FAB
-          style={styles.fabStyle}
-          icon="slot-machine"
-          onPress={ toggleOverlay }
-        />
-        <Overlay overlayStyle={styles.olStyle} isVisible={visible} onBackdropPress={toggleOverlay}>
-          <Text>
-            testing1
-          </Text>
-          <TextInput placeholder='e.g. tacos,burgers,pizza'/>
-          <Text>
-            testing2
-          </Text>
-          <TextInput placeholder='e.g. tacos,burgers,pizza'/>
-          <Button style={styles.buttonStyle}>
-            Random Pick
-          </Button>
-        </Overlay>
-   
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-    lgcontainer: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-    },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    height: 100,
+    width: 100,
   },
   input: {
     borderWidth: 1,
