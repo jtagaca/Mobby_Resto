@@ -107,11 +107,12 @@ function newt(props) {
   const toggleOverlay2 = () => {
     setVisible(!visible);
   };
-  //testing randomizer stuff
+  
   var iconArr = ["arrow-up-bold", "arrow-down-bold"];
-
-  const randomize = () => {
-    let indexNum;
+  
+  // testing randomizer stuff
+  let indexNum;
+  const randomizeName = () => {
     if (!isLoading) {
       if (restaurants) {
         indexNum = Math.floor(Math.random() * (restaurants.length - 1) + 0);
@@ -123,6 +124,17 @@ function newt(props) {
       return "Nothing";
     }
   };
+  const randomizePhoto = () => {
+    if (!isLoading) {
+      if (restaurants) {
+        return restaurants[indexNum].image_url;
+      } else {
+        return "No available restaurants";
+      }
+    } else {
+      return "Nothing";
+    }
+  }; 
 
   let filteredRestaurants = [];
   if (!isLoading && restaurants) {
@@ -420,21 +432,40 @@ function newt(props) {
               onBackdropPress={toggleOverlay}
             >
               <View>
-                <Text style={{ color: "black" }}>I feel like eating...</Text>
-                <TextInput placeholder="e.g. tacos,burgers,pizza" />
                 <Text style={{ color: "black" }}>
-                  I don't feel like eating...
+                  {randomizeName()}
                 </Text>
-                <TextInput placeholder="e.g. tacos,burgers,pizza" />
-                <Text style={{ color: "black" }}>
-                  {"\n\n"}
-                  {randomize()}
-                </Text>
+                <Button style={{ 
+                  marginRight:10,
+                  marginLeft:10,
+                  marginTop:10,
+                  paddingTop:1,
+                  paddingBottom:1,
+                  backgroundColor:'lightblue',
+                  borderRadius:10,
+                  borderWidth: 1,}}
+                  onPress={() =>
+                    props.navigation.navigate("RestaurantDetails", {
+                      name: restaurants[indexNum].name,
+                      restaurant: restaurants[indexNum],
+                    })}
+                  >
+                  More Details
+                </Button>
               </View>
               <Button
-                style={{ width: "100%", position: "absolute", bottom: 30 }}
+                style={{ 
+                  marginRight:10,
+                  marginLeft:10,
+                  marginTop:10,
+                  paddingTop:1,
+                  paddingBottom:1,
+                  backgroundColor:'lightblue',
+                  borderRadius:10,
+                  borderWidth: 1,}}
+                onPress={() => {toggleOverlay}}
               >
-                Random Pick
+                Randomize
               </Button>
             </Overlay>
           </View>
