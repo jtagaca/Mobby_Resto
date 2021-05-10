@@ -444,11 +444,14 @@ function newt(props) {
                   backgroundColor:'lightblue',
                   borderRadius:10,
                   borderWidth: 1,}}
-                  onPress={() =>
-                    props.navigation.navigate("RestaurantDetails", {
-                      name: restaurants[indexNum].name,
-                      restaurant: restaurants[indexNum],
-                    })}
+                  onPress={() => {
+                      props.navigation.navigate("RestaurantDetails", {
+                        name: restaurants[indexNum].name,
+                        restaurant: restaurants[indexNum],
+                      });
+                      toggleOverlay();
+                    }
+                  }
                   >
                   More Details
                 </Button>
