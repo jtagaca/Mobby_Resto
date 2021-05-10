@@ -206,10 +206,11 @@ function newt(props) {
             </View>
 
             <View style={{ flexDirection: "row" }}>
-              <View style={{ flex: 1 }}>
-                <View style={styles.leftContainer}>
-                  <Text>0</Text>
-                </View>
+              <View style={{ flex: 1, flexDirection: "row" }}>
+                  
+                <Text style={{ alignSelf: 'flex-end', padding: 5 }}>
+                  0
+                </Text>
 
                 <Slider
                   style={{ width: 300, height: 40 }}
@@ -225,7 +226,10 @@ function newt(props) {
                   value={0}
                   thumbTintColor="blue"
                 />
-                <Text>5</Text>
+
+                <Text style={{ alignSelf: 'flex-end', padding: 5 }}>
+                  5
+                </Text>
               </View>
 
               <View style={{ flex: 0.2 }}>
@@ -319,45 +323,47 @@ function newt(props) {
                         </Text>
                       </Button>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonContainer}>
-                      <Button
-                        style={{ backgroundColor: theme.colors.primary }}
+                    <TouchableOpacity style={styles.buttonContainer, { borderWidth: 2, borderColor: theme.colors.primary }}>
+                      <IconButton
+                        icon='directions'
+                        color={theme.colors.background}
                         onPress={() => CallNum(item.display_phone)}
                       >
-                        <Icon
+                        {/* <Icon
                           style={{ color: theme.colors.background }}
                           name="phone"
                           size={19}
-                        />
-                      </Button>
+
+                        /> */}
+                      </IconButton>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonContainer}>
-                      <Button
-                        style={{ backgroundColor: theme.colors.primary }}
+                    <TouchableOpacity style={styles.buttonContainer, { borderWidth: 2, borderColor: theme.colors.primary }}>
+                      <IconButton
+                        // style={{ backgroundColor: theme.colors.primary }}
                         onPress={() =>
                           openMap({
                             end: item.location.display_address,
                           })
                         }
-                        icon={() => (
-                          <Image
-                            source={require("./directions.png")}
-                            style={
-                              ({
-                                width: 25,
-                                height: 25,
-                                // tintColor: {
-                                //   theme.colors.primary},
-                              })
-                              // { color: theme.colors.backgroundColor }
-                            }
-                          />
-                        )}
+                        icon='map-search-outline'
+                          // <Image
+                          //   source={require("./directions.png")}
+                          //   style={
+                          //     ({
+                          //       width: 25,
+                          //       height: 25,
+                          //       // tintColor: {
+                          //       //   theme.colors.primary},
+                          //     })
+                          //     // { color: theme.colors.backgroundColor }
+                          //   }
+                          // />
+                        
                       >
                         {/* {" "}
                         style={{ color: theme.colors.background }}
                         size={19} */}
-                      </Button>
+                      </IconButton>
                     </TouchableOpacity>
                     {/* need to move  */}
                     <View
@@ -435,6 +441,11 @@ function newt(props) {
                 <Text style={{ color: "black" }}>
                   {randomizeName()}
                 </Text>
+                <Card>
+                  <Card.Cover
+                      source={{ uri: randomizePhoto() }}
+                  />
+                </Card>
                 <Button style={{ 
                   marginRight:10,
                   marginLeft:10,
