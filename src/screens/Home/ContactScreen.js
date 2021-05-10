@@ -11,7 +11,6 @@ import {
 import { Button, Text, TextInput } from "react-native-paper";
 import { useSelector } from "react-redux";
 import email from 'react-native-email';
-import { Overlay } from 'react-native-elements';
 
 const ContactScreen = (props) => {
   const testing = 'ppark3@csub.edu';
@@ -20,12 +19,6 @@ const ContactScreen = (props) => {
   const [emailText, setEmail] = useState('');
   const [subjectline, setSubjectline] = useState('');
   const [bodyText, setBody] = useState('');
-
-  // testing button actions for randomizer
-  const [visible, setVisible] = useState(false);
-  const toggleOverlay = () => {
-    setVisible(!visible);
-  };
 
   handleEmail = () => {
     const to = fullContacts; // set this to whomever should receive the support email
