@@ -99,6 +99,7 @@ function newt(props) {
   const isLoading = useSelector(
     (state) => state.restaurant.isFetchingRestaurants
   );
+
   const [visible, setVisible] = useState(false);
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -112,6 +113,7 @@ function newt(props) {
   
   // testing randomizer stuff
   let indexNum;
+
   const randomizeName = () => {
     if (!isLoading) {
       if (restaurants) {
@@ -440,6 +442,7 @@ function newt(props) {
               <View>
                 <Text style={{ color: "black" }}>
                   {randomizeName()}
+                  {'\n'}
                 </Text>
                 <Card>
                   <Card.Cover
@@ -452,7 +455,7 @@ function newt(props) {
                   marginTop:10,
                   paddingTop:1,
                   paddingBottom:1,
-                  backgroundColor:'lightblue',
+                  backgroundColor: theme.colors.background,
                   borderRadius:10,
                   borderWidth: 1,}}
                   onPress={() => {
@@ -474,10 +477,10 @@ function newt(props) {
                   marginTop:10,
                   paddingTop:1,
                   paddingBottom:1,
-                  backgroundColor:'lightblue',
+                  backgroundColor: theme.colors.background,
                   borderRadius:10,
                   borderWidth: 1,}}
-                onPress={() => {toggleOverlay}}
+                onPress={() => {}}
               >
                 Randomize
               </Button>
