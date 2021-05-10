@@ -42,7 +42,12 @@ const ContactScreen = (props) => {
       </View>
         <View>
         <TextInput
-          onChangeText={(text) => setEmail(text)}
+          value={this.state.value}
+          onChangeText={(text) => {
+            setEmail(text);
+            this.setState({value: text})
+            }
+          }
           placeholder="Your Email"
           name="email"
           style={styles.input}
@@ -66,8 +71,12 @@ const ContactScreen = (props) => {
         <Button
           style={styles.buttonStyle, {backgroundColor: theme.colors.primary}}
           color={theme.colors.background}
-          value="Send Message"
-          onPress={handleEmail}
+          //onPress={handleEmail}
+          onPress={() => {
+            handleEmail();
+            this.setState({value: ''});
+            }
+          }
         >
           Submit
         </Button>
