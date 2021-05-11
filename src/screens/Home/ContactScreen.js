@@ -57,7 +57,7 @@ const ContactScreen = (props) => {
   //error/bug is on theme-JT?
   return (
     <SafeAreaView style={{flex: 1, alignItems: 'center', backgroundColor: theme.colors.primary}}>
-      <View style={styles.container,{flex: 1, alignItems: 'center', backgroundColor: theme.colors.background}}>
+      <View style={{flex: 1, alignItems: 'center', backgroundColor: theme.colors.background}}>
       <View>
         <Image
           style={{ width: 100, height: 100, }}
@@ -89,6 +89,7 @@ const ContactScreen = (props) => {
           style={styles.input}
         />
         </View>
+        <View style={styles.space}/>
         <View style ={{flexDirection:"row"}}>
         <Button
           style={styles.buttonStyle, {backgroundColor: theme.colors.primary}}
@@ -101,6 +102,7 @@ const ContactScreen = (props) => {
         >
           Submit
         </Button>
+        <View style={styles.space}/>
         <Button
           style={styles.buttonStyle, {backgroundColor: theme.colors.primary}}
           color={theme.colors.background}
@@ -166,6 +168,10 @@ const styles = StyleSheet.create({
     bottom: 180,
     left: 50,
     right: 50,
+  },
+  space: {
+    width: 20,
+    height: 20,
   }
 });
 
