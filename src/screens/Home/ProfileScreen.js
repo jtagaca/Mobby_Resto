@@ -14,11 +14,6 @@ import { AUTH_LOGOUT } from '../../redux/actions/types';
 
 export default function ProfileScreen(props){
     const dispatch = useDispatch()
-    const [name, setName] = useState();
-    const [bio, setBio] = useState();
-    const [loc, setLoc] = useState();
-    const [phone, setPhone] = useState();
-    const [email, setEmail] = useState();;
 
     const load = async () => {
         try {
@@ -69,6 +64,9 @@ export default function ProfileScreen(props){
         // grabbing user from redux (state management)
         // api call for user info made on the homescreen so we're ready for it here
     const user = useSelector(state => state.user.user)
+    const bio = useSelector(state => state.user.bio)
+    const location = useSelector(state => state.user.location)
+    
     console.log(user)
     if (!user) {
         return (
@@ -104,10 +102,10 @@ export default function ProfileScreen(props){
                         <Text style={{marginLeft: 20}}>
                             {user.email}
                         </Text>
-                            {/*<Caption style={styles.Caption}>
+                            <Caption style={styles.Caption}>
                                 {bio}
                             </Caption>
-                            */}
+                           
                         </View>
                     </View>
                 </View>
