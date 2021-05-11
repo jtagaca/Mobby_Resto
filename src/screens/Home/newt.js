@@ -88,7 +88,7 @@ function newt(props) {
   }, [toggleSearchBar]);
 
   useEffect(() => {
-    dispatch(fetchRestaurants("burger", "bakersfield"));
+    onSearch();
     dispatch(getUser());
   }, []);
 
@@ -165,7 +165,7 @@ function newt(props) {
     filteredRestaurants.sort((a, b) => (a.rating < b.rating ? -1 : 1));
   }
 
-  const [searchLocation, setSearchLocation] = useState("");
+  const [searchLocation, setSearchLocation] = useState("bakersfield");
   const [econ, setIcon] = useState(iconArr[0]);
   const onPressicon = (econ) => {
     if (econ == iconArr[0]) {
