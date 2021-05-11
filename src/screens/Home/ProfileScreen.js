@@ -66,8 +66,8 @@ export default function ProfileScreen(props){
     const user = useSelector(state => state.user.user)
     const bio = useSelector(state => state.user.bio)
     const location = useSelector(state => state.user.location)
+    const favorites = useSelector(state => state.user.favorites)
     
-    console.log(user)
     if (!user) {
         return (
         <View
@@ -168,6 +168,10 @@ export default function ProfileScreen(props){
                             </Text>
                         </View>
                     </TouchableRipple >
+
+                    <Text style={{ color: 'black' }}>
+                        {(favorites) ? (favorites[0].name) : null}
+                    </Text>
                 </View>
             </SafeAreaView>
         )

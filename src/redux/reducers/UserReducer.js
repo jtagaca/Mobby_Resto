@@ -1,9 +1,10 @@
-import { USER_BIO_SET, USER_FETCH, USER_LOCATION_SET } from '../actions/types'
+import { USER_BIO_SET, USER_FETCH, USER_LOCATION_SET, USER_ADD_FAVORITE, USER_REMOVE_FAVORITE } from '../actions/types'
 
 const INITIAL_STATE = {
   user: null,
   location: null,
-  bio: null
+  bio: null,
+  favorites: []
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -14,6 +15,24 @@ export default (state = INITIAL_STATE, action) => {
             return {...state, bio: action.payload }
         case USER_LOCATION_SET:
             return {...state, location: action.payload }
+        case USER_ADD_FAVORITE:
+            let addTemp = []
+            if (state.favorites)
+                addTemp = state.favorites;
+
+            addTemp.push(action.payload);
+            return {...state, favorites: addTemp }
+        case USER_REMOVE_FAVORITE:
+            let removalTemp = state.favorites;
+            
+            removalTemp.splice(removalTemp.findIndex(
+                (function(favorite, index) {
+                if (favorite.id === action.payload)
+                    return true;
+                }
+            )
+            ), 1);
+            return {...state, favorites: removalTemp }
         default:
             return state
     }

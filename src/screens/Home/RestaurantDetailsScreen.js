@@ -1,19 +1,63 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, TextInput, ImageBackground, TouchableOpacity, LogBox, FlatList, Image, Dimensions, SafeAreaView, PushNotificationIOS } from 'react-native';
 import GallerySwiper from 'react-native-gallery-swiper';
-import { ActivityIndicator, Text, Button, Avatar } from 'react-native-paper';
+import { ActivityIndicator, Text, Button, Avatar, IconButton } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRestaurantDetails } from '../../redux/actions/RestaurantDetailsActions';
 import openMap from "react-native-open-maps";
 import { CallNum } from './newt';
+import { addFavorite, removeFavorite } from '../../redux/actions/UserActions';
 
 const RestaurantDetailsScreen = (props) => {
     const dispatch = useDispatch();
 
+    const restaurant = useSelector((state) =>
+    state.restaurantDetails.restaurantDetails
+      ? state.restaurantDetails.restaurantDetails
+      : null
+    );
+    const isLoading = useSelector((state) => state.restaurantDetails.isFetchingRestaurantDetails)
+    const theme = useSelector((state) => state.theme.theme)
+    const favorites = useSelector((state) => state.user.favorites)
+    
+    const [favorited, setFavorited] = useState(false)
+    
+    
+
+    console.log(favorites)
+
+    const setFavorite = () => {
+        if (!favorited)
+        {
+            dispatch(addFavorite(restaurant.name, restaurant.id, restaurant.image_url));
+            setFavorited(true);
+        }
+    }
+    const deleteFavorite = () => {
+        if (favorited)
+        {
+            dispatch(removeFavorite());
+            setFavorited(false);
+        }
+    }
+
     useEffect(() => {
         dispatch(fetchRestaurantDetails(props.route.params.restaurant.id));
         LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+
+        if (!favorited && favorites.find(function(favorite, index) {
+            console.log(props.route.params.restaurant.id)
+            console.log(favorite.id)
+            console.log('?????')
+    
+            if (props.route.params.restaurant.id === favorite.id)
+                return true;
+        }))
+        {
+            setFavorited(true);
+        }
     }, []);
 
     function timeFormat (numStr) {
@@ -37,17 +81,7 @@ const RestaurantDetailsScreen = (props) => {
             return temp.substring(0, 2) + ':' + temp.substring(2) + post;
     };
 
-    const restaurant = useSelector((state) =>
-    state.restaurantDetails.restaurantDetails
-      ? state.restaurantDetails.restaurantDetails
-      : null
-    );
-
-    //if there is something here then you are returning that restaurant that was passed into the variable restaurant.
-    //how is Dylan showing the top as the name of the restaurant?
-
-    const isLoading = useSelector((state) => state.restaurantDetails.isFetchingRestaurantDetails)
-    const theme = useSelector((state) => state.theme.theme)
+    
 
     // if we are awaiting the api still, then we will display a loading icon instead of content
     if (!restaurant || isLoading)
@@ -114,6 +148,10 @@ const RestaurantDetailsScreen = (props) => {
                         </View>
 
                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', padding: 8 }}>
+                            <TouchableOpacity onPress={() => (!favorited) ? setFavorite() : deleteFavorite() } >
+                                <AntDesign name={(!favorited) ? "staro" : "star" } size={25} />
+                            </TouchableOpacity>
+
                             <Button mode="contained" onPress={() => openMap({ end: restaurant.location.display_address })} >
                                 <Text>
                                     Directions
