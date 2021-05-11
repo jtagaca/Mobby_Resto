@@ -33,6 +33,7 @@ import { FAB } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Slider from "@react-native-community/slider";
 import color from "color";
+import { set } from "react-hook-form";
 
 export const CallNum = (number) => {
   let phoneNumber = "";
@@ -112,12 +113,21 @@ function newt(props) {
   var iconArr = ["arrow-up-bold", "arrow-down-bold"];
   
   // testing randomizer stuff
-  let indexNum;
-
-  const randomizeName = () => {
+  const [indexNum, setIndexNum] = useState(0);
+  const randomize = () => {
     if (!isLoading) {
       if (restaurants) {
-        indexNum = Math.floor(Math.random() * (restaurants.length - 1) + 0);
+        setIndexNum(Math.floor(Math.random() * (restaurants.length - 1) + 0));
+      } else {
+        return "No available restaurants";
+      }
+    } else {
+      return "Nothing";
+    }
+  };
+  const restName = () => {
+    if (!isLoading) {
+      if (restaurants) {
         return restaurants[indexNum].name;
       } else {
         return "No available restaurants";
@@ -126,7 +136,7 @@ function newt(props) {
       return "Nothing";
     }
   };
-  const randomizePhoto = () => {
+  const restPhoto = () => {
     if (!isLoading) {
       if (restaurants) {
         return restaurants[indexNum].image_url;
@@ -136,7 +146,7 @@ function newt(props) {
     } else {
       return "Nothing";
     }
-  }; 
+  };
 
   let filteredRestaurants = [];
   if (!isLoading && restaurants) {
@@ -430,7 +440,11 @@ function newt(props) {
                 borderRadius: 100,
               }}
               icon="slot-machine"
-              onPress={toggleOverlay}
+              onPress={() => {
+                randomize();
+                toggleOverlay();
+                }
+              }
               size={30}
               color={theme.colors.background}
             />
@@ -441,12 +455,12 @@ function newt(props) {
             >
               <View>
                 <Text style={{ color: "black" }}>
-                  {randomizeName()}
+                  {restName()}
                   {'\n'}
                 </Text>
                 <Card>
                   <Card.Cover
-                      source={{ uri: randomizePhoto() }}
+                      source={{ uri: restPhoto() }}
                   />
                 </Card>
                 <Button style={{ 
@@ -460,11 +474,11 @@ function newt(props) {
                   borderWidth: 1,}}
                   onPress={() => {
                       props.navigation.navigate("RestaurantDetails", {
-                        name: restaurants[indexNum].name,
+                        name: restName(),
                         restaurant: restaurants[indexNum],
                       });
                       toggleOverlay();
-                    }
+                    }   
                   }
                   >
                   More Details
@@ -480,7 +494,10 @@ function newt(props) {
                   backgroundColor: theme.colors.background,
                   borderRadius:10,
                   borderWidth: 1,}}
-                onPress={() => {}}
+                onPress={() => {
+                  randomize();
+                  }
+                }
               >
                 Randomize
               </Button>
