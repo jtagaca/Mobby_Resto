@@ -11,22 +11,46 @@ import {
 import { Button, Text, TextInput } from "react-native-paper";
 import { useSelector } from "react-redux";
 import email from 'react-native-email';
+import RestaurantReducer from "../../redux/reducers/RestaurantReducer";
 
 const ContactScreen = (props) => {
   const testing = 'ppark3@csub.edu';
   const fullContacts = ['ppark3@csub.edu', 'dgonzalez94@csub.edu', 'laguilar21@csub.edu', 'jtagaca@csub.edu'];
+
+  const regEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
   
   const [emailText, setEmail] = useState('');
   const [subjectline, setSubjectline] = useState('');
   const [bodyText, setBody] = useState('');
 
-  handleEmail = () => {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleEmail = () => {
     const to = fullContacts; // set this to whomever should receive the support email
+
+    if (regEmail.test(emailText) === false)
+    {
+      alert('Not a valid email address');
+      return;
+    }
+    if (subjectline.length < 1)
+    {
+      alert('Please enter a subject');
+      return;
+    }
+    if (bodyText.length < 1)
+    {
+      alert('Please enter a message');
+      return;
+    }
     email(to, {
         cc: emailText,
         subject: subjectline,
         body: bodyText,
     }).catch(console.error);
+
+    setSubmitted(true);
+
   }
 
   const theme = useSelector((state) => state.theme.theme);
@@ -42,23 +66,21 @@ const ContactScreen = (props) => {
       </View>
         <View>
         <TextInput
-          value={this.state.value}
-          onChangeText={(text) => {
-            setEmail(text);
-            this.setState({value: text})
-            }
-          }
+          value={emailText}
+          onChangeText={(text) => setEmail(text)}
           placeholder="Your Email"
           name="email"
           style={styles.input}
         />
         <TextInput
+          value={subjectline}
           onChangeText={(text) => setSubjectline(text)}
           placeholder="Subject"
           name="subject"
           style={styles.input}
         />
         <TextInput
+          value={bodyText}
           onChangeText={(text) => setBody(text)}
           placeholder="Message"
           name="message"
@@ -73,8 +95,7 @@ const ContactScreen = (props) => {
           color={theme.colors.background}
           //onPress={handleEmail}
           onPress={() => {
-            handleEmail();
-            this.setState({value: ''});
+              handleEmail();
             }
           }
         >
@@ -84,16 +105,22 @@ const ContactScreen = (props) => {
           style={styles.buttonStyle, {backgroundColor: theme.colors.primary}}
           color={theme.colors.background}
           onPress={() =>
-            Alert.alert("Discard message?", "", [
+            Alert.alert((submitted) ? "Done?" : "Discard message?", "", [
               {
                 text: "Yes",
-                onPress: () => props.navigation.goBack(),
+                onPress: () => { 
+                  props.navigation.goBack(); 
+                  setEmail('');
+                  setSubjectline('');
+                  setBody('');
+                  setSubmitted(false);
+                },
               },
               { text: "No" },
             ])
           }
         >
-          Cancel
+          {(submitted) ? 'Done' : 'Cancel'}
         </Button>
         </View>
       </View>
