@@ -30,7 +30,7 @@ const ContactScreen = (props) => {
 
     if (regEmail.test(emailText) === false)
     {
-      alert('Not a valid email address');
+      alert('Invalid email address');
       return;
     }
     if (subjectline.length < 1)
