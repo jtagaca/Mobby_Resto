@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import{StyleSheet, View, Image, SafeAreaView} from 'react-native';
 import { Button } from 'react-native-paper';
-import { Title, Card, Avatar, Caption, Text, TouchableRipple } from 'react-native-paper';
+import { Title, Card, Avatar, Caption, Text, TouchableRipple, ActivityIndicator } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons'; 
 
@@ -169,9 +169,6 @@ export default function ProfileScreen(props){
                         </View>
                     </TouchableRipple >
 
-                    <Text style={{ color: 'black' }}>
-                        {(favorites) ? (favorites[0].name) : null}
-                    </Text>
                 </View>
             </SafeAreaView>
         )

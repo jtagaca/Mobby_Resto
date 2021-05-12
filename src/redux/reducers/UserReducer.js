@@ -25,13 +25,14 @@ export default (state = INITIAL_STATE, action) => {
         case USER_REMOVE_FAVORITE:
             let removalTemp = state.favorites;
             
-            removalTemp.splice(removalTemp.indexOf(
-                (function(favorite, index) {
-                    console.log(favorite)
-                if (favorite.id === action.payload)
-                    return true;
-                }
-            )
+            removalTemp.splice(removalTemp.findIndex(
+                    (function(favorite, index) {
+                        if (favorite.id === action.payload) {
+                            return true;
+                        }
+                    }
+                )
+            
             ), 1);
             return {...state, favorites: removalTemp }
         default:

@@ -42,7 +42,7 @@ const RestaurantDetailsScreen = (props) => {
     const deleteFavorite = () => {
         if (favorited)
         {
-            dispatch(removeFavorite());
+            dispatch(removeFavorite(restaurant.id));
             setFavorited(false);
         }
     }
