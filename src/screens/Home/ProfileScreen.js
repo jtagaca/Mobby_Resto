@@ -14,43 +14,7 @@ import { AUTH_LOGOUT } from '../../redux/actions/types';
 
 export default function ProfileScreen(props){
     const dispatch = useDispatch()
-
-    const load = async () => {
-        try {
-          let name = await AsyncStorage.getItem("myName")
-          {/*let bio = await AsyncStorage.getItem("myBio")
-          let loc = await AsyncStorage.getItem("myLoc")
-          let phone = await AsyncStorage.getItem("myPhone")
-        */}
-          let email = await AsyncStorage.getItem("myEmail")
     
-    
-          if(name !== null){
-            setName(name);
-          }
-          {/* if(bio !== null){
-            setBio(bio);
-          }
-          if(loc !== null){
-            setLoc(loc);
-          }
-         if(phone !== null){
-          setPhone(phone);
-         }
-        */}
-          if(email !== null){
-            setEmail(email);
-          }
-          
-        } catch (error) {
-          alert(console.error());
-          
-        }
-    }
-      
-      useEffect(() => {
-        load();
-      },[]);
     const switchTheme = (payload) => {
         dispatch(themeSwitch(payload))
     }
