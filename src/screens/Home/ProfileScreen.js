@@ -55,7 +55,7 @@ export default function ProfileScreen(props){
         return(
             <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
                 <View style={styles.userInfo}>
-                    <View style={{flexDirection: 'row', marginTop: 15}}>
+                    <View style={{flexDirection: 'row', marginTop: 25}}>
                         <Avatar.Image 
                         source={require("../../../assets/templogo.png")}>
                         </Avatar.Image>
@@ -63,15 +63,19 @@ export default function ProfileScreen(props){
                             <Title style={[styles.title, {marginTop: 15, marginBottom: 5,}]}>
                                 {user.userName}
                             </Title>
-                        <Text style={{marginLeft: 20}}>
-                            {user.email}
+                        <Text style={{marginLeft: 5}}>
+                        <MaterialIcons name="email" size={10} color="grey"/>
+                            : {user.email}
                         </Text>
-                            <Caption style={styles.Caption}>
-                                {bio}
+                            {/*<Caption style={styles.Caption}>
+                                About Me: {bio}
                             </Caption>
-                           
+                            */}
                         </View>
                     </View>
+                    <Caption style={styles.Caption}>
+                                About Me: {bio}
+                    </Caption>
                 </View>
                 {/* 
                 <View style={styles.userInfo}>
@@ -153,14 +157,15 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 24,
+        fontSize: 30,
         fontWeight: 'bold',
     },
 
-    caption: {
+    Caption: {
         fontSize: 14,
         lineHeight: 14,
         fontWeight: '500',
+        marginTop: 20,
     },
 
     row: {
@@ -188,13 +193,13 @@ const styles = StyleSheet.create({
       },
       menuItem: {
         flexDirection: 'row',
-        paddingVertical: 15,
+        paddingVertical:25,
         paddingHorizontal: 30,
       },
       menuItemText: {
         marginLeft: 20,
         fontWeight: '600',
-        fontSize: 16,
+        fontSize: 22,
         lineHeight: 26,
       },
       text:{
