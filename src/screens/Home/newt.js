@@ -390,64 +390,73 @@ function newt(props) {
                     />
                   </TouchableOpacity>
                   <Card.Actions style={styles.actionContainer}>
-                    <TouchableOpacity
-                      style={
-                        (styles.buttonContainer,
-                        { borderWidth: 2, borderColor: theme.colors.primary })
-                      }
-                    >
-                      <IconButton
-                        icon="directions"
-                        color={theme.colors.background}
-                        onPress={() => CallNum(item.display_phone)}
-                      >
-                        {/* <Icon
+                    <View style={{ flexDirection: "row" }}>
+                      <View style={{ flexDirection: "row" }}>
+                        <TouchableOpacity
+                          style={
+                            (styles.buttonContainer,
+                            {
+                              borderWidth: 2,
+                              borderColor: theme.colors.primary,
+                            })
+                          }
+                        >
+                          <IconButton
+                            icon="directions"
+                            color={theme.colors.background}
+                            onPress={() => CallNum(item.display_phone)}
+                          >
+                            {/* <Icon
                           style={{ color: theme.colors.background }}
                           name="phone"
                           size={19}
 
                         /> */}
-                      </IconButton>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={
-                        (styles.buttonContainer,
-                        { borderWidth: 2, borderColor: theme.colors.primary })
-                      }
-                    >
-                      <IconButton
-                        // style={{ backgroundColor: theme.colors.primary }}
-                        onPress={() =>
-                          openMap({
-                            end: item.location.display_address,
-                          })
-                        }
-                        icon="map-search-outline"
-                        // <Image
-                        //   source={require("./directions.png")}
-                        //   style={
-                        //     ({
-                        //       width: 25,
-                        //       height: 25,
-                        //       // tintColor: {
-                        //       //   theme.colors.primary},
-                        //     })
-                        //     // { color: theme.colors.backgroundColor }
-                        //   }
-                        // />
-                      >
-                        {/* {" "}
+                          </IconButton>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={
+                            (styles.buttonContainer,
+                            {
+                              borderWidth: 2,
+                              borderColor: theme.colors.primary,
+                            })
+                          }
+                        >
+                          <IconButton
+                            // style={{ backgroundColor: theme.colors.primary }}
+                            onPress={() =>
+                              openMap({
+                                end: item.location.display_address,
+                              })
+                            }
+                            icon="map-search-outline"
+                            // <Image
+                            //   source={require("./directions.png")}
+                            //   style={
+                            //     ({
+                            //       width: 25,
+                            //       height: 25,
+                            //       // tintColor: {
+                            //       //   theme.colors.primary},
+                            //     })
+                            //     // { color: theme.colors.backgroundColor }
+                            //   }
+                            // />
+                          >
+                            {/* {" "}
                         style={{ color: theme.colors.background }}
                         size={19} */}
-                      </IconButton>
-                    </TouchableOpacity>
-                    {/* need to move  */}
-                    <View
-                      style={
-                        (styles.buttonContainer,
-                        { backgroundColor: theme.colors.primary })
-                      }
-                    >
+                          </IconButton>
+                        </TouchableOpacity>
+                        {/* need to move  */}
+                        <View
+                          style={
+                            (styles.buttonContainer,
+                            { backgroundColor: theme.colors.primary })
+                          }
+                        ></View>
+                      </View>
                       <Rating
                         type="custom"
                         // defaultValue={item.rating}
