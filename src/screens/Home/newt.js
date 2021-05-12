@@ -391,7 +391,13 @@ function newt(props) {
                   </TouchableOpacity>
                   <Card.Actions style={styles.actionContainer}>
                     <View style={{ flexDirection: "row" }}>
-                      <View style={{ flexDirection: "row" }}>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          marginRight: 40,
+                          backgroundColor: "grey",
+                        }}
+                      >
                         <TouchableOpacity
                           style={
                             (styles.buttonContainer,
@@ -457,18 +463,25 @@ function newt(props) {
                           }
                         ></View>
                       </View>
-                      <Rating
-                        type="custom"
-                        // defaultValue={item.rating}
-                        imageSize={20}
-                        startingValue={item.rating}
-                        ratingBackgroundColor={theme.colors.surface}
-                        tintColor={theme.colors.background}
-                        ratingColor={theme.colors.primary}
-                        ratingCount={5}
-                        unSelectedColor="black"
-                        readonly
-                      />
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          alignSelf: "center",
+                        }}
+                      >
+                        <Rating
+                          type="custom"
+                          // defaultValue={item.rating}
+                          imageSize={20}
+                          startingValue={item.rating}
+                          ratingBackgroundColor={theme.colors.surface}
+                          tintColor={theme.colors.background}
+                          ratingColor={theme.colors.primary}
+                          ratingCount={5}
+                          unSelectedColor="black"
+                          readonly
+                        />
+                      </View>
                     </View>
                   </Card.Actions>
                 </Card>
