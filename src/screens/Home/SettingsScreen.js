@@ -7,11 +7,12 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
+
 import { useSelector, useDispatch } from "react-redux";
 import { lightTheme, darkTheme } from "../../global/";
 import { themeSwitch } from "../../redux/actions/ThemeActions";
 import { AUTH_LOGOUT } from "../../redux/actions/types";
-import { Button } from "react-native-paper";
+import { Button, IconButton } from "react-native-paper";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { Title, Card, TouchableRipple, Switch } from "react-native-paper";
@@ -21,6 +22,10 @@ import { Ionicons } from "@expo/vector-icons";
 
 export default function SettingsScreen(props) {
   const dispatch = useDispatch();
+
+  let iconArr = ["weather-sunny", "brightness-4"];
+  const [icon, setIcon] = useState(iconArr[0]);
+
   const switchTheme = (payload) => {
     dispatch(themeSwitch(payload));
   };
@@ -28,17 +33,17 @@ export default function SettingsScreen(props) {
     dispatch({ type: AUTH_LOGOUT });
   };
 
-
   const onHit = () => {
     !theme.dark ? (nextTheme = darkTheme) : (nextTheme = lightTheme);
+    if (icon == iconArr[0]) {
+      setIcon(iconArr[1]);
+    } else {
+      setIcon(iconArr[0]);
+    }
     switchTheme(nextTheme);
   };
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState)
-
-  ;
-
-
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   let nextTheme;
   const theme = useSelector((state) => state.theme.theme);
@@ -46,7 +51,7 @@ export default function SettingsScreen(props) {
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <View style={styles.root}>
         <LinearGradient
-          colors={["#009387", theme.colors.background ]}
+          colors={["#009387", theme.colors.background]}
           style={{ height: "20%" }}
         />
         <View style={{ alignItems: "center" }}>
@@ -65,15 +70,18 @@ export default function SettingsScreen(props) {
           <Title style={{ fontSize: 25, fontWeight: "900" }}> Settings </Title>
         </View>
 
-        <View style={styles.container}>
+        <View style={{ backgroundColor: "grey" }}>
+          <View>
+            <IconButton icon={icon}></IconButton>
+          </View>
+
           <Switch
             trackColor={{ false: "#696969", true: "#009387" }}
             thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
             ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch }
+            onValueChange={toggleSwitch}
             value={isEnabled}
-            onChange={()=>onHit()}
-
+            onChange={() => onHit()}
           />
         </View>
 
@@ -127,4 +135,4 @@ const styles = StyleSheet.create({
   },
 });
 
-//export default SettingsScreen;
+// export default SettingsScreen;
