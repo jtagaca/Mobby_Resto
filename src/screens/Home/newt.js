@@ -238,7 +238,7 @@ function newt(props) {
                 // location is not updating
               />
             </View>
-            <View style={{ backgroundColor: "white" }}>
+            <View style={{ backgroundColor: "white", paddingTop: 30 }}>
               <View
                 style={{
                   flexDirection: "row",
@@ -257,10 +257,23 @@ function newt(props) {
                       padding: 10,
                       // marginTop: 10,
                       // marginRight: ,
-                      backgroundColor: "grey",
+                      // backgroundColor: "grey",
+                      borderRadius: 10,
+                      borderColor: theme.colors.primary,
+                      borderWidth: 1,
+                      backgroundColor: theme.colors.primary,
                     }}
                   >
-                    <Text style={{ alignSelf: "flex-end", padding: 5 }}>0</Text>
+                    <Text
+                      style={{
+                        alignSelf: "flex-end",
+                        padding: 5,
+                        color: "white",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      0
+                    </Text>
                   </View>
 
                   <Slider
@@ -283,13 +296,26 @@ function newt(props) {
                   <View
                     style={{
                       alignSelf: "flex-end",
-                      padding: 15,
+                      padding: 10,
                       // marginTop: 10,
-                      // marginRight: 25,
-                      backgroundColor: "grey",
+                      // marginRight: ,
+                      // backgroundColor: "grey",
+                      borderRadius: 10,
+                      borderColor: theme.colors.primary,
+                      borderWidth: 1,
+                      backgroundColor: theme.colors.primary,
                     }}
                   >
-                    <Text>5</Text>
+                    <Text
+                      style={{
+                        alignSelf: "flex-end",
+                        padding: 5,
+                        color: "white",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      5
+                    </Text>
                   </View>
                 </View>
 
