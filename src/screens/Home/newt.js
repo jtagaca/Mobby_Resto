@@ -395,66 +395,82 @@ function newt(props) {
                         style={{
                           flexDirection: "row",
                           marginRight: 40,
-                          backgroundColor: "grey",
+                          // backgroundColor: "grey",
                         }}
                       >
-                        <TouchableOpacity
-                          style={
-                            (styles.buttonContainer,
-                            {
-                              borderWidth: 2,
-                              borderColor: theme.colors.primary,
-                            })
-                          }
+                        <View
+                          style={{
+                            marginRight: 20,
+                            marginLeft: 10,
+                            padding: 10,
+                          }}
                         >
-                          <IconButton
-                            icon="directions"
-                            color={theme.colors.background}
-                            onPress={() => CallNum(item.display_phone)}
+                          <TouchableOpacity
+                            style={
+                              (styles.buttonContainer,
+                              {
+                                borderWidth: 2,
+                                borderColor: theme.colors.primary,
+                              })
+                            }
                           >
-                            {/* <Icon
+                            <IconButton
+                              icon="directions"
+                              color={theme.colors.background}
+                              onPress={() => CallNum(item.display_phone)}
+                            >
+                              {/* <Icon
                           style={{ color: theme.colors.background }}
                           name="phone"
                           size={19}
 
                         /> */}
-                          </IconButton>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                          style={
-                            (styles.buttonContainer,
-                            {
-                              borderWidth: 2,
-                              borderColor: theme.colors.primary,
-                            })
-                          }
+                            </IconButton>
+                          </TouchableOpacity>
+                        </View>
+                        <View
+                          style={{
+                            marginLeft: 20,
+                            marginRight: 10,
+                            padding: 10,
+                          }}
                         >
-                          <IconButton
-                            // style={{ backgroundColor: theme.colors.primary }}
-                            onPress={() =>
-                              openMap({
-                                end: item.location.display_address,
+                          <TouchableOpacity
+                            style={
+                              (styles.buttonContainer,
+                              {
+                                borderWidth: 2,
+                                borderColor: theme.colors.primary,
                               })
                             }
-                            icon="map-search-outline"
-                            // <Image
-                            //   source={require("./directions.png")}
-                            //   style={
-                            //     ({
-                            //       width: 25,
-                            //       height: 25,
-                            //       // tintColor: {
-                            //       //   theme.colors.primary},
-                            //     })
-                            //     // { color: theme.colors.backgroundColor }
-                            //   }
-                            // />
                           >
-                            {/* {" "}
+                            <IconButton
+                              // style={{ backgroundColor: theme.colors.primary }}
+                              onPress={() =>
+                                openMap({
+                                  end: item.location.display_address,
+                                })
+                              }
+                              icon="map-search-outline"
+                              // <Image
+                              //   source={require("./directions.png")}
+                              //   style={
+                              //     ({
+                              //       width: 25,
+                              //       height: 25,
+                              //       // tintColor: {
+                              //       //   theme.colors.primary},
+                              //     })
+                              //     // { color: theme.colors.backgroundColor }
+                              //   }
+                              // />
+                            >
+                              {/* {" "}
                         style={{ color: theme.colors.background }}
                         size={19} */}
-                          </IconButton>
-                        </TouchableOpacity>
+                            </IconButton>
+                          </TouchableOpacity>
+                        </View>
                         {/* need to move  */}
                         <View
                           style={
