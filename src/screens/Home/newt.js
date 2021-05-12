@@ -238,7 +238,15 @@ function newt(props) {
                 // location is not updating
               />
             </View>
-            <View style={{ backgroundColor: "white" }}>
+            <View
+              style={{
+                backgroundColor: "white",
+                paddingTop: 30,
+                paddingBottom: 30,
+                borderWidth: 5,
+                borderColor: theme.colors.primary,
+              }}
+            >
               <View
                 style={{
                   flexDirection: "row",
@@ -248,6 +256,9 @@ function newt(props) {
                   style={{
                     flex: 1,
                     flexDirection: "row",
+                    marginRight: 10,
+                    marginLeft: 10,
+
                     // backgroundColor: theme.colors.primary,
                   }}
                 >
@@ -257,15 +268,28 @@ function newt(props) {
                       padding: 10,
                       // marginTop: 10,
                       // marginRight: ,
-                      backgroundColor: "grey",
+                      // backgroundColor: "grey",
+                      borderRadius: 10,
+                      borderColor: theme.colors.primary,
+                      borderWidth: 1,
+                      backgroundColor: theme.colors.primary,
                     }}
                   >
-                    <Text style={{ alignSelf: "flex-end", padding: 5 }}>0</Text>
+                    <Text
+                      style={{
+                        alignSelf: "flex-end",
+                        padding: 5,
+                        color: "white",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      0
+                    </Text>
                   </View>
 
                   <Slider
                     style={{
-                      width: 180,
+                      width: 195,
                       height: 25,
                     }}
                     minimumValue={0}
@@ -276,20 +300,30 @@ function newt(props) {
                     onSlidingComplete={(value) => {
                       setRating(value);
                     }}
-                    // how is value changing shouldn't value be initialized to be rating value
                     value={0}
                     thumbTintColor={theme.colors.primary}
                   />
                   <View
                     style={{
                       alignSelf: "flex-end",
-                      padding: 15,
-                      // marginTop: 10,
-                      // marginRight: 25,
-                      backgroundColor: "grey",
+                      padding: 10,
+
+                      borderRadius: 10,
+                      borderColor: theme.colors.primary,
+                      borderWidth: 1,
+                      backgroundColor: theme.colors.primary,
                     }}
                   >
-                    <Text>5</Text>
+                    <Text
+                      style={{
+                        alignSelf: "flex-end",
+                        padding: 5,
+                        color: "white",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      5
+                    </Text>
                   </View>
                 </View>
 
@@ -343,96 +377,116 @@ function newt(props) {
                   <Card.Content>
                     <Title>{item.name}</Title>
                   </Card.Content>
-                  <Card.Cover
-                    source={{ uri: item.image_url ? item.image_url : null }}
-                  />
+                  <TouchableOpacity
+                    onPress={() =>
+                      props.navigation.navigate("RestaurantDetails", {
+                        name: item.name,
+                        restaurant: item,
+                      })
+                    }
+                  >
+                    <Card.Cover
+                      source={{ uri: item.image_url ? item.image_url : null }}
+                    />
+                  </TouchableOpacity>
                   <Card.Actions style={styles.actionContainer}>
-                    <TouchableOpacity style={styles.buttonContainer}>
-                      <Button
-                        style={{ backgroundColor: theme.colors.primary }}
-                        back
-                        onPress={() =>
-                          props.navigation.navigate("RestaurantDetails", {
-                            name: item.name,
-                            restaurant: item,
-                          })
-                        }
+                    <View style={{ flexDirection: "row" }}>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          marginRight: 40,
+                          // backgroundColor: "grey",
+                        }}
                       >
-                        <Text style={{ color: theme.colors.background }}>
-                          More
-                        </Text>
-                      </Button>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={
-                        (styles.buttonContainer,
-                        { borderWidth: 2, borderColor: theme.colors.primary })
-                      }
-                    >
-                      <IconButton
-                        icon="directions"
-                        color={theme.colors.background}
-                        onPress={() => CallNum(item.display_phone)}
-                      >
-                        {/* <Icon
+                        <View
+                          style={{
+                            marginRight: 20,
+                            marginLeft: 10,
+                            padding: 10,
+                          }}
+                        >
+                          <TouchableOpacity
+                            style={
+                              (styles.buttonContainer,
+                              {
+                                borderWidth: 2,
+
+                                backgroundColor: theme.colors.primary,
+                                borderRadius: 20,
+                                borderColor: theme.colors.primary,
+                              })
+                            }
+                          >
+                            <IconButton
+                              icon="phone"
+                              color={theme.colors.background}
+                              onPress={() => CallNum(item.display_phone)}
+                            >
+                              {/* <Icon
                           style={{ color: theme.colors.background }}
                           name="phone"
                           size={19}
 
                         /> */}
-                      </IconButton>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      style={
-                        (styles.buttonContainer,
-                        { borderWidth: 2, borderColor: theme.colors.primary })
-                      }
-                    >
-                      <IconButton
-                        // style={{ backgroundColor: theme.colors.primary }}
-                        onPress={() =>
-                          openMap({
-                            end: item.location.display_address,
-                          })
-                        }
-                        icon="map-search-outline"
-                        // <Image
-                        //   source={require("./directions.png")}
-                        //   style={
-                        //     ({
-                        //       width: 25,
-                        //       height: 25,
-                        //       // tintColor: {
-                        //       //   theme.colors.primary},
-                        //     })
-                        //     // { color: theme.colors.backgroundColor }
-                        //   }
-                        // />
+                            </IconButton>
+                          </TouchableOpacity>
+                        </View>
+                        <View
+                          style={{
+                            marginLeft: 20,
+                            marginRight: 10,
+                            padding: 10,
+                          }}
+                        >
+                          <TouchableOpacity
+                            style={
+                              (styles.buttonContainer,
+                              {
+                                borderWidth: 2,
+                                borderRadius: 20,
+                                backgroundColor: theme.colors.primary,
+                                borderColor: theme.colors.primary,
+                              })
+                            }
+                          >
+                            <IconButton
+                              onPress={() =>
+                                openMap({
+                                  end: item.location.display_address,
+                                })
+                              }
+                              color={theme.colors.background}
+                              icon="directions"
+                            ></IconButton>
+                          </TouchableOpacity>
+                        </View>
+                        {/* need to move  */}
+                        <View
+                          style={
+                            (styles.buttonContainer,
+                            { backgroundColor: theme.colors.primary })
+                          }
+                        ></View>
+                      </View>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          alignSelf: "center",
+                        }}
                       >
-                        {/* {" "}
-                        style={{ color: theme.colors.background }}
-                        size={19} */}
-                      </IconButton>
-                    </TouchableOpacity>
-                    {/* need to move  */}
-                    <View
-                      style={
-                        (styles.buttonContainer,
-                        { backgroundColor: theme.colors.primary })
-                      }
-                    >
-                      <Rating
-                        type="custom"
-                        // defaultValue={item.rating}
-                        imageSize={20}
-                        startingValue={item.rating}
-                        ratingBackgroundColor={theme.colors.surface}
-                        tintColor={theme.colors.background}
-                        ratingColor={theme.colors.primary}
-                        ratingCount={5}
-                        unSelectedColor="black"
-                        readonly
-                      />
+                        <Rating
+                          type="custom"
+                          // defaultValue={item.rating}
+                          imageSize={20}
+                          startingValue={item.rating}
+                          ratingBackgroundColor={theme.colors.surface}
+                          tintColor={theme.colors.background}
+                          ratingColor={theme.colors.primary}
+                          ratingCount={5}
+                          unSelectedColor="black"
+                          readonly
+                        />
+                      </View>
                     </View>
                   </Card.Actions>
                 </Card>
@@ -649,6 +703,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   popupmodal: {
-    margin: 50,
+    margin: 20,
   },
 });
