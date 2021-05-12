@@ -13,6 +13,10 @@ import { addFavorite, removeFavorite } from '../../redux/actions/UserActions';
 const RestaurantDetailsScreen = (props) => {
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(fetchRestaurantDetails(props.route.params.restaurant.id));
+    }, []);
+
     const restaurant = useSelector((state) =>
     state.restaurantDetails.restaurantDetails
       ? state.restaurantDetails.restaurantDetails
@@ -23,10 +27,10 @@ const RestaurantDetailsScreen = (props) => {
     const favorites = useSelector((state) => state.user.favorites)
     
     const [favorited, setFavorited] = useState(false)
-    
-    
 
-    console.log(favorites)
+    // console.log(favorites)
+    
+    
 
     const setFavorite = () => {
         if (!favorited)
@@ -44,14 +48,9 @@ const RestaurantDetailsScreen = (props) => {
     }
 
     useEffect(() => {
-        dispatch(fetchRestaurantDetails(props.route.params.restaurant.id));
         LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
 
         if (!favorited && favorites.find(function(favorite, index) {
-            console.log(props.route.params.restaurant.id)
-            console.log(favorite.id)
-            console.log('?????')
-    
             if (props.route.params.restaurant.id === favorite.id)
                 return true;
         }))

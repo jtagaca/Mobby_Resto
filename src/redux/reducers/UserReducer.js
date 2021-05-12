@@ -25,8 +25,9 @@ export default (state = INITIAL_STATE, action) => {
         case USER_REMOVE_FAVORITE:
             let removalTemp = state.favorites;
             
-            removalTemp.splice(removalTemp.findIndex(
+            removalTemp.splice(removalTemp.indexOf(
                 (function(favorite, index) {
+                    console.log(favorite)
                 if (favorite.id === action.payload)
                     return true;
                 }

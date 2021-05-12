@@ -18,6 +18,7 @@ import EditProfileScreen from "./EditProfileScreen";
 import { useDispatch, useSelector } from "react-redux";
 
 import { StyleSheet, View } from "react-native";
+import FavoriteRestaurantsScreen from "./FavoriteRestaurantsScreen";
 
 const HomeStack = createStackNavigator();
 
@@ -116,6 +117,12 @@ const HomeStackScreen = ({ navigation }) => (
       component={SettingsScreen}
       options={{ headerShown: true, headerStyle: { alignItems: "center" } }}
       options={({ route }) => ({ title: route.params.name })}
+    />
+
+    <HomeStack.Screen
+      name="FavoriteRestaurants"
+      component={FavoriteRestaurantsScreen}
+      options={{ headerShown: true }}
     />
     {/* why is this not working? not showing the header*/}
   </HomeStack.Navigator>

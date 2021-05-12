@@ -133,11 +133,11 @@ export default function ProfileScreen(props){
                 */}
     
                 <View style={styles.menuWrapper}>
-                    <TouchableRipple onPress={() =>{}}>
+                    <TouchableRipple onPress={() => props.navigation.navigate('FavoriteRestaurants')}>
                         <View style={styles.menuItem}>
                         <MaterialIcons name="star" size={20} color="gold" size={25}/>
                             <Text style={styles.menuItemText}>
-                                Favorite Restraunts
+                                Favorite Restaurants
                             </Text>
                         </View>
                     </TouchableRipple>
