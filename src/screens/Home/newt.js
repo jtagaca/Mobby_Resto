@@ -243,6 +243,8 @@ function newt(props) {
                 backgroundColor: "white",
                 paddingTop: 30,
                 paddingBottom: 30,
+                borderWidth: 5,
+                borderColor: theme.colors.primary,
               }}
             >
               <View
