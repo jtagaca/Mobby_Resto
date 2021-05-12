@@ -410,12 +410,15 @@ function newt(props) {
                               (styles.buttonContainer,
                               {
                                 borderWidth: 2,
+
+                                backgroundColor: theme.colors.primary,
+                                borderRadius: 20,
                                 borderColor: theme.colors.primary,
                               })
                             }
                           >
                             <IconButton
-                              icon="directions"
+                              icon="phone"
                               color={theme.colors.background}
                               onPress={() => CallNum(item.display_phone)}
                             >
@@ -440,35 +443,21 @@ function newt(props) {
                               (styles.buttonContainer,
                               {
                                 borderWidth: 2,
+                                borderRadius: 20,
+                                backgroundColor: theme.colors.primary,
                                 borderColor: theme.colors.primary,
                               })
                             }
                           >
                             <IconButton
-                              // style={{ backgroundColor: theme.colors.primary }}
                               onPress={() =>
                                 openMap({
                                   end: item.location.display_address,
                                 })
                               }
-                              icon="map-search-outline"
-                              // <Image
-                              //   source={require("./directions.png")}
-                              //   style={
-                              //     ({
-                              //       width: 25,
-                              //       height: 25,
-                              //       // tintColor: {
-                              //       //   theme.colors.primary},
-                              //     })
-                              //     // { color: theme.colors.backgroundColor }
-                              //   }
-                              // />
-                            >
-                              {/* {" "}
-                        style={{ color: theme.colors.background }}
-                        size={19} */}
-                            </IconButton>
+                              color={theme.colors.background}
+                              icon="directions"
+                            ></IconButton>
                           </TouchableOpacity>
                         </View>
                         {/* need to move  */}
