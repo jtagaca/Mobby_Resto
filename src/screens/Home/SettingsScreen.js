@@ -70,7 +70,7 @@ export default function SettingsScreen(props) {
           <Title style={{ fontSize: 25, fontWeight: "900" }}> Settings </Title>
         </View>
 
-        <View style={{ backgroundColor: "grey", flexDirection: "row" }}>
+        <View style={{ flexDirection: "row", marginTop: 60 }}>
           <View
             style={{
               justifyContent: "center", //Centered vertically
@@ -79,7 +79,7 @@ export default function SettingsScreen(props) {
             }}
           >
             <View>
-              <IconButton icon={icon}></IconButton>
+              <IconButton size={70} icon={icon}></IconButton>
             </View>
 
             <Switch
@@ -93,13 +93,15 @@ export default function SettingsScreen(props) {
           </View>
         </View>
 
-        <TouchableOpacity
-          style={styles.ScreenButton}
-          onPress={logout}
-          underlayColor="#fff"
-        >
-          <Text style={styles.text}> Logout </Text>
-        </TouchableOpacity>
+        <View style={{ marginTop: 100 }}>
+          <TouchableOpacity
+            style={styles.ScreenButton}
+            onPress={logout}
+            underlayColor="#fff"
+          >
+            <Text style={styles.text}> Logout </Text>
+          </TouchableOpacity>
+        </View>
 
         {/* END OF MAIN VIEW */}
       </View>
