@@ -251,12 +251,22 @@ function newt(props) {
                     // backgroundColor: theme.colors.primary,
                   }}
                 >
-                  <Text style={{ alignSelf: "flex-end", padding: 5 }}>0</Text>
+                  <View
+                    style={{
+                      alignSelf: "flex-end",
+                      padding: 10,
+                      // marginTop: 10,
+                      // marginRight: ,
+                      backgroundColor: "grey",
+                    }}
+                  >
+                    <Text style={{ alignSelf: "flex-end", padding: 5 }}>0</Text>
+                  </View>
 
                   <Slider
                     style={{
-                      width: 225,
-                      height: 40,
+                      width: 180,
+                      height: 25,
                     }}
                     minimumValue={0}
                     maximumValue={5}
@@ -270,8 +280,17 @@ function newt(props) {
                     value={0}
                     thumbTintColor={theme.colors.primary}
                   />
-
-                  <Text style={{ alignSelf: "flex-end", padding: 3 }}>5</Text>
+                  <View
+                    style={{
+                      alignSelf: "flex-end",
+                      padding: 15,
+                      // marginTop: 10,
+                      // marginRight: 25,
+                      backgroundColor: "grey",
+                    }}
+                  >
+                    <Text>5</Text>
+                  </View>
                 </View>
 
                 <View style={{ flex: 0.2 }}>
