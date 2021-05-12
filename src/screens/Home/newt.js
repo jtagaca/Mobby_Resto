@@ -238,7 +238,13 @@ function newt(props) {
                 // location is not updating
               />
             </View>
-            <View style={{ backgroundColor: "white", paddingTop: 30 }}>
+            <View
+              style={{
+                backgroundColor: "white",
+                paddingTop: 30,
+                paddingBottom: 30,
+              }}
+            >
               <View
                 style={{
                   flexDirection: "row",
@@ -248,6 +254,9 @@ function newt(props) {
                   style={{
                     flex: 1,
                     flexDirection: "row",
+                    marginRight: 10,
+                    marginLeft: 10,
+
                     // backgroundColor: theme.colors.primary,
                   }}
                 >
@@ -278,7 +287,7 @@ function newt(props) {
 
                   <Slider
                     style={{
-                      width: 180,
+                      width: 195,
                       height: 25,
                     }}
                     minimumValue={0}
@@ -289,7 +298,6 @@ function newt(props) {
                     onSlidingComplete={(value) => {
                       setRating(value);
                     }}
-                    // how is value changing shouldn't value be initialized to be rating value
                     value={0}
                     thumbTintColor={theme.colors.primary}
                   />
@@ -297,9 +305,7 @@ function newt(props) {
                     style={{
                       alignSelf: "flex-end",
                       padding: 10,
-                      // marginTop: 10,
-                      // marginRight: ,
-                      // backgroundColor: "grey",
+
                       borderRadius: 10,
                       borderColor: theme.colors.primary,
                       borderWidth: 1,
@@ -675,6 +681,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   popupmodal: {
-    margin: 50,
+    margin: 20,
   },
 });
