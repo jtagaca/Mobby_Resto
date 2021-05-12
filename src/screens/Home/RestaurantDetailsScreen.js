@@ -49,14 +49,17 @@ const RestaurantDetailsScreen = (props) => {
 
     useEffect(() => {
         LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
-
+        if(favorites)
+        {
         if (!favorited && favorites.find(function(favorite, index) {
             if (props.route.params.restaurant.id === favorite.id)
                 return true;
         }))
+        
         {
             setFavorited(true);
         }
+    }
     }, []);
 
     function timeFormat (numStr) {
