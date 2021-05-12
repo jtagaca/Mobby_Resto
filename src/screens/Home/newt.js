@@ -193,7 +193,7 @@ function newt(props) {
             <View style={{ flexDirection: "row" }}>
               <View style={{ flex: 1 }}>
                 <Searchbar
-                  placeholder="What food would you like to eat..."
+                  placeholder="What food are you thinking..."
                   onChangeText={(value) => setSearchQuery(value)}
                   value={searchQuery}
                   onSubmitEditing={onSearch}
@@ -244,12 +244,18 @@ function newt(props) {
                   flexDirection: "row",
                 }}
               >
-                <View style={{ flex: 1, flexDirection: "row" }}>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    // backgroundColor: theme.colors.primary,
+                  }}
+                >
                   <Text style={{ alignSelf: "flex-end", padding: 5 }}>0</Text>
 
                   <Slider
                     style={{
-                      width: 250,
+                      width: 225,
                       height: 40,
                     }}
                     minimumValue={0}
@@ -265,7 +271,7 @@ function newt(props) {
                     thumbTintColor={theme.colors.primary}
                   />
 
-                  <Text style={{ alignSelf: "flex-end", padding: 5 }}>5</Text>
+                  <Text style={{ alignSelf: "flex-end", padding: 3 }}>5</Text>
                 </View>
 
                 <View style={{ flex: 0.2 }}>
