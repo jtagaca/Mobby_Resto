@@ -109,9 +109,9 @@ function newt(props) {
   const toggleOverlay2 = () => {
     setVisible(!visible);
   };
-  
+
   var iconArr = ["arrow-up-bold", "arrow-down-bold"];
-  
+
   // testing randomizer stuff
   const [indexNum, setIndexNum] = useState(0);
   const randomize = () => {
@@ -208,7 +208,7 @@ function newt(props) {
 
               <View style={{ flex: 0.2 }}>
                 <FAB
-                  icon="map-marker-plus"
+                  icon="filter-plus"
                   size={30}
                   onPress={() => toggleModal()}
                   onBackdropPress={() => toggleModal()}
@@ -219,10 +219,7 @@ function newt(props) {
 
             <View style={{ flexDirection: "row" }}>
               <View style={{ flex: 1, flexDirection: "row" }}>
-                  
-                <Text style={{ alignSelf: 'flex-end', padding: 5 }}>
-                  0
-                </Text>
+                <Text style={{ alignSelf: "flex-end", padding: 5 }}>0</Text>
 
                 <Slider
                   style={{ width: 300, height: 40 }}
@@ -239,9 +236,7 @@ function newt(props) {
                   thumbTintColor="blue"
                 />
 
-                <Text style={{ alignSelf: 'flex-end', padding: 5 }}>
-                  5
-                </Text>
+                <Text style={{ alignSelf: "flex-end", padding: 5 }}>5</Text>
               </View>
 
               <View style={{ flex: 0.2 }}>
@@ -335,9 +330,14 @@ function newt(props) {
                         </Text>
                       </Button>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonContainer, { borderWidth: 2, borderColor: theme.colors.primary }}>
+                    <TouchableOpacity
+                      style={
+                        (styles.buttonContainer,
+                        { borderWidth: 2, borderColor: theme.colors.primary })
+                      }
+                    >
                       <IconButton
-                        icon='directions'
+                        icon="directions"
                         color={theme.colors.background}
                         onPress={() => CallNum(item.display_phone)}
                       >
@@ -349,7 +349,12 @@ function newt(props) {
                         /> */}
                       </IconButton>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonContainer, { borderWidth: 2, borderColor: theme.colors.primary }}>
+                    <TouchableOpacity
+                      style={
+                        (styles.buttonContainer,
+                        { borderWidth: 2, borderColor: theme.colors.primary })
+                      }
+                    >
                       <IconButton
                         // style={{ backgroundColor: theme.colors.primary }}
                         onPress={() =>
@@ -357,20 +362,19 @@ function newt(props) {
                             end: item.location.display_address,
                           })
                         }
-                        icon='map-search-outline'
-                          // <Image
-                          //   source={require("./directions.png")}
-                          //   style={
-                          //     ({
-                          //       width: 25,
-                          //       height: 25,
-                          //       // tintColor: {
-                          //       //   theme.colors.primary},
-                          //     })
-                          //     // { color: theme.colors.backgroundColor }
-                          //   }
-                          // />
-                        
+                        icon="map-search-outline"
+                        // <Image
+                        //   source={require("./directions.png")}
+                        //   style={
+                        //     ({
+                        //       width: 25,
+                        //       height: 25,
+                        //       // tintColor: {
+                        //       //   theme.colors.primary},
+                        //     })
+                        //     // { color: theme.colors.backgroundColor }
+                        //   }
+                        // />
                       >
                         {/* {" "}
                         style={{ color: theme.colors.background }}
@@ -443,8 +447,7 @@ function newt(props) {
               onPress={() => {
                 randomize();
                 toggleOverlay();
-                }
-              }
+              }}
               size={30}
               color={theme.colors.background}
             />
@@ -456,48 +459,47 @@ function newt(props) {
               <View>
                 <Text style={{ color: "black" }}>
                   {restName()}
-                  {'\n'}
+                  {"\n"}
                 </Text>
                 <Card>
-                  <Card.Cover
-                      source={{ uri: restPhoto() }}
-                  />
+                  <Card.Cover source={{ uri: restPhoto() }} />
                 </Card>
-                <Button style={{ 
-                  marginRight:10,
-                  marginLeft:10,
-                  marginTop:10,
-                  paddingTop:1,
-                  paddingBottom:1,
-                  backgroundColor: theme.colors.background,
-                  borderRadius:10,
-                  borderWidth: 1,}}
+                <Button
+                  style={{
+                    marginRight: 10,
+                    marginLeft: 10,
+                    marginTop: 10,
+                    paddingTop: 1,
+                    paddingBottom: 1,
+                    backgroundColor: theme.colors.background,
+                    borderRadius: 10,
+                    borderWidth: 1,
+                  }}
                   onPress={() => {
-                      props.navigation.navigate("RestaurantDetails", {
-                        name: restName(),
-                        restaurant: restaurants[indexNum],
-                      });
-                      toggleOverlay();
-                    }   
-                  }
-                  >
+                    props.navigation.navigate("RestaurantDetails", {
+                      name: restName(),
+                      restaurant: restaurants[indexNum],
+                    });
+                    toggleOverlay();
+                  }}
+                >
                   More Details
                 </Button>
               </View>
               <Button
-                style={{ 
-                  marginRight:10,
-                  marginLeft:10,
-                  marginTop:10,
-                  paddingTop:1,
-                  paddingBottom:1,
+                style={{
+                  marginRight: 10,
+                  marginLeft: 10,
+                  marginTop: 10,
+                  paddingTop: 1,
+                  paddingBottom: 1,
                   backgroundColor: theme.colors.background,
-                  borderRadius:10,
-                  borderWidth: 1,}}
+                  borderRadius: 10,
+                  borderWidth: 1,
+                }}
                 onPress={() => {
                   randomize();
-                  }
-                }
+                }}
               >
                 Randomize
               </Button>
