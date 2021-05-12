@@ -70,19 +70,27 @@ export default function SettingsScreen(props) {
           <Title style={{ fontSize: 25, fontWeight: "900" }}> Settings </Title>
         </View>
 
-        <View style={{ backgroundColor: "grey" }}>
-          <View>
-            <IconButton icon={icon}></IconButton>
-          </View>
+        <View style={{ backgroundColor: "grey", flexDirection: "row" }}>
+          <View
+            style={{
+              justifyContent: "center", //Centered vertically
+              alignItems: "center", // Centered horizontally
+              flex: 1,
+            }}
+          >
+            <View>
+              <IconButton icon={icon}></IconButton>
+            </View>
 
-          <Switch
-            trackColor={{ false: "#696969", true: "#009387" }}
-            thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-            onChange={() => onHit()}
-          />
+            <Switch
+              trackColor={{ false: "#696969", true: "#009387" }}
+              thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+              onChange={() => onHit()}
+            />
+          </View>
         </View>
 
         <TouchableOpacity
