@@ -377,26 +377,19 @@ function newt(props) {
                   <Card.Content>
                     <Title>{item.name}</Title>
                   </Card.Content>
-                  <Card.Cover
-                    source={{ uri: item.image_url ? item.image_url : null }}
-                  />
+                  <TouchableOpacity
+                    onPress={() =>
+                      props.navigation.navigate("RestaurantDetails", {
+                        name: item.name,
+                        restaurant: item,
+                      })
+                    }
+                  >
+                    <Card.Cover
+                      source={{ uri: item.image_url ? item.image_url : null }}
+                    />
+                  </TouchableOpacity>
                   <Card.Actions style={styles.actionContainer}>
-                    <TouchableOpacity style={styles.buttonContainer}>
-                      <Button
-                        style={{ backgroundColor: theme.colors.primary }}
-                        back
-                        onPress={() =>
-                          props.navigation.navigate("RestaurantDetails", {
-                            name: item.name,
-                            restaurant: item,
-                          })
-                        }
-                      >
-                        <Text style={{ color: theme.colors.background }}>
-                          More
-                        </Text>
-                      </Button>
-                    </TouchableOpacity>
                     <TouchableOpacity
                       style={
                         (styles.buttonContainer,
