@@ -238,36 +238,45 @@ function newt(props) {
                 // location is not updating
               />
             </View>
-            <View style={{ flexDirection: "row" }}>
-              <View style={{ flex: 1, flexDirection: "row" }}>
-                <Text style={{ alignSelf: "flex-end", padding: 5 }}>0</Text>
+            <View style={{ backgroundColor: "white" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                }}
+              >
+                <View style={{ flex: 1, flexDirection: "row" }}>
+                  <Text style={{ alignSelf: "flex-end", padding: 5 }}>0</Text>
 
-                <Slider
-                  style={{ width: 300, height: 40 }}
-                  minimumValue={0}
-                  maximumValue={5}
-                  minimumTrackTintColor={theme.colors.primary}
-                  maximumTrackTintColor="grey"
-                  // onSlidingStartc
-                  onSlidingComplete={(value) => {
-                    setRating(value);
-                  }}
-                  // how is value changing shouldn't value be initialized to be rating value
-                  value={0}
-                  thumbTintColor="blue"
-                />
+                  <Slider
+                    style={{
+                      width: 250,
+                      height: 40,
+                    }}
+                    minimumValue={0}
+                    maximumValue={5}
+                    minimumTrackTintColor={theme.colors.primary}
+                    maximumTrackTintColor="grey"
+                    // onSlidingStartc
+                    onSlidingComplete={(value) => {
+                      setRating(value);
+                    }}
+                    // how is value changing shouldn't value be initialized to be rating value
+                    value={0}
+                    thumbTintColor={theme.colors.primary}
+                  />
 
-                <Text style={{ alignSelf: "flex-end", padding: 5 }}>5</Text>
-              </View>
+                  <Text style={{ alignSelf: "flex-end", padding: 5 }}>5</Text>
+                </View>
 
-              <View style={{ flex: 0.2 }}>
-                <FAB
-                  icon={econ}
-                  size={30}
-                  onPress={() => onPressicon(econ)}
-                  // onPress={() => onPressicon(econ)}
-                  style={{ backgroundColor: theme.colors.primary }}
-                />
+                <View style={{ flex: 0.2 }}>
+                  <FAB
+                    icon={econ}
+                    size={30}
+                    onPress={() => onPressicon(econ)}
+                    // onPress={() => onPressicon(econ)}
+                    style={{ backgroundColor: theme.colors.primary }}
+                  />
+                </View>
               </View>
             </View>
           </Modal>
