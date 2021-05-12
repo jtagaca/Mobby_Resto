@@ -61,7 +61,7 @@ export default function EditProfileScreen(props) {
             <MaterialIcons name="description" size={30} color="lightblue"/>
             <Text style={styles.innerText}>Edit Biography</Text>
           </View>
-            <Text style={{height: 20}}> New Biography: {bio} </Text>
+            <Text style={{height: 20, flex: 1, flexWrap: 'wrap'}}> Current Biography: {bio} </Text>
 
           
           <TextInput 
@@ -80,7 +80,7 @@ export default function EditProfileScreen(props) {
             <MaterialIcons name="location-pin" size={30} color="red"/>
             <Text style={styles.innerText}>Edit Location</Text>
           </View>
-            <Text style={{height: 20}}> New Location: {loc} </Text>    
+            <Text style={{height: 20}}> Current Location: {loc} </Text>    
 
           <TextInput 
             style={styles.inputText} 
@@ -92,6 +92,17 @@ export default function EditProfileScreen(props) {
           <TouchableOpacity style={styles.button} onPress= { () => saveLocation()}>
             <Text style={{color: "white"}}>
               Save Location
+            </Text>
+          </TouchableOpacity>
+
+          <View style={styles.saverow}>
+            <MaterialIcons name="save" size={30} color="lightgreen"/>
+            <Text style={styles.innerText}>Save All New Changes</Text>
+          </View>
+
+          <TouchableOpacity style={styles.button} onPress= { () => save()}>
+            <Text style={{color: "white"}}>
+              Save All
             </Text>
           </TouchableOpacity>
 
@@ -145,5 +156,12 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     marginBottom: 10,
+},
+
+saverow: {
+  flexDirection: 'row',
+  marginBottom: 10,
+  marginTop: 50,
+  marginLeft: 80,
 },
 })
