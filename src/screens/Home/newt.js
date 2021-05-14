@@ -34,6 +34,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Slider from "@react-native-community/slider";
 import color from "color";
 import { set } from "react-hook-form";
+import { MaterialIcons } from '@expo/vector-icons';
 
 export const CallNum = (number) => {
   let phoneNumber = "";
@@ -140,6 +141,28 @@ function newt(props) {
     if (!isLoading) {
       if (restaurants) {
         return restaurants[indexNum].image_url;
+      } else {
+        return "No available restaurants";
+      }
+    } else {
+      return "Nothing";
+    }
+  };
+  const restRating = () => {
+    if (!isLoading) {
+      if (restaurants) {
+        return restaurants[indexNum].rating;
+      } else {
+        return "No available restaurants";
+      }
+    } else {
+      return "Nothing";
+    }
+  };
+  const restRatingCount = () => {
+    if (!isLoading) {
+      if (restaurants) {
+        return restaurants[indexNum].review_count;
       } else {
         return "No available restaurants";
       }
@@ -544,10 +567,16 @@ function newt(props) {
               onBackdropPress={toggleOverlay}
             >
               <View>
-                <Text style={{ color: "black" }}>
+                <Text style={{ color: "black", fontSize: 18, fontWeight: 'bold'}}>
                   {restName()}
-                  {"\n"}
                 </Text>
+                <View style={{ flexDirection: 'row', padding: 8 }}>
+                  <MaterialIcons name="star" size={25} color="gold" />
+                  <Text style={{ color: "black", fontSize: 18 }}>
+                  {restRating()} ({restRatingCount()} ratings)
+                  {'\n'}
+                  </Text>
+                </View>
                 <Card>
                   <Card.Cover source={{ uri: restPhoto() }} />
                 </Card>
