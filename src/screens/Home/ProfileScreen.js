@@ -76,6 +76,9 @@ export default function ProfileScreen(props){
                     <Caption style={styles.Caption}>
                                 About Me: {bio}
                     </Caption>
+                    <Caption style={styles.Caption}>
+                                Location: {location}
+                    </Caption>
                 </View>
                 {/* 
                 <View style={styles.userInfo}>
