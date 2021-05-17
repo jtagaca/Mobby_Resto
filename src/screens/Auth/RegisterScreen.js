@@ -42,8 +42,10 @@ const RegisterScreen = (props) => {
         }
     }
 
+    const theme = useSelector(state => state.theme.theme);
+
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => Keyboard.dismiss()}>
 
                 <View style={{ flex: 1 }}>

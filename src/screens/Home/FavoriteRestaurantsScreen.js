@@ -11,28 +11,38 @@ const FavoriteRestaurantsScreen = (props) => {
 
     return (
         <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
-            <FlatList 
-                data={favorites}
-                renderItem={({item}) => {
-                    return (
-                        <View style={{ backgroundColor: theme.colors.primary }}>
-                            <TouchableOpacity onPress={() => props.navigation.navigate("RestaurantDetails", { name: item.name, restaurant: item })}>
-                                <Card >
-                                    <Card.Content>
-                                        <Title>
-                                            {item.name}
-                                        </Title>
-                                    </Card.Content>
-                                    
-                                    <Card.Cover
-                                        source={{ uri: item.photo }}
-                                        />
-                                </Card>
-                            </TouchableOpacity>
-                        </View>
-                    )
-                }}
-            />
+            {(favorites.length > 0) ? (
+                <FlatList 
+                    data={favorites}
+                    renderItem={({item}) => {
+                        return (
+                            <View style={{ backgroundColor: theme.colors.primary }}>
+                                <TouchableOpacity onPress={() => props.navigation.navigate("RestaurantDetails", { name: item.name, restaurant: item })}>
+                                    <Card >
+                                        <Card.Content>
+                                            <Title>
+                                                {item.name}
+                                            </Title>
+                                        </Card.Content>
+                                        
+                                        <Card.Cover
+                                            source={{ uri: item.photo }}
+                                            />
+                                    </Card>
+                                </TouchableOpacity>
+                            </View>
+                        )
+                    }}
+                />
+                )
+                    :
+                (
+                    <Text style={{ color: theme.colors.text, alignSelf: 'center', marginTop: 15, fontSize: 18 }}>
+                        No favorited restaurants
+                    </Text>
+                )
+                
+            }
         </View>
     )
 }

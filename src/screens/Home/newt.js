@@ -52,6 +52,7 @@ function newt(props) {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+  const [sortStatus, setSortStatus] = useState(0);
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
   const [searchQuery, setSearchQuery] = useState("");
@@ -184,21 +185,27 @@ function newt(props) {
       }
     }
   }
-  if (sortRating) {
+
+  if (sortStatus == 0) {
+    filteredRestaurants.sort((a, b) => (a.rating > b.rating ? -1 : 1));
+  }
+  else if (sortStatus == 1) {
     filteredRestaurants.sort((a, b) => (a.rating < b.rating ? -1 : 1));
   }
 
   const [searchLocation, setSearchLocation] = useState("bakersfield");
   const [econ, setIcon] = useState(iconArr[0]);
+
   const onPressicon = (econ) => {
     if (econ == iconArr[0]) {
-      setIcon(iconArr[1]);
-      filteredRestaurants.sort((a, b) => (a.rating > b.rating ? -1 : 1));
+      setIcon(iconArr[1]); // never filtering the restaurants
+      setSortStatus(0)
+      // filteredRestaurants.sort((a, b) => (a.rating > b.rating ? -1 : 1));
     } else {
       setIcon(iconArr[0]);
-      filteredRestaurants.sort((a, b) => (a.rating > b.rating ? -1 : 1));
+      setSortStatus(1)
+      // filteredRestaurants.sort((a, b) => (a.rating < b.rating ? -1 : 1));
     }
-    setSortRating(!sortRating);
   };
 
   return (
@@ -476,7 +483,7 @@ function newt(props) {
                             <IconButton
                               onPress={() =>
                                 openMap({
-                                  end: item.location.display_address,
+                                  end: (item.location.address1 + ", " + item.location.city),
                                 })
                               }
                               color={theme.colors.background}
