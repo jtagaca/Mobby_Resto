@@ -51,7 +51,7 @@ Mobby Resto is a mobile application that is based on the idea of knowing the bes
 - [React Native Paper](https://reactnativepaper.com)
   UI Library
 - [Yelp API](https://www.yelp.com/developers/documentation/v3)
-  API used to connect users to restraunts.
+  API used to connect users to restaurants.
 - [Expo](https://expo.io)
   Developer tool for making universal native apps that run on multiple platforms
 - [Redux](https://redux.js.org)
@@ -66,6 +66,6 @@ Mobby Resto is a mobile application that is based on the idea of knowing the bes
 
 ## How to Build
 
-NPM install
-NPM Start
-Disclaimer: This app requires a file with an API Key that not shared here to build it.
+- NPM install
+- NPM Start
+- Disclaimer: This app requires a file with an API Key that not shared here to build it.
