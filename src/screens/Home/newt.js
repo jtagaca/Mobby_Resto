@@ -563,24 +563,25 @@ function newt(props) {
               color={theme.colors.background}
             />
             <Overlay
-              overlayStyle={styles.olStyle}
+              overlayStyle={[styles.olStyle,{backgroundColor: theme.colors.background, borderWidth: 2, borderColor: theme.colors.primary}]}
               isVisible={visible}
               onBackdropPress={toggleOverlay}
             >
               <View>
-                <Text style={{ color: "black", fontSize: 18, fontWeight: 'bold'}}>
+                <Text style={{fontSize: 18, fontWeight: 'bold'}}>
                   {restName()}
                 </Text>
                 <View style={{ flexDirection: 'row', padding: 8 }}>
-                  <MaterialIcons name="star" size={25} color="gold" />
-                  <Text style={{ color: "black", fontSize: 18 }}>
+                  <MaterialIcons name="star" size={22} color="gold" />
+                  <Text style={{fontSize: 18 }}>
                   {restRating()} ({restRatingCount()} ratings)
-                  {'\n'}
                   </Text>
+                  <View style={{height: 35}}/>
                 </View>
-                <Card>
+                <Card style={{borderWidth: 2, borderColor: theme.colors.primary}}>
                   <Card.Cover source={{ uri: restPhoto() }} />
                 </Card>
+                <View style={{height: 20}}/>
                 <Button
                   style={{
                     marginRight: 10,
@@ -588,7 +589,7 @@ function newt(props) {
                     marginTop: 10,
                     paddingTop: 1,
                     paddingBottom: 1,
-                    backgroundColor: theme.colors.background,
+                    backgroundColor: theme.colors.primary,
                     borderRadius: 10,
                     borderWidth: 1,
                   }}
@@ -600,9 +601,11 @@ function newt(props) {
                     toggleOverlay();
                   }}
                 >
-                  More Details
+                  <Text style={{color: theme.colors.text}}>
+                    More Details
+                  </Text>
                 </Button>
-              </View>
+              <View style={{height: 10}}/>
               <Button
                 style={{
                   marginRight: 10,
@@ -610,7 +613,7 @@ function newt(props) {
                   marginTop: 10,
                   paddingTop: 1,
                   paddingBottom: 1,
-                  backgroundColor: theme.colors.background,
+                  backgroundColor: theme.colors.primary,
                   borderRadius: 10,
                   borderWidth: 1,
                 }}
@@ -618,8 +621,11 @@ function newt(props) {
                   randomize();
                 }}
               >
-                Randomize
+                <Text style={{color: theme.colors.text}}>
+                  Randomize
+                </Text>
               </Button>
+              </View>
             </Overlay>
           </View>
         </View>
