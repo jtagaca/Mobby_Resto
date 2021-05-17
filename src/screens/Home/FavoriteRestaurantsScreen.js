@@ -10,7 +10,7 @@ const FavoriteRestaurantsScreen = (props) => {
     const theme = useSelector(state => state.theme.theme);
 
     return (
-        <View>
+        <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
             <FlatList 
                 data={favorites}
                 renderItem={({item}) => {

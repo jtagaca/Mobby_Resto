@@ -36,7 +36,7 @@ const MainTabScreen = () => {
         component={HomeStackScreen}
         options={{
           tabBarLabel: "Home",
-          tabBarColor: "#009387",
+          tabBarColor: theme.colors.primary,
           tabBarIcon: ({ color }) => (
             <Icon name="ios-home" color={color} size={26} />
           ),
@@ -47,7 +47,7 @@ const MainTabScreen = () => {
         component={ProfileScreen}
         options={{
           tabBarLabel: "Profile",
-          tabBarColor: "#009387",
+          tabBarColor: theme.colors.primary,
           tabBarIcon: ({ color }) => (
             <Icon name="ios-person" color={color} size={26} />
           ),
@@ -59,7 +59,7 @@ const MainTabScreen = () => {
         component={SettingsScreen}
         options={{
           tabBarLabel: "Settings",
-          tabBarColor: "#009387",
+          tabBarColor: theme.colors.primary,
           tabBarIcon: ({ color }) => (
             <Icon name="ios-settings" color={color} size={26} />
           ),
@@ -71,7 +71,7 @@ const MainTabScreen = () => {
         component={ContactScreen}
         options={{
           tabBarLabel: "Contact",
-          tabBarColor: "#009387",
+          tabBarColor: theme.colors.primary,
           tabBarIcon: ({ color }) => (
             <Icon name="help-circle" color={color} size={26} />
           ),

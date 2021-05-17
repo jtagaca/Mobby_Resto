@@ -1,4 +1,4 @@
-import { USER_BIO_SET, USER_FETCH, USER_LOCATION_SET, USER_ADD_FAVORITE, USER_REMOVE_FAVORITE } from '../actions/types'
+import { USER_BIO_SET, USER_FETCH, USER_LOCATION_SET, USER_ADD_FAVORITE, USER_REMOVE_FAVORITE, USER_CLEAR_FAVORITES } from '../actions/types'
 
 const INITIAL_STATE = {
   user: null,
@@ -35,6 +35,9 @@ export default (state = INITIAL_STATE, action) => {
             
             ), 1);
             return {...state, favorites: removalTemp }
+        case USER_CLEAR_FAVORITES:
+            let newFavorites = []
+            return {...state, favorites: newFavorites}
         default:
             return state
     }

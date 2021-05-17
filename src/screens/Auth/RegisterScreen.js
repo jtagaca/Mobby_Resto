@@ -47,59 +47,68 @@ const RegisterScreen = (props) => {
             <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => Keyboard.dismiss()}>
 
                 <View style={{ flex: 1 }}>
-                    <Text style={{ fontSize: 30 }}>
-                        This is the Register Screen.
-                    </Text>
 
-                    <TextInput style={styles.textInput}
-                        returnKeyType={"next"}
-                        blurOnSubmit={false}
-                        autoCorrect={false}
-                        label='Username'
-                        value={username}
-                        onChangeText={username => setUsername(username)}
-                        onSubmitEditing={() => ref_input2.current.focus()}  
-                    />
-                    <TextInput style={styles.textInput}
-                        returnKeyType={"next"}
-                        blurOnSubmit={false}
-                        label='Email'
-                        value={email}
-                        autoCorrect={false}
-                        autoCapitalize='none'
-                        onChangeText={email => setEmail(email)}
-                        onSubmitEditing={() => ref_input3.current.focus()}
-                        ref={ref_input2}
-                    />
-                    <TextInput style={styles.textInput}
-                        returnKeyType={"next"}
-                        blurOnSubmit={false}
-                        label='Password'
-                        value={password}
-                        autoCorrect={false}
-                        autoCapitalize='none'
-                        onChangeText={password => setPassword(password)}
-                        onSubmitEditing={() => ref_input4.current.focus()}
-                        secureTextEntry
-                        ref={ref_input3}
-                    />
-                    <TextInput style={styles.textInput}
-                        label='Re-enter Password'
-                        value={rePassword}
-                        autoCorrect={false}
-                        autoCapitalize='none'
-                        onChangeText={rePassword => setRePassword(rePassword)}
-                        onSubmitEditing={() => register({ username, email, password, rePassword })}
-                        secureTextEntry
-                        ref={ref_input4}
-                    />
-                    <Button mode='contained' style={styles.button} onPress={() => register({ username, email, password, rePassword })} >
-                        Sign up
-                    </Button>
+                    <View style={{ flex: 0.1 }} />
+                    
+                    <View style={{ flex: 2 }}>
+                        <Text style={{ fontSize: 30, alignSelf: 'center' }}>
+                            Create Account
+                        </Text>
 
-                    <Button onPress={() => props.navigation.goBack()}>
-                        Go Back
-                    </Button>
+                        <TextInput style={styles.textInput}
+                            returnKeyType={"next"}
+                            mode='outlined'
+                            blurOnSubmit={false}
+                            autoCorrect={false}
+                            label='Username'
+                            value={username}
+                            onChangeText={username => setUsername(username)}
+                            onSubmitEditing={() => ref_input2.current.focus()}  
+                            />
+                        <TextInput style={styles.textInput}
+                            returnKeyType={"next"}
+                            blurOnSubmit={false}
+                            mode='outlined'
+                            label='Email'
+                            value={email}
+                            autoCorrect={false}
+                            autoCapitalize='none'
+                            onChangeText={email => setEmail(email)}
+                            onSubmitEditing={() => ref_input3.current.focus()}
+                            ref={ref_input2}
+                        />
+                        <TextInput style={styles.textInput}
+                            returnKeyType={"next"}
+                            blurOnSubmit={false}
+                            mode='outlined'
+                            label='Password'
+                            value={password}
+                            autoCorrect={false}
+                            autoCapitalize='none'
+                            onChangeText={password => setPassword(password)}
+                            onSubmitEditing={() => ref_input4.current.focus()}
+                            secureTextEntry
+                            ref={ref_input3}
+                        />
+                        <TextInput style={styles.textInput}
+                            label='Re-enter Password'
+                            value={rePassword}
+                            mode='outlined'
+                            autoCorrect={false}
+                            autoCapitalize='none'
+                            onChangeText={rePassword => setRePassword(rePassword)}
+                            onSubmitEditing={() => register({ username, email, password, rePassword })}
+                            secureTextEntry
+                            ref={ref_input4}
+                        />
+                        <Button mode='contained' style={styles.textInput} onPress={() => register({ username, email, password, rePassword })} >
+                            Sign up
+                        </Button>
+
+                        <Button onPress={() => props.navigation.goBack()}>
+                            Go Back
+                        </Button>
+                    </View>
                 </View>
             </TouchableWithoutFeedback>
         </SafeAreaView>
@@ -109,7 +118,7 @@ const RegisterScreen = (props) => {
 const styles = StyleSheet.create({
     textInput: {
         marginHorizontal: 8,
-        marginVertical: 14
+        marginVertical: 9
     },
 });
 

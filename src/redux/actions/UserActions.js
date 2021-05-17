@@ -1,4 +1,4 @@
-import { USER_FETCH, USER_BIO_SET, USER_LOCATION_SET, USER_ADD_FAVORITE, USER_REMOVE_FAVORITE } from './types';
+import { USER_FETCH, USER_BIO_SET, USER_LOCATION_SET, USER_ADD_FAVORITE, USER_REMOVE_FAVORITE, USER_CLEAR_FAVORITES } from './types';
 import { getUserInfo } from '../../api/';
 
 export const getUser = () => {
@@ -49,6 +49,14 @@ export const removeFavorite = (id) => {
         dispatch({
             type: USER_REMOVE_FAVORITE,
             payload: id
+        })
+    }
+}
+
+export const removeAllFavorites = () => {
+    return (dispatch) => {
+        dispatch({
+            type: USER_CLEAR_FAVORITES,
         })
     }
 }

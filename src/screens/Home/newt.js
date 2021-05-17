@@ -236,6 +236,7 @@ function newt(props) {
                   onPress={() => toggleModal()}
                   onBackdropPress={() => toggleModal()}
                   style={{ backgroundColor: theme.colors.primary }}
+                  color={theme.colors.background}
                 />
               </View>
             </View>
@@ -550,7 +551,7 @@ function newt(props) {
                 position: "absolute",
                 bottom: 10,
                 right: 10,
-                backgroundColor: "#009387",
+                backgroundColor: theme.colors.primary,
                 borderRadius: 100,
               }}
               icon="slot-machine"
@@ -637,7 +638,7 @@ const styles = StyleSheet.create({
   },
   text: {},
   spacing: {
-    marginTop: 40,
+    marginTop: 20,
     paddingLeft: 0,
     paddingRight: 0,
     paddingBottom: 0,
@@ -653,7 +654,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    height: 100,
+    height: 65,
   },
   card: {
     flexDirection: "row",

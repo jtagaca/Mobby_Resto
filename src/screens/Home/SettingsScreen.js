@@ -6,6 +6,7 @@ import {
   Image,
   SafeAreaView,
   TouchableOpacity,
+  Alert
 } from "react-native";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -18,10 +19,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Title, Card, TouchableRipple, Switch } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { removeAllFavorites } from "../../redux/actions/UserActions";
 // import ToggleButton from "react-theme-toggle-button";
 
 export default function SettingsScreen(props) {
   const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.user.favorites);
 
   let iconArr = ["weather-sunny", "brightness-4"];
   const [icon, setIcon] = useState(iconArr[0]);
@@ -42,11 +45,27 @@ export default function SettingsScreen(props) {
     }
     switchTheme(nextTheme);
   };
+  const clearFavorites = () => {
+    Alert.alert("Clear Favorites", "Are you sure you want to clear all of your favorited restaurants?", [
+      {
+        text: "Yes",
+        onPress: () => { 
+          dispatch(removeAllFavorites());
+          Alert.alert("Cleared", "", [
+            { text: "Done" }
+          ])
+        },
+      },
+      { text: "No" },
+    ])
+  }
+
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   let nextTheme;
   const theme = useSelector((state) => state.theme.theme);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <View style={styles.root}>
@@ -54,7 +73,7 @@ export default function SettingsScreen(props) {
           colors={["#009387", theme.colors.background]}
           style={{ height: "20%" }}
         />
-        <View style={{ alignItems: "center" }}>
+        <View style={{ alignItems: "center", flex: 0.1 }}>
           <Image
             style={{
               width: 100,
@@ -66,11 +85,11 @@ export default function SettingsScreen(props) {
           />
         </View>
 
-        <View style={{ alignItems: "center" }}>
+        <View style={{ alignItems: "center", flex: 0.1 }}>
           <Title style={{ fontSize: 25, fontWeight: "900" }}> Settings </Title>
         </View>
 
-        <View style={{ flexDirection: "row", marginTop: 60 }}>
+        <View style={{ flexDirection: "row", flex: 0.5 }}>
           <View
             style={{
               justifyContent: "center", //Centered vertically
@@ -93,7 +112,15 @@ export default function SettingsScreen(props) {
           </View>
         </View>
 
-        <View style={{ marginTop: 100 }}>
+        <View style={{ flex: 0.5 }}>
+          <TouchableOpacity
+            style={styles.ScreenButton}
+            onPress={clearFavorites}
+            underlayColor="#fff"
+            
+          >
+            <Text style={styles.text}> Clear Favorites </Text>
+          </TouchableOpacity>
           <TouchableOpacity
             style={styles.ScreenButton}
             onPress={logout}
@@ -141,7 +168,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingLeft: 10,
     paddingRight: 10,
-    fontSize: 30,
+    fontSize: 20,
   },
 });
 
