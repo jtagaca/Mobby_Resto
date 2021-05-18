@@ -22,7 +22,7 @@ function HomeStack() {
       />
       <Stack.Screen
         name="Register"
-        component={SignUp}
+        component={RegisterScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

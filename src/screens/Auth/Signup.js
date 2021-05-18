@@ -37,6 +37,33 @@ const SignInScreen = ({ navigation }) => {
   const regEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
   const regPassword =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  const register = ({ username, email, password, rePassword }) => {
+    Keyboard.dismiss();
+
+    if (regEmail.test(email) === false) {
+      alert("Not a valid Email Address");
+      return;
+    }
+    if (regPassword.test(password) === false) {
+      alert(
+        "Password must be at least 8 characters and must contain a special character, a number, a lowercase, and an uppercase"
+      );
+      return;
+    }
+    if (password !== rePassword) {
+      alert("Passwords don't match");
+      return;
+    }
+
+    try {
+      dispatch(registerWithUsernameAndPassword(username, email, password));
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const theme = useSelector((state) => state.theme.theme);
   const textInputChange = (val) => {
     if (val.length !== 0) {
       setData({
@@ -88,16 +115,34 @@ const SignInScreen = ({ navigation }) => {
           <View style={styles.action}>
             <FontAwesome name="user-o" color="#05375a" size={20} />
             <TextInput
-              placeholder="Your Username"
               style={styles.textInput}
-              autoCapitalize="none"
-              onChangeText={(val) => textInputChange(val)}
+              returnKeyType={"next"}
+              mode="outlined"
+              blurOnSubmit={false}
+              autoCorrect={false}
+              label="Username"
+              value={username}
+              onChangeText={(username) => setUsername(username)}
+              onSubmitEditing={() => ref_input2.current.focus()}
             />
-            {data.check_textInputChange ? (
-              <Animatable.View animation="bounceIn">
-                <Feather name="check-circle" color="green" size={20} />
-              </Animatable.View>
-            ) : null}
+          </View>
+
+          <Text style={styles.text_footer}>Email</Text>
+          <View style={styles.action}>
+            <FontAwesome name="user-o" color="#05375a" size={20} />
+            <TextInput
+              style={styles.textInput}
+              returnKeyType={"next"}
+              blurOnSubmit={false}
+              mode="outlined"
+              label="Email"
+              value={email}
+              autoCorrect={false}
+              autoCapitalize="none"
+              onChangeText={(email) => setEmail(email)}
+              onSubmitEditing={() => ref_input3.current.focus()}
+              ref={ref_input2}
+            />
           </View>
           <Text
             style={[
@@ -112,19 +157,19 @@ const SignInScreen = ({ navigation }) => {
           <View style={styles.action}>
             <Feather name="lock" color="#05375a" size={20} />
             <TextInput
-              placeholder="Your Password"
-              secureTextEntry={data.secureTextEntry ? true : false}
               style={styles.textInput}
+              returnKeyType={"next"}
+              blurOnSubmit={false}
+              mode="outlined"
+              label="Password"
+              value={password}
+              autoCorrect={false}
               autoCapitalize="none"
-              onChangeText={(val) => handlePasswordChange(val)}
+              onChangeText={(password) => setPassword(password)}
+              onSubmitEditing={() => ref_input4.current.focus()}
+              secureTextEntry
+              ref={ref_input3}
             />
-            <TouchableOpacity onPress={updateSecureTextEntry}>
-              {data.secureTextEntry ? (
-                <Feather name="eye-off" color="grey" size={20} />
-              ) : (
-                <Feather name="eye" color="grey" size={20} />
-              )}
-            </TouchableOpacity>
           </View>
           <Text
             style={[
@@ -139,19 +184,19 @@ const SignInScreen = ({ navigation }) => {
           <View style={styles.action}>
             <Feather name="lock" color="#05375a" size={20} />
             <TextInput
-              placeholder="Confirm Your Password"
-              secureTextEntry={data.confirm_secureTextEntry ? true : false}
               style={styles.textInput}
+              label="Re-enter Password"
+              value={rePassword}
+              mode="outlined"
+              autoCorrect={false}
               autoCapitalize="none"
-              onChangeText={(val) => handleConfirmPasswordChange(val)}
+              onChangeText={(rePassword) => setRePassword(rePassword)}
+              onSubmitEditing={() =>
+                register({ username, email, password, rePassword })
+              }
+              secureTextEntry
+              ref={ref_input4}
             />
-            <TouchableOpacity onPress={updateConfirmSecureTextEntry}>
-              {data.secureTextEntry ? (
-                <Feather name="eye-off" color="grey" size={20} />
-              ) : (
-                <Feather name="eye" color="grey" size={20} />
-              )}
-            </TouchableOpacity>
           </View>
           <View style={styles.textPrivate}>
             <Text style={styles.color_textPrivate}>
@@ -169,40 +214,15 @@ const SignInScreen = ({ navigation }) => {
           </View>
           <View style={styles.button}>
             <TouchableOpacity style={styles.signIn} onPress={() => {}}>
-              <Button colors={["#08d4c4", "#01ab9d"]} style={styles.signIn}>
-                <Text
-                  style={[
-                    styles.textSign,
-                    {
-                      color: "#fff",
-                    },
-                  ]}
-                >
-                  Sign Up
-                </Text>
-              </Button>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              style={[
-                styles.signIn,
-                {
-                  borderColor: "#009387",
-                  borderWidth: 1,
-                  marginTop: 15,
-                },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.textSign,
-                  {
-                    color: "#009387",
-                  },
-                ]}
+              <Button
+                mode="contained"
+                style={styles.textInput}
+                onPress={() =>
+                  register({ username, email, password, rePassword })
+                }
               >
-                Sign In
-              </Text>
+                Sign up
+              </Button>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -257,9 +277,10 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   signIn: {
-    width: "100%",
-    height: 50,
-    justifyContent: "center",
+    width: 200,
+    // padding: 100,
+    height: 20,
+    // justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
   },
