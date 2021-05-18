@@ -12,7 +12,7 @@ import * as Animatable from "react-native-animatable";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useTheme } from "@react-navigation/native";
 import { Button } from "react-native-paper";
-
+import LoginScreen from "./LoginScreen";
 const SplashScreen = ({ navigation }) => {
   const { colors } = useTheme();
 
@@ -54,7 +54,7 @@ const SplashScreen = ({ navigation }) => {
         <View style={styles.button}>
           <TouchableOpacity
             style={{ backgroundColor: "#009387" }}
-            onPress={() => navigation.navigate("SignInScreen")}
+            onPress={() => navigation.navigate("Login")}
           >
             <Button>
               <Text style={{ color: "white", fontWeight: "bold" }}>

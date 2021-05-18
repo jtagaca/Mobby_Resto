@@ -3,6 +3,7 @@ import LoginScreen from "./LoginScreen";
 import RegisterScreen from "./RegisterScreen";
 import SplashScreen from "./SplashScreen";
 import React from "react";
+import Login from "./Login";
 
 const Stack = createStackNavigator();
 
@@ -11,7 +12,7 @@ function HomeStack() {
     <Stack.Navigator initialRouteName="SplashScreen">
       <Stack.Screen
         name="Login"
-        component={LoginScreen}
+        component={Login}
         options={{ headerShown: false }}
       />
       <Stack.Screen
