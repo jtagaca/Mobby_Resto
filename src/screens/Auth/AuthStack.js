@@ -4,7 +4,7 @@ import RegisterScreen from "./RegisterScreen";
 import SplashScreen from "./SplashScreen";
 import React from "react";
 import Login from "./Login";
-
+import SignUp from "./Signup";
 const Stack = createStackNavigator();
 
 function HomeStack() {
@@ -22,7 +22,7 @@ function HomeStack() {
       />
       <Stack.Screen
         name="Register"
-        component={RegisterScreen}
+        component={SignUp}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

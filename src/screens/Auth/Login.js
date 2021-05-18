@@ -8,6 +8,8 @@ import {
   StyleSheet,
   StatusBar,
   Alert,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -233,7 +235,7 @@ const SignInScreen = ({ navigation }) => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => navigation.navigate("SignUpScreen")}
+            onPress={() => navigation.navigate("Register")}
             style={[
               styles.signIn,
               {
