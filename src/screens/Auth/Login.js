@@ -82,7 +82,7 @@ const SignInScreen = ({ navigation }) => {
   };
 
   const updateSecureTextEntry = () => {
-    setData({
+    setPassword({
       ...data,
       secureTextEntry: !data.secureTextEntry,
     });
@@ -153,23 +153,18 @@ const SignInScreen = ({ navigation }) => {
         <View style={styles.action}>
           <FontAwesome name="user-o" color={colors.text} size={20} />
           <TextInput
-            placeholder="Your Username"
-            placeholderTextColor="#666666"
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
+            style={styles.textInput}
+            returnKeyType={"next"}
+            mode="outlined"
             autoCapitalize="none"
-            onChangeText={(val) => textInputChange(val)}
-            onEndEditing={(e) => handleValidUser(e.nativeEvent.text)}
+            autoCorrect={false}
+            blurOnSubmit={false}
+            label="Username"
+            placeholder="Username"
+            value={username}
+            onChangeText={(username) => setUsername(username)}
+            onSubmitEditing={() => ref_input2.current.focus()}
           />
-          {data.check_textInputChange ? (
-            <Animatable.View animation="bounceIn">
-              <Feather name="check-circle" color="green" size={20} />
-            </Animatable.View>
-          ) : null}
         </View>
         {data.isValidUser ? null : (
           <Animatable.View animation="fadeInLeft" duration={500}>
@@ -193,25 +188,16 @@ const SignInScreen = ({ navigation }) => {
         <View style={styles.action}>
           <Feather name="lock" color={colors.text} size={20} />
           <TextInput
-            placeholder="Your Password"
-            placeholderTextColor="#666666"
-            secureTextEntry={data.secureTextEntry ? true : false}
-            style={[
-              styles.textInput,
-              {
-                color: colors.text,
-              },
-            ]}
-            autoCapitalize="none"
-            onChangeText={(val) => handlePasswordChange(val)}
+            style={styles.textInput}
+            label="Password"
+            placeholder="Password"
+            mode="outlined"
+            value={password}
+            onChangeText={(password) => setPassword(password)}
+            onSubmitEditing={login}
+            secureTextEntry
+            ref={ref_input2}
           />
-          <TouchableOpacity onPress={updateSecureTextEntry}>
-            {data.secureTextEntry ? (
-              <Feather name="eye-off" color="grey" size={20} />
-            ) : (
-              <Feather name="eye" color="grey" size={20} />
-            )}
-          </TouchableOpacity>
         </View>
         {data.isValidPassword ? null : (
           <Animatable.View animation="fadeInLeft" duration={500}>
@@ -221,19 +207,18 @@ const SignInScreen = ({ navigation }) => {
           </Animatable.View>
         )}
 
-        <TouchableOpacity>
-          <Text style={{ color: "#009387", marginTop: 15 }}>
-            Forgot password?
-          </Text>
-        </TouchableOpacity>
         <View style={styles.button}>
           <TouchableOpacity
             style={styles.signIn}
-            onPress={() => {
-              loginHandle(data.username, data.password);
-            }}
+            onPress={login}
+            mode="contained"
           >
-            <Button colors={["#08d4c4", "#01ab9d"]} style={styles.signIn}>
+            <Button
+              colors={["#08d4c4", "#01ab9d"]}
+              style={styles.signIn}
+              onPress={login}
+              mode="contained"
+            >
               <Text
                 style={[
                   styles.textSign,
