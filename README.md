@@ -11,7 +11,6 @@ Mobby Resto is a mobile application that is based on the idea of knowing the bes
       height=500px 
    />
    <img 
-
       alt="Sign In Screen" 
       src="assets/SignIn.jpg" 
       height=500px 
