@@ -8,7 +8,9 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@mdi/js": "^5.9.55",
     "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-community/slider": "^3.0.3",
     "@react-navigation/bottom-tabs": "^5.11.9",
     "@react-navigation/material-bottom-tabs": "^5.3.14",
     "@react-navigation/native": "^5.9.4",
@@ -27,6 +29,7 @@
     "react-native-gesture-handler": "~1.8.0",
     "react-native-get-location": "^2.1.0",
     "react-native-image-zoom-viewer": "^3.0.1",
+    "react-native-modal": "^11.10.0",
     "react-native-modal-dropdown": "git+https://github.com/siemiatj/react-native-modal-dropdown.git",
     "react-native-open-maps": "^0.3.5",
     "react-native-paper": "^4.7.2",

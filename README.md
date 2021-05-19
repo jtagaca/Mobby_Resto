@@ -5,9 +5,15 @@ Mobby Resto is a mobile application that is based on the idea of knowing the bes
 ## In-App Screenshots
 
 <p float="left">
+  <img 
+      alt="Splash Screen" 
+      src="assets/Splash.jpg" 
+      height=500px 
+   />
    <img 
+
       alt="Sign In Screen" 
-      src="assets/SignIn.png" 
+      src="assets/SignIn.jpg" 
       height=500px 
    />
    <img 
