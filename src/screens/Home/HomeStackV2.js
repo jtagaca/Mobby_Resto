@@ -18,6 +18,7 @@ import EditProfileScreen from "./EditProfileScreen";
 import { useDispatch, useSelector } from "react-redux";
 
 import { StyleSheet, View } from "react-native";
+import FavoriteRestaurantsScreen from "./FavoriteRestaurantsScreen";
 
 const HomeStack = createStackNavigator();
 
@@ -25,68 +26,60 @@ const DetailsStack = createStackNavigator();
 
 const Tab = createMaterialBottomTabNavigator();
 
-
-
-
-
-
 const MainTabScreen = () => {
-  
   const theme = useSelector((state) => state.theme.theme);
-  
-  console.log(theme)
 
   return (
-  <Tab.Navigator initialRouteName="Home" activeColor="#fff">
-    <Tab.Screen
-      name="Home"
-      component={HomeStackScreen}
-      options={{
-        tabBarLabel: "Home",
-        tabBarColor: "#009387",
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-home" color={color} size={26} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Profile"
-      component={ProfileScreen}
-      options={{
-        tabBarLabel: "Profile",
-        tabBarColor: "#009387",
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-person" color={color} size={26} />
-        ),
-      }}
-    />
+    <Tab.Navigator initialRouteName="Home" activeColor="#fff">
+      <Tab.Screen
+        name="Home"
+        component={HomeStackScreen}
+        options={{
+          tabBarLabel: "Home",
+          tabBarColor: theme.colors.primary,
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-home" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarLabel: "Profile",
+          tabBarColor: theme.colors.primary,
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-person" color={color} size={26} />
+          ),
+        }}
+      />
 
-    <Tab.Screen
-      name="Settings"
-      component={SettingsScreen}
-      options={{
-        tabBarLabel: "Settings",
-        tabBarColor: "#009387",
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-settings" color={color} size={26} />
-        ),
-      }}
-    />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          tabBarLabel: "Settings",
+          tabBarColor: theme.colors.primary,
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-settings" color={color} size={26} />
+          ),
+        }}
+      />
 
-    <Tab.Screen
-      name="Contact"
-      component={ContactScreen}
-      options={{
-        tabBarLabel: "Contact",
-        tabBarColor: "#009387",
-        tabBarIcon: ({ color }) => (
-          <Icon name="ios-contact" color={color} size={26} />
-        ),
-      }}
-    />
-  </Tab.Navigator>
-  )
-    };
+      <Tab.Screen
+        name="Contact"
+        component={ContactScreen}
+        options={{
+          tabBarLabel: "Contact",
+          tabBarColor: theme.colors.primary,
+          tabBarIcon: ({ color }) => (
+            <Icon name="help-circle" color={color} size={26} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 export default MainTabScreen;
 
@@ -125,9 +118,13 @@ const HomeStackScreen = ({ navigation }) => (
       options={{ headerShown: true, headerStyle: { alignItems: "center" } }}
       options={({ route }) => ({ title: route.params.name })}
     />
+
+    <HomeStack.Screen
+      name="FavoriteRestaurants"
+      component={FavoriteRestaurantsScreen}
+      options={{ headerShown: true }}
+    />
     {/* why is this not working? not showing the header*/}
-
-
   </HomeStack.Navigator>
 );
 

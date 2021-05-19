@@ -11,7 +11,7 @@ const dark = {
   // fonts: configureFonts(fonts),
   colors: {
     ...DarkTheme.colors,
-    primary: "#009387",
+    primary: "#00665e",
     accent:  "#301934",
     surface: "#000000",
   },

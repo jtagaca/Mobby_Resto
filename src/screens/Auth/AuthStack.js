@@ -1,18 +1,32 @@
-import { createStackNavigator } from '@react-navigation/stack';
-import LoginScreen from './LoginScreen';
-import RegisterScreen from './RegisterScreen';
-import React from 'react';
-
+import { createStackNavigator } from "@react-navigation/stack";
+import LoginScreen from "./LoginScreen";
+import RegisterScreen from "./RegisterScreen";
+import SplashScreen from "./SplashScreen";
+import React from "react";
+import Login from "./Login";
+import SignUp from "./Signup";
 const Stack = createStackNavigator();
 
 function HomeStack() {
-
-    return (
-        <Stack.Navigator initialRouteName="Login" >
-            <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
-        </Stack.Navigator>
-    );
+  return (
+    <Stack.Navigator initialRouteName="SplashScreen">
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SplashScreen"
+        component={SplashScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={RegisterScreen}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
 }
 
 export default HomeStack;

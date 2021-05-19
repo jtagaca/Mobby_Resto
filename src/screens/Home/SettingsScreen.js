@@ -6,21 +6,29 @@ import {
   Image,
   SafeAreaView,
   TouchableOpacity,
+  Alert
 } from "react-native";
+
 import { useSelector, useDispatch } from "react-redux";
 import { lightTheme, darkTheme } from "../../global/";
 import { themeSwitch } from "../../redux/actions/ThemeActions";
 import { AUTH_LOGOUT } from "../../redux/actions/types";
-import { Button } from "react-native-paper";
+import { Button, IconButton } from "react-native-paper";
 
 import { LinearGradient } from "expo-linear-gradient";
 import { Title, Card, TouchableRipple, Switch } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { removeAllFavorites } from "../../redux/actions/UserActions";
 // import ToggleButton from "react-theme-toggle-button";
 
 export default function SettingsScreen(props) {
   const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.user.favorites);
+
+  let iconArr = ["weather-sunny", "brightness-4"];
+  const [icon, setIcon] = useState(iconArr[0]);
+
   const switchTheme = (payload) => {
     dispatch(themeSwitch(payload));
   };
@@ -28,28 +36,44 @@ export default function SettingsScreen(props) {
     dispatch({ type: AUTH_LOGOUT });
   };
 
-
   const onHit = () => {
     !theme.dark ? (nextTheme = darkTheme) : (nextTheme = lightTheme);
+    if (icon == iconArr[0]) {
+      setIcon(iconArr[1]);
+    } else {
+      setIcon(iconArr[0]);
+    }
     switchTheme(nextTheme);
   };
+  const clearFavorites = () => {
+    Alert.alert("Clear Favorites", "Are you sure you want to clear all of your favorited restaurants?", [
+      {
+        text: "Yes",
+        onPress: () => { 
+          dispatch(removeAllFavorites());
+          Alert.alert("Cleared", "", [
+            { text: "Done" }
+          ])
+        },
+      },
+      { text: "No" },
+    ])
+  }
+
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState)
-
-  ;
-
-
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   let nextTheme;
   const theme = useSelector((state) => state.theme.theme);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <View style={styles.root}>
         <LinearGradient
-          colors={["#009387", theme.colors.background ]}
+          colors={["#009387", theme.colors.background]}
           style={{ height: "20%" }}
         />
-        <View style={{ alignItems: "center" }}>
+        <View style={{ alignItems: "center", flex: 0.1 }}>
           <Image
             style={{
               width: 100,
@@ -61,29 +85,50 @@ export default function SettingsScreen(props) {
           />
         </View>
 
-        <View style={{ alignItems: "center" }}>
+        <View style={{ alignItems: "center", flex: 0.1 }}>
           <Title style={{ fontSize: 25, fontWeight: "900" }}> Settings </Title>
         </View>
 
-        <View style={styles.container}>
-          <Switch
-            trackColor={{ false: "#696969", true: "#009387" }}
-            thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch }
-            value={isEnabled}
-            onChange={()=>onHit()}
+        <View style={{ flexDirection: "row", flex: 0.5 }}>
+          <View
+            style={{
+              justifyContent: "center", //Centered vertically
+              alignItems: "center", // Centered horizontally
+              flex: 1,
+            }}
+          >
+            <View>
+              <IconButton size={70} icon={icon}></IconButton>
+            </View>
 
-          />
+            <Switch
+              trackColor={{ false: "#696969", true: "#009387" }}
+              thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+              onChange={() => onHit()}
+            />
+          </View>
         </View>
 
-        <TouchableOpacity
-          style={styles.ScreenButton}
-          onPress={logout}
-          underlayColor="#fff"
-        >
-          <Text style={styles.text}> Logout </Text>
-        </TouchableOpacity>
+        <View style={{ flex: 0.5 }}>
+          <TouchableOpacity
+            style={styles.ScreenButton}
+            onPress={clearFavorites}
+            underlayColor="#fff"
+            
+          >
+            <Text style={styles.text}> Clear Favorites </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.ScreenButton}
+            onPress={logout}
+            underlayColor="#fff"
+          >
+            <Text style={styles.text}> Logout </Text>
+          </TouchableOpacity>
+        </View>
 
         {/* END OF MAIN VIEW */}
       </View>
@@ -123,8 +168,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingLeft: 10,
     paddingRight: 10,
-    fontSize: 30,
+    fontSize: 20,
   },
 });
 
-//export default SettingsScreen;
+// export default SettingsScreen;

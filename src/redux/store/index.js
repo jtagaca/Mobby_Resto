@@ -9,7 +9,7 @@ let middleware = [ReduxThunk];
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    whitelist: ['auth', 'theme']
+    whitelist: ['auth', 'theme', 'user']
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)

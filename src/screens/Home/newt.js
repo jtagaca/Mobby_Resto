@@ -1,39 +1,40 @@
 import {
   Provider as PaperProvider,
-  Avatar,
   Text,
   Button,
   Card,
   Title,
-  Paragraph,
   ActivityIndicator,
   Searchbar,
+  IconButton,
 } from "react-native-paper";
 import React, { useEffect, useState, useRef } from "react";
+import Modal from "react-native-modal";
+import { mdiMapMarkerLeft } from "@mdi/js";
 import {
   SafeAreaView,
   View,
   StyleSheet,
-  FlatList,
   TouchableOpacity,
   Linking,
   Platform,
   TextInput,
   Animated,
+  Image,
+  Map,
 } from "react-native";
 import { fetchRestaurants } from "../../redux/actions/RestaurantActions";
+import { getUser } from "../../redux/actions/UserActions";
 import { useSelector, useDispatch } from "react-redux";
-
-import TestScreen from "./TestScreen";
-import ImageViewer from "react-native-image-zoom-viewer";
-import { Rating, AirbnbRating } from "react-native-ratings";
-import { set } from "react-hook-form";
-
+import { Rating } from "react-native-ratings";
 import openMap from "react-native-open-maps";
-import ModalDropdown from "react-native-modal-dropdown";
-
 import { Overlay } from "react-native-elements";
 import { FAB } from "react-native-paper";
+import Icon from "react-native-vector-icons/FontAwesome";
+import Slider from "@react-native-community/slider";
+import color from "color";
+import { set } from "react-hook-form";
+import { MaterialIcons } from '@expo/vector-icons';
 
 export const CallNum = (number) => {
   let phoneNumber = "";
@@ -46,31 +47,33 @@ export const CallNum = (number) => {
 };
 
 function newt(props) {
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+  const [sortStatus, setSortStatus] = useState(0);
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const [searchQuery, setSearchQuery] = useState("burger");
+  const [rating, setRating] = useState(-1.0);
+  const [sortRating, setSortRating] = useState(false);
+
   const [refreshStart, setRefreshStart] = useState(false);
   const [toggleSearchBar, setToggleSearchBar] = useState(false);
-  const [searchLocation, setSearchLocation]=useState("bakersfield");
 
-
-
-  const onChangeSearch = (query) => {
-    setSearchQuery(query);
-  };
-
-  const onChangeLocation = (query) => {
-    setSearchLocation(query);
-  };
   const onSearch = () => {
     setRefreshStart(true);
+
     dispatch(fetchRestaurants(searchQuery, searchLocation));
+
     setRefreshStart(false);
   };
-
   const searchBarAnim = useRef(new Animated.Value(-45)).current;
+
   useEffect(() => {
+    let isMounted = true;
     if (toggleSearchBar) {
       Animated.timing(searchBarAnim, {
         toValue: 0,
@@ -87,7 +90,8 @@ function newt(props) {
   }, [toggleSearchBar]);
 
   useEffect(() => {
-    dispatch(fetchRestaurants("burger", "bakersfield"));
+    onSearch();
+    dispatch(getUser());
   }, []);
 
   const restaurants = useSelector((state) =>
@@ -95,7 +99,6 @@ function newt(props) {
       ? state.restaurant.restaurants.businesses
       : null
   );
-
   const isLoading = useSelector(
     (state) => state.restaurant.isFetchingRestaurants
   );
@@ -103,6 +106,106 @@ function newt(props) {
   const [visible, setVisible] = useState(false);
   const toggleOverlay = () => {
     setVisible(!visible);
+  };
+
+  const toggleOverlay2 = () => {
+    setVisible(!visible);
+  };
+
+  var iconArr = ["arrow-up-bold", "arrow-down-bold"];
+
+  // testing randomizer stuff
+  const [indexNum, setIndexNum] = useState(0);
+  const randomize = () => {
+    if (!isLoading) {
+      if (restaurants) {
+        setIndexNum(Math.floor(Math.random() * (restaurants.length - 1) + 0));
+      } else {
+        return "No available restaurants";
+      }
+    } else {
+      return "Nothing";
+    }
+  };
+  const restName = () => {
+    if (!isLoading) {
+      if (restaurants) {
+        return restaurants[indexNum].name;
+      } else {
+        return "No available restaurants";
+      }
+    } else {
+      return "Nothing";
+    }
+  };
+  const restPhoto = () => {
+    if (!isLoading) {
+      if (restaurants) {
+        return restaurants[indexNum].image_url;
+      } else {
+        return "No available restaurants";
+      }
+    } else {
+      return "Nothing";
+    }
+  };
+  const restRating = () => {
+    if (!isLoading) {
+      if (restaurants) {
+        return restaurants[indexNum].rating;
+      } else {
+        return "No available restaurants";
+      }
+    } else {
+      return "Nothing";
+    }
+  };
+  const restRatingCount = () => {
+    if (!isLoading) {
+      if (restaurants) {
+        return restaurants[indexNum].review_count;
+      } else {
+        return "No available restaurants";
+      }
+    } else {
+      return "Nothing";
+    }
+  };
+
+  let filteredRestaurants = [];
+  if (!isLoading && restaurants) {
+    filteredRestaurants = restaurants;
+  }
+
+  if (!isLoading && restaurants && rating !== -1.0) {
+    filteredRestaurants = [];
+    for (let i = 0; i < restaurants.length; i++) {
+      if (restaurants[i].rating >= rating) {
+        filteredRestaurants.push(restaurants[i]);
+      }
+    }
+  }
+
+  if (sortStatus == 0) {
+    filteredRestaurants.sort((a, b) => (a.rating > b.rating ? -1 : 1));
+  }
+  else if (sortStatus == 1) {
+    filteredRestaurants.sort((a, b) => (a.rating < b.rating ? -1 : 1));
+  }
+
+  const [searchLocation, setSearchLocation] = useState("bakersfield");
+  const [econ, setIcon] = useState(iconArr[0]);
+
+  const onPressicon = (econ) => {
+    if (econ == iconArr[0]) {
+      setIcon(iconArr[1]); // never filtering the restaurants
+      setSortStatus(0)
+      // filteredRestaurants.sort((a, b) => (a.rating > b.rating ? -1 : 1));
+    } else {
+      setIcon(iconArr[0]);
+      setSortStatus(1)
+      // filteredRestaurants.sort((a, b) => (a.rating < b.rating ? -1 : 1));
+    }
   };
 
   return (
@@ -114,38 +217,160 @@ function newt(props) {
             { backgroundColor: "rgba(52, 52, 52, 0.8)" })
           }
         >
-          <View style={styles.searchBarWrap}>
-            <Searchbar
-              placeholder="What food would you like to eat..."
-              onChangeText={value =>setSearchQuery(value)}
-              value={searchQuery}
-              onSubmitEditing={onSearch}
-              iconColor={theme.colors.primary}
-              selectionColor={theme.colors.primary}
-              animate={true}
-              animationDuration={200}
-              focusOnLayout={true}
-              onHide
-            />
+          {/* append the values of item.name, item.rating to the filterlist */}
 
-            <Searchbar
-              placeholder="location"
-              onChangeText={value =>setSearchLocation(value)}
-              value={searchLocation}
-              onSubmitEditing={onSearch}
-              iconColor={theme.colors.primary}
-              selectionColor={theme.colors.primary}
-              animate={true}
-              animationDuration={200}
-              focusOnLayout={true}
-              onHide
-              // location is not updating
-            />
+          <View style={{ backgroundColor: theme.colors.background }}>
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1 }}>
+                <Searchbar
+                  placeholder="What food are you thinking..."
+                  onChangeText={(value) => setSearchQuery(value)}
+                  value={searchQuery}
+                  onSubmitEditing={onSearch}
+                  iconColor={theme.colors.primary}
+                  selectionColor={theme.colors.primary}
+                  animate={true}
+                  animationDuration={200}
+                  focusOnLayout={true}
+                  onHide
+                />
+              </View>
+
+              <View style={{ flex: 0.2 }}>
+                <FAB
+                  icon="filter-plus"
+                  size={30}
+                  onPress={() => toggleModal()}
+                  onBackdropPress={() => toggleModal()}
+                  style={{ backgroundColor: theme.colors.primary }}
+                  color={theme.colors.background}
+                />
+              </View>
+            </View>
           </View>
 
+          <Modal
+            style={styles.popupmodal}
+            onBackdropPress={() => toggleModal()}
+            isVisible={isModalVisible}
+          >
+            <View>
+              <Searchbar
+                placeholder="location"
+                onChangeText={(value) => setSearchLocation(value)}
+                value={searchLocation}
+                onSubmitEditing={onSearch}
+                iconColor={theme.colors.primary}
+                selectionColor={theme.colors.primary}
+                animate={true}
+                animationDuration={200}
+                focusOnLayout={true}
+                onHide
+                // location is not updating
+              />
+            </View>
+            <View
+              style={{
+                backgroundColor: "white",
+                paddingTop: 30,
+                paddingBottom: 30,
+                borderWidth: 5,
+                borderColor: theme.colors.primary,
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                }}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    marginRight: 10,
+                    marginLeft: 10,
 
+                    // backgroundColor: theme.colors.primary,
+                  }}
+                >
+                  <View
+                    style={{
+                      alignSelf: "flex-end",
+                      padding: 10,
+                      // marginTop: 10,
+                      // marginRight: ,
+                      // backgroundColor: "grey",
+                      borderRadius: 10,
+                      borderColor: theme.colors.primary,
+                      borderWidth: 1,
+                      backgroundColor: theme.colors.primary,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        alignSelf: "flex-end",
+                        padding: 5,
+                        color: "white",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      0
+                    </Text>
+                  </View>
+
+                  <Slider
+                    style={{
+                      width: 195,
+                      height: 25,
+                    }}
+                    minimumValue={0}
+                    maximumValue={5}
+                    minimumTrackTintColor={theme.colors.primary}
+                    maximumTrackTintColor="grey"
+                    // onSlidingStartc
+                    onSlidingComplete={(value) => {
+                      setRating(value);
+                    }}
+                    value={0}
+                    thumbTintColor={theme.colors.primary}
+                  />
+                  <View
+                    style={{
+                      alignSelf: "flex-end",
+                      padding: 10,
+
+                      borderRadius: 10,
+                      borderColor: theme.colors.primary,
+                      borderWidth: 1,
+                      backgroundColor: theme.colors.primary,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        alignSelf: "flex-end",
+                        padding: 5,
+                        color: "white",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      5
+                    </Text>
+                  </View>
+                </View>
+
+                <View style={{ flex: 0.2 }}>
+                  <FAB
+                    icon={econ}
+                    size={30}
+                    onPress={() => onPressicon(econ)}
+                    // onPress={() => onPressicon(econ)}
+                    style={{ backgroundColor: theme.colors.primary }}
+                  />
+                </View>
+              </View>
+            </View>
+          </Modal>
         </Animated.View>
-
         {isLoading || !restaurants ? (
           <View
             style={{
@@ -172,9 +397,9 @@ function newt(props) {
           <Animated.FlatList
             onScrollBeginDrag={() => setToggleSearchBar(false)}
             keyExtractor={(item) => item.id}
-            style={{ transform: [{ translateY: searchBarAnim }] }}
             // style={{ transform: [{ translateY: searchBarAnim }] }}
-            data={restaurants}
+            // style={{ transform: [{ translateY: searchBarAnim }] }}
+            data={filteredRestaurants}
             onRefresh={onSearch}
             refreshing={refreshStart}
             renderItem={({ item }) => (
@@ -183,70 +408,116 @@ function newt(props) {
                   <Card.Content>
                     <Title>{item.name}</Title>
                   </Card.Content>
-
-                  <Card.Cover source={{ uri: (item.image_url) ? item.image_url : null }} />
-
+                  <TouchableOpacity
+                    onPress={() =>
+                      props.navigation.navigate("RestaurantDetails", {
+                        name: item.name,
+                        restaurant: item,
+                      })
+                    }
+                  >
+                    <Card.Cover
+                      source={{ uri: item.image_url ? item.image_url : null }}
+                    />
+                  </TouchableOpacity>
                   <Card.Actions style={styles.actionContainer}>
-                    <TouchableOpacity style={styles.buttonContainer}>
-                      <Button
-                        style={{ backgroundColor: theme.colors.primary }}
-                        back
-                        onPress={() =>
-                          props.navigation.navigate("RestaurantDetails", {
-                            name: item.name,
-                            restaurant: item,
-                          })
-                        }
+                    <View style={{ flexDirection: "row" }}>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          marginRight: 40,
+                          // backgroundColor: "grey",
+                        }}
                       >
-                        <Text style={{ color: theme.colors.background }}>
-                          More
-                        </Text>
-                      </Button>
-                    </TouchableOpacity>
+                        <View
+                          style={{
+                            marginRight: 20,
+                            marginLeft: 10,
+                            padding: 10,
+                          }}
+                        >
+                          <TouchableOpacity
+                            style={
+                              (styles.buttonContainer,
+                              {
+                                borderWidth: 2,
 
-                    <TouchableOpacity style={styles.buttonContainer}>
-                      <Button
-                        style={{ backgroundColor: theme.colors.primary }}
-                        onPress={() => CallNum(item.display_phone)}
-                      >
-                        <Text style={{ color: theme.colors.background }}>
-                          Call{" "}
-                        </Text>
-                      </Button>
-                    </TouchableOpacity>
+                                backgroundColor: theme.colors.primary,
+                                borderRadius: 20,
+                                borderColor: theme.colors.primary,
+                              })
+                            }
+                          >
+                            <IconButton
+                              icon="phone"
+                              color={theme.colors.background}
+                              onPress={() => CallNum(item.display_phone)}
+                            >
+                              {/* <Icon
+                          style={{ color: theme.colors.background }}
+                          name="phone"
+                          size={19}
 
-                    <TouchableOpacity style={styles.buttonContainer}>
-                      <Button
-                        style={{ backgroundColor: theme.colors.primary }}
-                        onPress={() =>
-                          openMap({
-                            end: item.location.display_address,
-                          })
-                        }
+                        /> */}
+                            </IconButton>
+                          </TouchableOpacity>
+                        </View>
+                        <View
+                          style={{
+                            marginLeft: 20,
+                            marginRight: 10,
+                            padding: 10,
+                          }}
+                        >
+                          <TouchableOpacity
+                            style={
+                              (styles.buttonContainer,
+                              {
+                                borderWidth: 2,
+                                borderRadius: 20,
+                                backgroundColor: theme.colors.primary,
+                                borderColor: theme.colors.primary,
+                              })
+                            }
+                          >
+                            <IconButton
+                              onPress={() =>
+                                openMap({
+                                  end: (item.location.address1 + ", " + item.location.city),
+                                })
+                              }
+                              color={theme.colors.background}
+                              icon="directions"
+                            ></IconButton>
+                          </TouchableOpacity>
+                        </View>
+                        {/* need to move  */}
+                        <View
+                          style={
+                            (styles.buttonContainer,
+                            { backgroundColor: theme.colors.primary })
+                          }
+                        ></View>
+                      </View>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          alignSelf: "center",
+                        }}
                       >
-                        <Text style={{ color: theme.colors.background }}>
-                          Map
-                        </Text>
-                      </Button>
-                    </TouchableOpacity>
-                    {/* need to move  */}
-                    <View
-                      style={
-                        (styles.buttonContainer,
-                        { backgroundColor: theme.colors.primary })
-                      }
-                    >
-                      <Rating
-                        type="custom"
-                        ratingCount={item.rating}
-                        imageSize={20}
-                        ratingBackgroundColor={theme.colors.surface}
-                        tintColor={theme.colors.background}
-                        ratingColor={theme.colors.primary}
-                        ratingCount={5}
-                        unSelectedColor="black"
-                        readonly
-                      />
+                        <Rating
+                          type="custom"
+                          // defaultValue={item.rating}
+                          imageSize={20}
+                          startingValue={item.rating}
+                          ratingBackgroundColor={theme.colors.surface}
+                          tintColor={theme.colors.background}
+                          ratingColor={theme.colors.primary}
+                          ratingCount={5}
+                          unSelectedColor="black"
+                          readonly
+                        />
+                      </View>
                     </View>
                   </Card.Actions>
                 </Card>
@@ -264,7 +535,7 @@ function newt(props) {
           color={theme.colors.primary}
         />
       </View> */}
-        <View style={{ background: theme.colors.background }}>
+        <View>
           <TouchableOpacity
             style={{
               alignItems: "center",
@@ -275,19 +546,9 @@ function newt(props) {
               right: 0,
               left: 10,
               height: 70,
-
               borderRadius: 100,
             }}
-          >
-            <FAB
-              icon="magnify"
-              size={30}
-              color={theme.colors.background}
-              onPress={() => setToggleSearchBar(!toggleSearchBar)}
-              style={{ backgroundColor: theme.colors.primary }}
-            />
-          </TouchableOpacity>
-
+          ></TouchableOpacity>
           <View>
             <FAB
               style={{
@@ -297,28 +558,81 @@ function newt(props) {
                 position: "absolute",
                 bottom: 10,
                 right: 10,
-                backgroundColor: "#009387",
-
+                backgroundColor: theme.colors.primary,
                 borderRadius: 100,
               }}
               icon="slot-machine"
-              onPress={toggleOverlay}
+              onPress={() => {
+                randomize();
+                toggleOverlay();
+              }}
               size={30}
               color={theme.colors.background}
             />
-
             <Overlay
-              overlayStyle={styles.olStyle}
+              overlayStyle={[styles.olStyle,{backgroundColor: theme.colors.background, borderWidth: 2, borderColor: theme.colors.primary}]}
               isVisible={visible}
               onBackdropPress={toggleOverlay}
             >
-              <Text style={{ color: "black" }}>I feel like eating...</Text>
-              <TextInput placeholder="e.g. tacos,burgers,pizza" />
-              <Text style={{ color: "black" }}>
-                I don't feel like eating...
-              </Text>
-              <TextInput placeholder="e.g. tacos,burgers,pizza" />
-              <Button>Random Pick</Button>
+              <View>
+                <Text style={{fontSize: 18, fontWeight: 'bold'}}>
+                  {restName()}
+                </Text>
+                <View style={{ flexDirection: 'row', padding: 8 }}>
+                  <MaterialIcons name="star" size={22} color="gold" />
+                  <Text style={{fontSize: 18 }}>
+                  {restRating()} ({restRatingCount()} ratings)
+                  </Text>
+                  <View style={{height: 35}}/>
+                </View>
+                <Card style={{borderWidth: 2, borderColor: theme.colors.primary}}>
+                  <Card.Cover source={{ uri: restPhoto() }} />
+                </Card>
+                <View style={{height: 20}}/>
+                <Button
+                  style={{
+                    marginRight: 10,
+                    marginLeft: 10,
+                    marginTop: 10,
+                    paddingTop: 1,
+                    paddingBottom: 1,
+                    backgroundColor: theme.colors.primary,
+                    borderRadius: 10,
+                    borderWidth: 1,
+                  }}
+                  onPress={() => {
+                    props.navigation.navigate("RestaurantDetails", {
+                      name: restName(),
+                      restaurant: restaurants[indexNum],
+                    });
+                    toggleOverlay();
+                  }}
+                >
+                  <Text style={{color: theme.colors.text}}>
+                    More Details
+                  </Text>
+                </Button>
+              <View style={{height: 10}}/>
+              <Button
+                style={{
+                  marginRight: 10,
+                  marginLeft: 10,
+                  marginTop: 10,
+                  paddingTop: 1,
+                  paddingBottom: 1,
+                  backgroundColor: theme.colors.primary,
+                  borderRadius: 10,
+                  borderWidth: 1,
+                }}
+                onPress={() => {
+                  randomize();
+                }}
+              >
+                <Text style={{color: theme.colors.text}}>
+                  Randomize
+                </Text>
+              </Button>
+              </View>
             </Overlay>
           </View>
         </View>
@@ -326,21 +640,18 @@ function newt(props) {
     </SafeAreaView>
   );
 }
-
 export default newt;
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "black",
   },
-
   invcontainer: {
     backgroundColor: "white",
     opacity: 0.7,
   },
   text: {},
   spacing: {
-    marginTop: 40,
+    marginTop: 20,
     paddingLeft: 0,
     paddingRight: 0,
     paddingBottom: 0,
@@ -356,7 +667,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    height: 100,
+    height: 65,
   },
   card: {
     flexDirection: "row",
@@ -374,7 +685,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
   },
   rating: {
@@ -389,22 +699,17 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     borderRadius: 25,
-
     paddingTop: 0,
     paddingBottom: 0,
     marginRight: 1.8,
     marginLeft: 1.8,
     flex: 1,
-
-    borderRadius: 100,
   },
-
   appButtonText: {
     fontSize: 14,
     color: "#FFFFFF",
     fontWeight: "bold",
     alignSelf: "center",
-
     padding: 0,
     margin: 0,
   },
@@ -429,5 +734,18 @@ const styles = StyleSheet.create({
     bottom: 180,
     left: 50,
     right: 50,
+  },
+  leftContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+  },
+  rightContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  popupmodal: {
+    margin: 20,
   },
 });

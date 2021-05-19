@@ -12,3 +12,11 @@ export const RESTAURANT_DETAILS_FETCH_STARTED = "restaurant_deatils/fetch_starte
 export const RESTAURANT_DETAILS_FETCH_FAIL = "restaurant_details/fetch_fail"
 
 export const THEME_SWITCH = "theme/switch"
+
+export const USER_FETCH = "user/fetch"
+export const USER_BIO_SET = "user/bio_set"
+export const USER_LOCATION_SET = "user/location_set"
+export const USER_ADD_FAVORITE = "user/add_favorite"
+export const USER_REMOVE_FAVORITE = "user/remove_favorite"
+export const USER_CLEAR_FAVORITES = "user/clear_favorites"
+

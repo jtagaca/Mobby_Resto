@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import{StyleSheet, View, Image, SafeAreaView} from 'react-native';
 import { Button } from 'react-native-paper';
-import { Title, Card, Avatar, Caption, Text, TouchableRipple } from 'react-native-paper';
+import { Title, Card, Avatar, Caption, Text, TouchableRipple, ActivityIndicator } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons'; 
 
@@ -14,46 +14,7 @@ import { AUTH_LOGOUT } from '../../redux/actions/types';
 
 export default function ProfileScreen(props){
     const dispatch = useDispatch()
-    const [name, setName] = useState();
-    const [bio, setBio] = useState();
-    const [loc, setLoc] = useState();
-    const [phone, setPhone] = useState();
-    const [email, setEmail] = useState();;
-
-    const load = async () => {
-        try {
-          let name = await AsyncStorage.getItem("myName")
-          let bio = await AsyncStorage.getItem("myBio")
-          let loc = await AsyncStorage.getItem("myLoc")
-          let phone = await AsyncStorage.getItem("myPhone")
-          let email = await AsyncStorage.getItem("myEmail")
     
-    
-          if(name !== null){
-            setName(name);
-          }
-          if(bio !== null){
-            setBio(bio);
-          }
-          if(loc !== null){
-            setLoc(loc);
-          }
-         if(phone !== null){
-          setPhone(phone);
-         }
-          if(email !== null){
-            setEmail(email);
-          }
-          
-        } catch (error) {
-          alert(console.error());
-          
-        }
-    }
-      
-      useEffect(() => {
-        load();
-      },[]);
     const switchTheme = (payload) => {
         dispatch(themeSwitch(payload))
     }
@@ -64,126 +25,125 @@ export default function ProfileScreen(props){
     let nextTheme
     const theme = useSelector(state => state.theme.theme)
 
-    return(
-        <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
-            <View style={styles.userInfo}>
-                <View style={{flexDirection: 'row', marginTop: 15}}>
-                    <Avatar.Image 
-                    source={require("../../../assets/templogo.png")}>
-                    </Avatar.Image>
-                    <View style={{marginLeft: 20}}>
-                        <Title style={[styles.title, {marginTop: 15, marginBottom: 5,}]}>
-                            {name}
-                        </Title>
-                        <Caption style={styles.Caption}>
-                            {bio}
-                        </Caption>
+        // grabbing user from redux (state management)
+        // api call for user info made on the homescreen so we're ready for it here
+    const user = useSelector(state => state.user.user)
+    const bio = useSelector(state => state.user.bio)
+    const location = useSelector(state => state.user.location)
+    const favorites = useSelector(state => state.user.favorites)
+    
+    if (!user) {
+        return (
+        <View
+            style={{
+              flex: 1,
+              position: "absolute",
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: 0.5,
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+            }}
+          >
+            <ActivityIndicator size="large" />
+          </View>
+        )
+    }
+    else {
+        return(
+            <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
+                <View style={styles.userInfo}>
+                    <View style={{flexDirection: 'row', marginTop: 25}}>
+                        <Avatar.Image 
+                        source={require("../../../assets/templogo.png")}>
+                        </Avatar.Image>
+                        <View style={{marginLeft: 20}}>
+                            <Title style={[styles.title, {marginTop: 15, marginBottom: 5,}]}>
+                                {user.userName}
+                            </Title>
+                        <Text style={{marginLeft: 5}}>
+                        <MaterialIcons name="email" size={10} color="grey"/>
+                            : {user.email}
+                        </Text>
+                            {/*<Caption style={styles.Caption}>
+                                About Me: {bio}
+                            </Caption>
+                            */}
+                        </View>
                     </View>
-                </View>
-            </View>
-            <View style={styles.userInfo}>
-                <View style={styles.row}>
-                <MaterialIcons name="location-pin" size={20} color="grey"/>
-                    <Text style={{marginLeft: 20}}>
-                        {loc}
-                    </Text>
-                </View>
-                <View style={styles.row}>
-                <MaterialIcons name="phone" size={20} color="grey"/>
-                    <Text style={{marginLeft: 20}}>
-                        {phone}
-                    </Text>
-                </View>
-                <View style={styles.row}>
-                <MaterialIcons name="email" size={20} color="grey"/>
-                    <Text style={{marginLeft: 20}}>
-                        {email}
-                    </Text>
-                </View>
-            </View>
-
-            {/*<View style={styles.infoWrap}>
-                <View style={styles.infoBox}>
-                    <Title> 
-                        Money In Account
-                    </Title>
-                    <Caption>
-                        Wallet
+                    <Caption style={styles.Caption}>
+                                About Me: {bio}
+                    </Caption>
+                    <Caption style={styles.Caption}>
+                                Location: {location}
                     </Caption>
                 </View>
-                <View style={styles.infoBox}>
-                    <Title> 
-                        # of Saved Restruants
-                    </Title>
-                    <Caption>
-                        Saved Restraunts
-                    </Caption>
+                {/* 
+                <View style={styles.userInfo}>
+                    <View style={styles.row}>
+                    <MaterialIcons name="location-pin" size={20} color="grey"/>
+                        <Text style={{marginLeft: 20}}>
+                            {loc}
+                        </Text>
+                    </View>
+                    <View style={styles.row}>
+                    <MaterialIcons name="phone" size={20} color="grey"/>
+                        <Text style={{marginLeft: 20}}>
+                            {phone}
+                        </Text>
+                    </View>
+                    <View style={styles.row}>
+                    <MaterialIcons name="email" size={20} color="grey"/>
+                        <Text style={{marginLeft: 20}}>
+                            {user.email}
+                        </Text>
+                    </View>
                 </View>
-                <View></View>
-            </View> */}
+                */}
+    
+                <View style={styles.menuWrapper}>
+                    <TouchableRipple onPress={() => props.navigation.navigate('FavoriteRestaurants')}>
+                        <View style={styles.menuItem}>
+                        <MaterialIcons name="star" size={20} color="gold" size={25}/>
+                            <Text style={styles.menuItemText}>
+                                Favorite Restaurants
+                            </Text>
+                        </View>
+                    </TouchableRipple>
+    
+                    <TouchableRipple onPress={() => props.navigation.navigate("Contact")}>
+                        <View style={styles.menuItem}>
+                        <MaterialIcons name="person-outline" size={20} color="red" size={25}/>
+                            <Text style={styles.menuItemText}>
+                                Customer Support
+                            </Text>
+                        </View>
+                    </TouchableRipple>
+    
+                    <TouchableRipple onPress={() => props.navigation.navigate("EditProfileScreen")}>
+                        <View style={styles.menuItem}>
+                        <MaterialIcons name="edit" size={20} color="orange" size={25}/>
+                            <Text style={styles.menuItemText}>
+                                Edit Profile
+                            </Text>
+                        </View>
+                    </TouchableRipple >
+    
+                    <TouchableRipple onPress={() => props.navigation.navigate("Settings")}>
+                        <View style={styles.menuItem}>
+                        <MaterialIcons name="settings" size={20} color="grey" size={25}/>
+                            <Text style={styles.menuItemText}>
+                                Settings
+                            </Text>
+                        </View>
+                    </TouchableRipple >
 
-            <View style={styles.menuWrapper}>
-                <TouchableRipple onPress={() =>{}}>
-                    <View style={styles.menuItem}>
-                    <MaterialIcons name="star" size={20} color="gold" size={25}/>
-                        <Text style={styles.menuItemText}>
-                            Favorite Restraunts
-                        </Text>
-                    </View>
-                </TouchableRipple>
-                
-                {/*<TouchableRipple onPress={() =>{}}>
-                    <View style={styles.menuItem}>
-                    <MaterialIcons name="credit-card" size={20} color="yellowgreen" size={25}/>
-                        <Text style={styles.menuItemText}>
-                            Payment Info
-                        </Text>
-                    </View>
-                </TouchableRipple>*/}
-
-                <TouchableRipple onPress={() => props.navigation.navigate("Contact")}>
-                    <View style={styles.menuItem}>
-                    <MaterialIcons name="person-outline" size={20} color="red" size={25}/>
-                        <Text style={styles.menuItemText}>
-                            Customer Support
-                        </Text>
-                    </View>
-                </TouchableRipple>
-
-                <TouchableRipple onPress={() => props.navigation.navigate("EditProfileScreen")}>
-                    <View style={styles.menuItem}>
-                    <MaterialIcons name="edit" size={20} color="orange" size={25}/>
-                        <Text style={styles.menuItemText}>
-                            Edit Profile
-                        </Text>
-                    </View>
-                </TouchableRipple >
-
-                <TouchableRipple onPress={() => props.navigation.navigate("Settings")}>
-                    <View style={styles.menuItem}>
-                    <MaterialIcons name="settings" size={20} color="grey" size={25}/>
-                        <Text style={styles.menuItemText}>
-                            Settings
-                        </Text>
-                    </View>
-                </TouchableRipple >
-
-               {/* <View style={styles.text}>
-                <Button  onPress={() => {(!theme.dark) ? nextTheme = darkTheme : nextTheme = lightTheme; switchTheme(nextTheme) }} > 
-
-                {/* if not dark then do this? if theme is dark then do light theme 
-                    {(theme.dark) ? 'Light mode' : 'Dark mode'}
-                </Button>
-                
-                <Button onPress={logout} >
-                    Log out
-                </Button>
-                </View> */}
-
-            </View>
-
-        </SafeAreaView>
-    )
+                </View>
+            </SafeAreaView>
+        )
+    }
 }
 
 
@@ -200,14 +160,15 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 24,
+        fontSize: 30,
         fontWeight: 'bold',
     },
 
-    caption: {
+    Caption: {
         fontSize: 14,
         lineHeight: 14,
         fontWeight: '500',
+        marginTop: 20,
     },
 
     row: {
@@ -235,13 +196,13 @@ const styles = StyleSheet.create({
       },
       menuItem: {
         flexDirection: 'row',
-        paddingVertical: 15,
+        paddingVertical:25,
         paddingHorizontal: 30,
       },
       menuItemText: {
         marginLeft: 20,
         fontWeight: '600',
-        fontSize: 16,
+        fontSize: 22,
         lineHeight: 26,
       },
       text:{
