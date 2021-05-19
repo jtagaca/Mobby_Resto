@@ -66,6 +66,6 @@ Mobby Resto is a mobile application that is based on the idea of knowing the bes
 
 ## How to Build
 
-- NPM install
-- NPM Start
+- npm install
+- npm start
 - Disclaimer: This app requires a file with an API Key that not shared here to build it.
