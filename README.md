@@ -1,5 +1,5 @@
 # Mobby Resto
-
+# Please refer to the branch in called "test" for commit history logs 
 Mobby Resto is a mobile application that is based on the idea of knowing the best restaurants in town; similar to Yelp but with built-in features like Google Maps.
 
 ## In-App Screenshots
